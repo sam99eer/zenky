@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
 import SearchModal from 'src/components/pages/Home/SearchModal';
 import { IToggle } from 'src/models/screens/Home';
-import MobileHeader from '../MobileHeader';
+import { homeSliceActions } from 'src/store/Actions';
 import Logo from '/assets/icons/logo.png';
 
 const Header = () => {
@@ -14,7 +16,12 @@ const Header = () => {
         search: false,
     });
 
+    const dispatch = useDispatch();
+
     const toggleHandler = (uid: keyof IToggle) => {
+        if (uid === 'cart' || uid === 'mobileNav') {
+            dispatch(homeSliceActions.toggleBackdrop());
+        }
         setShow((oldState) => ({
             ...oldState,
             [uid]: !oldState[uid],

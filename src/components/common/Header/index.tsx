@@ -77,59 +77,22 @@ const Header = () => {
                                                             className='menu-title'
                                                             href='#'
                                                         >
-                                                            Shop Layout
+                                                            Shop For
                                                         </a>
                                                         <ul>
                                                             <li>
                                                                 <a href='shop-fullwide.html'>
-                                                                    Shop
-                                                                    Fullwidth
+                                                                    Men
                                                                 </a>
                                                             </li>
                                                             <li>
                                                                 <a href='shop-sidebar.html'>
-                                                                    Shop Sidebar
+                                                                    Women
                                                                 </a>
                                                             </li>
                                                             <li>
                                                                 <a href='shop-3col.html'>
-                                                                    Shop 03
-                                                                    Column
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-4col.html'>
-                                                                    Shop 04
-                                                                    Column
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-masonry.html'>
-                                                                    Shop Mansory
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-metro.html'>
-                                                                    Shop Metro
-                                                                    Layout
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-instagram.html'>
-                                                                    Shop
-                                                                    Instagram
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-collection-classic.html'>
-                                                                    Collection
-                                                                    Classic
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-collection-modern.html'>
-                                                                    Collection
-                                                                    Modern
+                                                                    Both
                                                                 </a>
                                                             </li>
                                                         </ul>
@@ -139,56 +102,7 @@ const Header = () => {
                                                             className='menu-title'
                                                             href='#'
                                                         >
-                                                            Product Layout
-                                                        </a>
-                                                        <ul>
-                                                            <li>
-                                                                <a href='product-details.html'>
-                                                                    Simple 01
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-2.html'>
-                                                                    Simple 02
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-3.html'>
-                                                                    Simple 03
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-carousel.html'>
-                                                                    Product
-                                                                    Carousel
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-grouped.html'>
-                                                                    Product
-                                                                    Grouped
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-affiliate.html'>
-                                                                    Product
-                                                                    Affiliate
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-configurable.html'>
-                                                                    Product
-                                                                    Configurable
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className='mega-menu-sub-width20'>
-                                                        <a
-                                                            className='menu-title'
-                                                            href='#'
-                                                        >
-                                                            Shop Page
+                                                            Cart
                                                         </a>
                                                         <ul>
                                                             <li>
@@ -202,6 +116,16 @@ const Header = () => {
                                                                     Check Out
                                                                 </a>
                                                             </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li className='mega-menu-sub-width20'>
+                                                        <a
+                                                            className='menu-title'
+                                                            href='#'
+                                                        >
+                                                            Profile
+                                                        </a>
+                                                        <ul>
                                                             <li>
                                                                 <a href='my-account.html'>
                                                                     My Account
@@ -213,11 +137,6 @@ const Header = () => {
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='compare.html'>
-                                                                    Compare
-                                                                </a>
-                                                            </li>
-                                                            <li>
                                                                 <a href='order-tracking.html'>
                                                                     Order
                                                                     Tracking
@@ -226,11 +145,6 @@ const Header = () => {
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </li>
-                                            <li>
-                                                <a href='shop-fullwide.html'>
-                                                    Collections{' '}
-                                                </a>
                                             </li>
                                             <li>
                                                 <a href='#'>

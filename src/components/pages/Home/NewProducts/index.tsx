@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { GetProducts } from 'src/Api/GetProducts';
+import { GetProducts } from 'src/api/GetProducts';
 import HomeProductCard from 'src/components/common/HomeProductCard';
 import Skeleton from 'src/components/common/Skeleton';
 import { Keys } from 'src/utils/Keys';

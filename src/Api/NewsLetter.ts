@@ -1,4 +1,4 @@
-import { ApiClient } from 'src/Api/ApiClient';
+import { ApiClient } from 'src/api/ApiClient';
 import { INewsletterResponse } from 'src/models/api/NewsletterModel';
 import { Endpoints } from 'src/utils/Endpoints';
 

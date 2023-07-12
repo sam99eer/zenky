@@ -1,4 +1,4 @@
-import { ApiClient } from 'src/Api/ApiClient';
+import { ApiClient } from 'src/api/ApiClient';
 import {
     IGetProductsPayload,
     IGetProductsResponse,

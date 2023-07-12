@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
-import { NewsLetter } from 'src/Api/NewsLetter';
+import { NewsLetter } from 'src/api/NewsLetter';
 import { IError } from 'src/models/api/ErrorModel';
 import { Keys } from 'src/utils/Keys';
 

@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
 import SearchModal from 'src/components/pages/Home/SearchModal';
 import { IToggle } from 'src/models/screens/Home';
+import { IStoreModel } from 'src/store';
 import { homeSliceActions } from 'src/store/Actions';
+import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/logo.png';
 
 const Header = () => {
@@ -15,6 +18,10 @@ const Header = () => {
         mobileNav: false,
         search: false,
     });
+
+    const cartItems = useSelector(
+        (state: IStoreModel) => state.cartReducer.cartItem.length
+    );
 
     const dispatch = useDispatch();
 
@@ -37,9 +44,9 @@ const Header = () => {
                             <div className='col-lg-3'>
                                 <div className='logo-header-about-wrap'>
                                     <div className='logo logo-width'>
-                                        <a href='index.html'>
+                                        <Link to={Screens.HOME}>
                                             <img src={Logo} alt='logo' />
-                                        </a>
+                                        </Link>
                                     </div>
                                     <div className='header-about-icon ml-35'>
                                         <a
@@ -59,12 +66,14 @@ const Header = () => {
                                     <nav>
                                         <ul>
                                             <li>
-                                                <a
-                                                    className='active'
-                                                    href='index.html'
+                                                <NavLink
+                                                    to={Screens.HOME}
+                                                    className={({ isActive }) =>
+                                                        isActive ? 'active' : ''
+                                                    }
                                                 >
                                                     Home
-                                                </a>
+                                                </NavLink>
                                             </li>
                                             <li>
                                                 <a href='#'>
@@ -106,15 +115,23 @@ const Header = () => {
                                                         </a>
                                                         <ul>
                                                             <li>
-                                                                <a href='cart.html'>
+                                                                <Link
+                                                                    to={
+                                                                        Screens.CART
+                                                                    }
+                                                                >
                                                                     Shopping
                                                                     Cart
-                                                                </a>
+                                                                </Link>
                                                             </li>
                                                             <li>
-                                                                <a href='checkout.html'>
+                                                                <Link
+                                                                    to={
+                                                                        Screens.CHECKOUT
+                                                                    }
+                                                                >
                                                                     Check Out
-                                                                </a>
+                                                                </Link>
                                                             </li>
                                                         </ul>
                                                     </li>
@@ -206,7 +223,7 @@ const Header = () => {
                                         >
                                             <i className=' ti-shopping-cart '></i>
                                             <span className='count-style'>
-                                                2
+                                                {cartItems}
                                             </span>
                                         </a>
                                     </div>
@@ -220,9 +237,9 @@ const Header = () => {
                         <div className='row align-items-center'>
                             <div className='col-6'>
                                 <div className='mobile-logo logo-width'>
-                                    <a href='index.html'>
+                                    <Link to={Screens.HOME}>
                                         <img alt='Logo' src={Logo} />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             <div className='col-6'>
@@ -237,7 +254,7 @@ const Header = () => {
                                         >
                                             <i className=' ti-shopping-cart '></i>
                                             <span className='count-style'>
-                                                2
+                                                {cartItems}
                                             </span>
                                         </a>
                                     </div>

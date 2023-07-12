@@ -1,6 +1,10 @@
 import { createPortal } from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
+import { toast } from 'react-toastify';
 import { IGetProductItem } from 'src/models/api/GetProductsModel';
+import { IStoreModel } from 'src/store';
+import { cartSliceActions } from 'src/store/Actions';
 import { CONSTANTS } from 'src/utils/Constants';
 import NoImage from '/assets/images/no-image.jpg';
 
@@ -12,8 +16,6 @@ const settings = {
     slidesToScroll: 1,
     autoplay: false,
     autoplaySpeed: 5000,
-    prevArrow: <i className='ti-arrow-left' />,
-    nextArrow: <i className='ti-arrow-right' />,
     responsive: [
         {
             breakpoint: 992,
@@ -47,6 +49,42 @@ const settings = {
 };
 
 const HomeProductCard = (props: { data: IGetProductItem }) => {
+    const dispatch = useDispatch();
+
+    const cartItems = useSelector(
+        (state: IStoreModel) => state.cartReducer.cartItem
+    );
+    const itemData = cartItems.find((item) => item?._id === props?.data?._id);
+
+    const inStock = !!props?.data?.isAvaliable;
+
+    const cartHandler = (
+        action: 'add' | 'remove',
+        shouldShowPopup: boolean
+    ) => {
+        if (!inStock) {
+            toast.warn('Out of Stock! Cannot be added to Cart.');
+            return;
+        }
+
+        if (action === 'add') {
+            dispatch(
+                cartSliceActions.addItem({
+                    data: props?.data,
+                })
+            );
+            if (!!shouldShowPopup) {
+                toast.success('Added to cart');
+            }
+            return;
+        }
+
+        if (action === 'remove') {
+            dispatch(cartSliceActions.removeItem({ _id: props?.data?._id }));
+            return;
+        }
+    };
+
     return (
         <>
             {createPortal(
@@ -104,15 +142,37 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                             <div className='quickview-ratting-review'>
                                                 <div className='quickview-ratting-wrap'>
                                                     <div className='quickview-ratting'>
-                                                        <i className='yellow fa fa-star'></i>
-                                                        <i className='yellow fa fa-star'></i>
-                                                        <i className='yellow fa fa-star'></i>
-                                                        <i className='yellow fa fa-star'></i>
-                                                        <i className='fa fa-star'></i>
+                                                        {Array.from(
+                                                            new Array(5),
+                                                            (_, index) => {
+                                                                if (
+                                                                    index <
+                                                                    (props?.data
+                                                                        ?.rating ??
+                                                                        0)
+                                                                ) {
+                                                                    return (
+                                                                        <i
+                                                                            key={`${props?.data?._id}_filled_star_${index}`}
+                                                                            className='yellow fa fa-star'
+                                                                        ></i>
+                                                                    );
+                                                                }
+                                                                return (
+                                                                    <i
+                                                                        key={`${props?.data?._id}_unfilled_star_${index}`}
+                                                                        className='fa fa-star'
+                                                                    ></i>
+                                                                );
+                                                            }
+                                                        )}
                                                     </div>
                                                     <a href='#'>
                                                         {' '}
-                                                        (1 customer review)
+                                                        ({
+                                                            props?.data?.ratedBy
+                                                        }{' '}
+                                                        customer review)
                                                     </a>
                                                 </div>
                                                 <div className='quickview-stock'>
@@ -141,27 +201,55 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                             </div>
                                             <div className='quickview-action-wrap'>
                                                 <div className='quickview-quality'>
-                                                    <div className='cart-plus-minus'>
-                                                        <div className='dec qtybutton'>
-                                                            -
+                                                    {inStock ? (
+                                                        <div className='cart-plus-minus d-flex justify-content-center align-items-center'>
+                                                            <div
+                                                                className='dec qtybutton'
+                                                                onClick={cartHandler.bind(
+                                                                    this,
+                                                                    'remove',
+                                                                    false
+                                                                )}
+                                                            >
+                                                                -
+                                                            </div>
+                                                            <span>
+                                                                {itemData?.quantity ??
+                                                                    0}
+                                                            </span>
+                                                            <div
+                                                                className='inc qtybutton'
+                                                                onClick={cartHandler.bind(
+                                                                    this,
+                                                                    'add',
+                                                                    false
+                                                                )}
+                                                            >
+                                                                +
+                                                            </div>
                                                         </div>
-                                                        <input
-                                                            className='cart-plus-minus-box'
-                                                            type='text'
-                                                            name='qtybutton'
-                                                            value='2'
-                                                        />
-                                                        <div className='inc qtybutton'>
-                                                            +
-                                                        </div>
-                                                    </div>
+                                                    ) : null}
                                                 </div>
                                                 <div className='quickview-cart'>
                                                     <a
-                                                        title='Add to cart'
-                                                        href='#'
+                                                        title={
+                                                            inStock
+                                                                ? 'Add to cart'
+                                                                : 'Out of Stock'
+                                                        }
+                                                        onClick={
+                                                            inStock
+                                                                ? cartHandler.bind(
+                                                                      this,
+                                                                      'add',
+                                                                      true
+                                                                  )
+                                                                : undefined
+                                                        }
                                                     >
-                                                        Add to cart
+                                                        {inStock
+                                                            ? 'Add to cart'
+                                                            : 'Out of Stock'}
                                                     </a>
                                                 </div>
                                                 <div className='quickview-wishlist'>
@@ -279,8 +367,15 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                             </a>
                         </div>
                         <div className='product-action-2'>
-                            <a title='Buy on Themeforest' href='#'>
-                                Add to cart
+                            <a
+                                title={inStock ? 'Add to cart' : 'Out of Stock'}
+                                onClick={
+                                    inStock
+                                        ? cartHandler.bind(this, 'add', true)
+                                        : undefined
+                                }
+                            >
+                                {inStock ? 'Add to cart' : 'Out of Stock'}
                             </a>
                         </div>
                     </div>

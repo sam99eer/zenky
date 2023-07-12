@@ -29,6 +29,8 @@ export interface IGetProductItem {
     createdAt: string;
     updatedAt: string;
     colors: Color[];
+    rating?: number;
+    ratedBy: number;
 }
 
 interface Color {

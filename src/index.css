@@ -3200,7 +3200,7 @@ button, input, optgroup, select, textarea {
 @media only screen and (min-width: 1200px) and (max-width: 1365px) {
   .main-menu > nav > ul > li > ul.menu-negative-mrg2 {
     left: -400px;
-    width: 1130px;
+    width: 742px;
   }
 }
 
@@ -21660,11 +21660,11 @@ h3.cart-page-title {
   color: red;
 }
 
-.billing-info-wrap .billing-select .select2-container {
+.billing-info-wrap .billing-select select {
   display: block;
 }
 
-.billing-info-wrap .billing-select .select2-container .select2-choice {
+.billing-info-wrap .billing-select select {
   border: 1px solid #e6e6e6;
   -moz-appearance: none;
   height: 50px;
@@ -21673,7 +21673,7 @@ h3.cart-page-title {
   cursor: pointer;
 }
 
-.billing-info-wrap .billing-select .select2-container .select2-choice .select2-chosen {
+.billing-info-wrap .billing-select select {
   height: 50px;
 }
 
@@ -21886,7 +21886,7 @@ h3.cart-page-title {
   color: red;
 }
 
-.your-order-area .Place-order a {
+.your-order-area .Place-order button {
   background-color: #262626;
   display: block;
   cursor: pointer;
@@ -21894,9 +21894,10 @@ h3.cart-page-title {
   width: 100%;
   color: #fff;
   text-align: center;
+  border: none;
 }
 
-.your-order-area .Place-order a:hover {
+.your-order-area .Place-order button:hover {
   background-color: #e77878;
 }
 

@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { IToggle } from 'src/models/screens/Home';
+import { Screens } from 'src/utils/Screens';
 
 const MobileHeader = (props: {
     isVisible: boolean;
@@ -56,17 +58,17 @@ const MobileHeader = (props: {
                                             </ul>
                                         </li>
                                         <li className='menu-item-has-children'>
-                                            <a href='#'>Cart</a>
+                                            <a>Cart</a>
                                             <ul className='dropdown'>
                                                 <li>
-                                                    <a href='product-details.html'>
+                                                    <Link to={Screens.CART}>
                                                         Shopping Cart
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href='product-details-2.html'>
+                                                    <Link to={Screens.CHECKOUT}>
                                                         Checkout
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </li>

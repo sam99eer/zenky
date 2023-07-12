@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Provider>
         <ToastContainer
             position='top-right'
-            autoClose={3000}
+            autoClose={2500}
             limit={3}
             hideProgressBar={false}
             newestOnTop={false}

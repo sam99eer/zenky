@@ -1,9 +1,36 @@
+import { useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import EmptyCart from 'src/assets/Cart.svg';
 import { IToggle } from 'src/models/screens/Home';
+import { IStoreModel } from 'src/store';
+import { cartSliceActions } from 'src/store/Actions';
+import { CONSTANTS } from 'src/utils/Constants';
+import { Screens } from 'src/utils/Screens';
+import NoImage from '/assets/images/no-image.jpg';
 
 const MiniCart = (props: {
     isVisible: boolean;
     closeHandler: (uid: keyof IToggle) => void;
 }) => {
+    const cartItems = useSelector(
+        (state: IStoreModel) => state.cartReducer.cartItem
+    );
+
+    const dispatch = useDispatch();
+
+    const removeHandler = (id: string) => {
+        dispatch(cartSliceActions.deleteItem({ _id: id }));
+    };
+
+    const subTotal = useMemo(
+        () =>
+            cartItems.length > 0
+                ? cartItems.reduce((acc, curVal) => acc + curVal?.totalPrice, 0)
+                : 0,
+        [cartItems]
+    );
+
     return (
         <div
             className={`sidebar-cart-active ${props.isVisible ? 'inside' : ''}`}
@@ -17,59 +44,80 @@ const MiniCart = (props: {
                 </a>
                 <div className='cart-content'>
                     <h3>Shopping Cart</h3>
-                    <ul>
-                        <li className='single-product-cart'>
-                            <div className='cart-img'>
-                                <a href='#'>
-                                    {/* <img src="assets/images/cart/cart-1.jpg" alt=""> */}
-                                </a>
-                            </div>
-                            <div className='cart-title'>
+                    {cartItems.length > 0 ? (
+                        <>
+                            <ul>
+                                {cartItems.map((item) => (
+                                    <li
+                                        key={`cart_${item?._id}`}
+                                        className='single-product-cart'
+                                    >
+                                        <div className='cart-img'>
+                                            <a>
+                                                <img
+                                                    src={
+                                                        !!item?.image
+                                                            ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${item?.image}`
+                                                            : NoImage
+                                                    }
+                                                    alt='Product Image'
+                                                />
+                                            </a>
+                                        </div>
+                                        <div className='cart-title'>
+                                            <h4>
+                                                <a>{item?.name}</a>
+                                            </h4>
+                                            <span>
+                                                {item?.quantity} × ₹
+                                                {item?.price}
+                                            </span>
+                                        </div>
+                                        <div
+                                            className='cart-delete'
+                                            onClick={removeHandler.bind(
+                                                this,
+                                                item?._id
+                                            )}
+                                        >
+                                            <a>×</a>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className='cart-total'>
                                 <h4>
-                                    <a href='#'>High Collar Jacket</a>
+                                    Subtotal:{' '}
+                                    <span>₹{subTotal?.toFixed(2)}</span>
                                 </h4>
-                                <span>1 × $50.00</span>
                             </div>
-                            <div className='cart-delete'>
-                                <a href='#'>×</a>
+                            <div className='cart-checkout-btn'>
+                                <Link
+                                    className='btn-hover cart-btn-style'
+                                    to={Screens.CART}
+                                >
+                                    view cart
+                                </Link>
+                                <Link
+                                    className='no-mrg btn-hover cart-btn-style'
+                                    to={Screens.CHECKOUT}
+                                >
+                                    checkout
+                                </Link>
                             </div>
-                        </li>
-                        <li className='single-product-cart'>
-                            <div className='cart-img'>
-                                <a href='#'>
-                                    {/* <img src="assets/images/cart/cart-2.jpg" alt=""> */}
-                                </a>
-                            </div>
-                            <div className='cart-title'>
-                                <h4>
-                                    <a href='#'>Long shirt dress</a>
-                                </h4>
-                                <span>2 × $29.00</span>
-                            </div>
-                            <div className='cart-delete'>
-                                <a href='#'>×</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div className='cart-total'>
-                        <h4>
-                            Subtotal: <span>$150.00</span>
-                        </h4>
-                    </div>
-                    <div className='cart-checkout-btn'>
-                        <a
-                            className='btn-hover cart-btn-style'
-                            href='cart.html'
-                        >
-                            view cart
-                        </a>
-                        <a
-                            className='no-mrg btn-hover cart-btn-style'
-                            href='checkout.html'
-                        >
-                            checkout
-                        </a>
-                    </div>
+                        </>
+                    ) : (
+                        <div className='d-flex align-items-center flex-column'>
+                            <img
+                                src={EmptyCart}
+                                alt='Empty Cart'
+                                className='img-fluid'
+                            />
+                            <p className='py-5 fw-bold text-center'>
+                                Nothing here... Please add some items!
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -1,0 +1,10 @@
+{
+    "apps": [
+        {
+            "name": "zenky-admin",
+            "script": "npx",
+            "interpreter": "none",
+            "args": "serve -s dist -p 3001"
+        }
+    ]
+}

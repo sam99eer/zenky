@@ -12,6 +12,9 @@ const homeSlice = createSlice({
         toggleBackdrop(state) {
             state.backdropVisible = !state.backdropVisible;
         },
+        turnOffBackdrop(state) {
+            state.backdropVisible = false;
+        },
     },
 });
 

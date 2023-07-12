@@ -3,3 +3,9 @@ export const CONSTANTS = {
     IMG_PATH: 'uploads/',
     API_VERSION: 'api/user/',
 };
+
+export const REGEX = {
+    PHONE: /^\d{10}$/,
+    EMAIL: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$/,
+    ZIP: /^\d{6}$/,
+};

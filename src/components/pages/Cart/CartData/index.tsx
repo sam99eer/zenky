@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import EmptyCart from 'src/assets/Cart.svg';
+import EmptyCart from 'src/assets/EmptyCart';
 import { ICartItem } from 'src/models/store/CartSliceModel';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
@@ -209,11 +209,9 @@ const CartData = () => {
                             </>
                         ) : (
                             <div className='d-flex flex-column justify-content-center align-items-center'>
-                                <img
-                                    src={EmptyCart}
-                                    alt='Empty Cart'
-                                    className='img-fluid'
-                                />
+                                <div className='img-fluid svg-icon'>
+                                    <EmptyCart />
+                                </div>
                                 <p className='py-5 fw-bold text-center'>
                                     Nothing here... Please add some items!
                                 </p>

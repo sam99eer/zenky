@@ -149,9 +149,13 @@ const Header = () => {
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='wishlist.html'>
+                                                                <Link
+                                                                    to={
+                                                                        Screens.WISHLIST
+                                                                    }
+                                                                >
                                                                     Wishlist
-                                                                </a>
+                                                                </Link>
                                                             </li>
                                                             <li>
                                                                 <a href='order-tracking.html'>

@@ -12785,7 +12785,7 @@ body.body-menu-overlay::before {
 }
 
 .error-area {
-  height: 100vh;
+  height: 75vh;
   -webkit-box-align: center;
   -webkit-align-items: center;
       -ms-flex-align: center;

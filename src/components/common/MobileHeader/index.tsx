@@ -81,12 +81,12 @@ const MobileHeader = (props: {
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href='checkout.html'>
+                                                    <Link to={Screens.WISHLIST}>
                                                         Wishlist
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
-                                                    <a href='my-account.html'>
+                                                    <a href='#'>
                                                         Order Tracking
                                                     </a>
                                                 </li>

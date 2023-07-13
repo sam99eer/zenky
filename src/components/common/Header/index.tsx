@@ -7,7 +7,10 @@ import QuickInfo from 'src/components/pages/Home/QuickInfo';
 import SearchModal from 'src/components/pages/Home/SearchModal';
 import { IToggle } from 'src/models/screens/Home';
 import { IStoreModel } from 'src/store';
-import { homeSliceActions } from 'src/store/Actions';
+import {
+    homeSliceActions,
+    personalDetailsSliceActions,
+} from 'src/store/Actions';
 import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/logo.png';
 
@@ -23,6 +26,10 @@ const Header = () => {
         (state: IStoreModel) => state.cartReducer.cartItem.length
     );
 
+    const isLoggedIn = useSelector(
+        (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
+    );
+
     const dispatch = useDispatch();
 
     const toggleHandler = (uid: keyof IToggle) => {
@@ -33,6 +40,11 @@ const Header = () => {
             ...oldState,
             [uid]: !oldState[uid],
         }));
+    };
+
+    const logoutHandler = () => {
+        localStorage.removeItem('access-token');
+        dispatch(personalDetailsSliceActions.flushData());
     };
 
     return (
@@ -76,16 +88,13 @@ const Header = () => {
                                                 </NavLink>
                                             </li>
                                             <li>
-                                                <a href='#'>
+                                                <a>
                                                     Shop{' '}
                                                     <i className='fa fa-angle-down'></i>
                                                 </a>
                                                 <ul className='mega-menu mega-menu-width2 menu-negative-mrg2'>
                                                     <li className='mega-menu-sub-width20'>
-                                                        <a
-                                                            className='menu-title'
-                                                            href='#'
-                                                        >
+                                                        <a className='menu-title'>
                                                             Shop For
                                                         </a>
                                                         <ul>
@@ -107,10 +116,7 @@ const Header = () => {
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>
-                                                        <a
-                                                            className='menu-title'
-                                                            href='#'
-                                                        >
+                                                        <a className='menu-title'>
                                                             Cart
                                                         </a>
                                                         <ul>
@@ -136,17 +142,18 @@ const Header = () => {
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>
-                                                        <a
-                                                            className='menu-title'
-                                                            href='#'
-                                                        >
+                                                        <a className='menu-title'>
                                                             Profile
                                                         </a>
                                                         <ul>
                                                             <li>
-                                                                <a href='my-account.html'>
+                                                                <Link
+                                                                    to={
+                                                                        Screens.PROFILE
+                                                                    }
+                                                                >
                                                                     My Account
-                                                                </a>
+                                                                </Link>
                                                             </li>
                                                             <li>
                                                                 <Link
@@ -168,7 +175,7 @@ const Header = () => {
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href='#'>
+                                                <a>
                                                     More{' '}
                                                     <i className='fa fa-angle-down'></i>
                                                 </a>
@@ -188,16 +195,17 @@ const Header = () => {
                                                             FAQ
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a href='comming-soon.html'>
-                                                            Comming Soon
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href='404.html'>
-                                                            Page 404
-                                                        </a>
-                                                    </li>
+                                                    {isLoggedIn ? (
+                                                        <li>
+                                                            <a
+                                                                onClick={
+                                                                    logoutHandler
+                                                                }
+                                                            >
+                                                                Logout
+                                                            </a>
+                                                        </li>
+                                                    ) : null}
                                                 </ul>
                                             </li>
                                         </ul>

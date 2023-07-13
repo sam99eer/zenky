@@ -1,11 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IToggle } from 'src/models/screens/Home';
+import { IStoreModel } from 'src/store';
+import { personalDetailsSliceActions } from 'src/store/Actions';
 import { Screens } from 'src/utils/Screens';
 
 const MobileHeader = (props: {
     isVisible: boolean;
     closeHandler: (uid: keyof IToggle) => void;
 }) => {
+    const isLoggedIn = useSelector(
+        (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
+    );
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        localStorage.removeItem('access-token');
+        dispatch(personalDetailsSliceActions.flushData());
+    };
+
     return (
         <div
             className={`mobile-off-canvas-active ${
@@ -32,13 +45,13 @@ const MobileHeader = (props: {
                         <nav>
                             <ul className='mobile-menu'>
                                 <li className='menu-item-has-children'>
-                                    <a href='index.html'>Home</a>
+                                    <Link to={Screens.HOME}>Home</Link>
                                 </li>
                                 <li className='menu-item-has-children '>
-                                    <a href='shop-fullwide.html'>Shop</a>
+                                    <a>Shop</a>
                                     <ul className='dropdown'>
                                         <li className='menu-item-has-children'>
-                                            <a href='#'>Shop For</a>
+                                            <a>Shop For</a>
                                             <ul className='dropdown'>
                                                 <li>
                                                     <a href='shop-fullwide.html'>
@@ -73,12 +86,12 @@ const MobileHeader = (props: {
                                             </ul>
                                         </li>
                                         <li className='menu-item-has-children'>
-                                            <a href='#'>Profile</a>
+                                            <a>Profile</a>
                                             <ul className='dropdown'>
                                                 <li>
-                                                    <a href='cart.html'>
+                                                    <Link to={Screens.PROFILE}>
                                                         My Account
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                                 <li>
                                                     <Link to={Screens.WISHLIST}>
@@ -95,7 +108,7 @@ const MobileHeader = (props: {
                                     </ul>
                                 </li>
                                 <li className='menu-item-has-children'>
-                                    <a href='#'>More</a>
+                                    <a>More</a>
                                     <ul className='dropdown'>
                                         <li>
                                             <a href='about-us.html'>About Us</a>
@@ -108,14 +121,13 @@ const MobileHeader = (props: {
                                         <li>
                                             <a href='faq.html'>FAQ</a>
                                         </li>
-                                        <li>
-                                            <a href='comming-soon.html'>
-                                                Comming Soon
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href='404.html'>Page 404</a>
-                                        </li>
+                                        {isLoggedIn ? (
+                                            <li>
+                                                <a onClick={logoutHandler}>
+                                                    Logout
+                                                </a>
+                                            </li>
+                                        ) : null}
                                     </ul>
                                 </li>
                             </ul>

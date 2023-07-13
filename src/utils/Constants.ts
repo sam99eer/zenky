@@ -8,4 +8,5 @@ export const REGEX = {
     PHONE: /^\d{10}$/,
     EMAIL: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$/,
     ZIP: /^\d{6}$/,
+    PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/,
 };

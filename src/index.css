@@ -22392,6 +22392,17 @@ h3.cart-page-title {
   width: 100%;
 }
 
+.user-image {
+  max-height: 64px;
+  max-width: 64px;
+  margin-block: 1rem;
+}
+
+.user-image svg {
+  height: 64px;
+  width: 64px;
+}
+
 .loader {
   color: #ffffff;
   font-size: 12px;
@@ -22408,6 +22419,7 @@ h3.cart-page-title {
   -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
   animation: load6 1.7s infinite ease, round 1.7s infinite ease;
 }
+
 @-webkit-keyframes load6 {
   0% {
     box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
@@ -22471,4 +22483,36 @@ h3.cart-page-title {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.skeleton-1b7fljkf61d:empty {
+	position: relative;
+	height: 210px;
+	background-color: #ffffff;
+	border-radius: 0px 0px 0px 0px;
+	background-image: linear-gradient(#f5f7f9 49px, transparent 0), linear-gradient(#F5F7F9 9px, transparent 0), linear-gradient(#F5F7F9 10px, transparent 0), radial-gradient(circle 32px at 32px 32px, #F5F7F9 99%, transparent 0);
+	background-repeat: repeat-y;
+	background-position: left 15px top 15px, left 15px top 193px, left 15px top 166px, left 12px top 87px;
+}
+
+.skeleton-1b7fljkf61d:empty:before {
+	content: ' ';
+	position: absolute;
+	z-index: 50;
+	width: 100%;
+	height: 210px;
+	-webkit-mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+	-webkit-mask-repeat: repeat-y;
+	-webkit-mask-size: 50px 391px;
+	-webkit-mask-position: -20% 0;
+	background-image: linear-gradient(rgba(102, 102, 102, 1) 49px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 9px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 10px, transparent 0), radial-gradient(circle 32px at 32px 32px, rgba(102, 102, 102, 1) 99%, transparent 0);
+	background-repeat: repeat-y;
+	background-position: left 15px top 15px, left 15px top 193px, left 15px top 166px, left 12px top 87px;
+	animation: shineForSkeleton-1b7fljkf61d 2s infinite;
+}
+
+@keyframes shineForSkeleton-1b7fljkf61d {
+	to {
+		-webkit-mask-position: 120% 0
+	}
 }

@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import {
     Route,
     BrowserRouter as Router,
@@ -9,10 +10,16 @@ import Checkout from 'src/pages/Checkout';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
+import Profile from 'src/pages/Profile';
 import Wishlist from 'src/pages/Wishlist';
+import { IStoreModel } from 'src/store';
 import { Screens } from 'src/utils/Screens';
 
 const Routes = () => {
+    const isLoggedIn = useSelector(
+        (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
+    );
+
     return (
         <Router>
             <RoutesContainer>
@@ -23,12 +30,22 @@ const Routes = () => {
                 <Route
                     element={
                         <ProtectedRoute
-                            isRouteAccessible
+                            isRouteAccessible={!isLoggedIn}
                             redirectRoute={Screens.PROFILE}
                         />
                     }
                 >
                     <Route path={Screens.LOGIN} element={<Login />} />
+                </Route>
+                <Route
+                    element={
+                        <ProtectedRoute
+                            isRouteAccessible={isLoggedIn}
+                            redirectRoute={Screens.LOGIN}
+                        />
+                    }
+                >
+                    <Route path={Screens.PROFILE} element={<Profile />} />
                 </Route>
                 <Route path={Screens.NOT_FOUND} element={<NotFound />} />
             </RoutesContainer>

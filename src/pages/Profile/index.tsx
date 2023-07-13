@@ -5,15 +5,15 @@ import ScrollToTop from 'src/components/common/ScrollToTop';
 import SupportList from 'src/components/common/SupportList';
 import Wrapper from 'src/components/common/Wrapper';
 import Overlay from 'src/components/pages/Home/Overlay';
-import LoginData from 'src/components/pages/Login/LoginData';
+import ProfileData from 'src/components/pages/Profile/ProfileData';
 
-const Login = () => {
+const Profile = () => {
     return (
         <Wrapper>
             <Overlay />
             <Header />
-            <Breadcrumb title='Login / Register' />
-            <LoginData />
+            <Breadcrumb title='My Account' />
+            <ProfileData />
             <Footer />
             <SupportList />
             <ScrollToTop />
@@ -21,4 +21,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Profile;

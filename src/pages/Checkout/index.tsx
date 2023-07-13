@@ -1,31 +1,21 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Breadcrumb from 'src/components/common/Breadcrumb';
 import Footer from 'src/components/common/Footer';
 import Header from 'src/components/common/Header';
-import Breadcrumb from 'src/components/pages/Checkout/Breadcrumb';
+import Wrapper from 'src/components/common/Wrapper';
 import CheckoutData from 'src/components/pages/Checkout/CheckoutData';
 import Overlay from 'src/components/pages/Home/Overlay';
 import { IStoreModel } from 'src/store';
-import { homeSliceActions } from 'src/store/Actions';
 import { Screens } from 'src/utils/Screens';
 
 const Checkout = () => {
-    const isBackdropVisible = useSelector(
-        (state: IStoreModel) => state.homeReducer.backdropVisible
-    );
     const cartItemsLength = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem.length
     );
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if (isBackdropVisible) {
-            dispatch(homeSliceActions.turnOffBackdrop());
-        }
-    }, []);
 
     useEffect(() => {
         if (cartItemsLength < 1) {
@@ -34,19 +24,13 @@ const Checkout = () => {
     }, [cartItemsLength]);
 
     return (
-        <>
-            <div
-                className={`main-wrapper main-wrapper-2 ${
-                    isBackdropVisible ? 'overlay-active' : ''
-                }`}
-            >
-                <Overlay />
-                <Header />
-                <Breadcrumb />
-                <CheckoutData />
-                <Footer />
-            </div>
-        </>
+        <Wrapper>
+            <Overlay />
+            <Header />
+            <Breadcrumb title='Checkout' />
+            <CheckoutData />
+            <Footer />
+        </Wrapper>
     );
 };
 

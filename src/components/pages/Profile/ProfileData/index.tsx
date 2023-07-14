@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetProfile } from 'src/api/GetProfile';
 import AccountDetailsPane from 'src/components/pages/Profile/AccountDetailsPane';
-import AddressPane from 'src/components/pages/Profile/AddressPane';
+import ChangePasswordPane from 'src/components/pages/Profile/ChangePasswordPane';
 import DashboardPane from 'src/components/pages/Profile/DashboardPane';
 import OrdersPane from 'src/components/pages/Profile/OrdersPane';
 import { IStoreModel } from 'src/store';
@@ -59,22 +59,16 @@ const ProfileData = () => {
                                         Dashboard
                                     </a>
                                     <a href='#orders' data-bs-toggle='tab'>
-                                        {' '}
                                         Orders
-                                    </a>
-                                    <a
-                                        href='#address-edit'
-                                        data-bs-toggle='tab'
-                                    >
-                                        {' '}
-                                        address
                                     </a>
                                     <a
                                         href='#account-info'
                                         data-bs-toggle='tab'
                                     >
-                                        {' '}
                                         Account Details
+                                    </a>
+                                    <a href='#change-pass' data-bs-toggle='tab'>
+                                        change password
                                     </a>
                                     <a onClick={logoutHandler}>Logout</a>
                                 </div>
@@ -87,8 +81,8 @@ const ProfileData = () => {
                                         logoutHandler={logoutHandler}
                                     />
                                     <OrdersPane />
-                                    <AddressPane />
                                     <AccountDetailsPane />
+                                    <ChangePasswordPane />
                                 </div>
                             </>
                         )}

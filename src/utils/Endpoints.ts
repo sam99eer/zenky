@@ -4,4 +4,6 @@ export const Endpoints = {
     REGISTER: 'signup',
     LOGIN: 'login',
     PROFILE: 'profile',
+    UPDATE_PROFILE: 'details',
+    CHANGE_PASSWORD: 'changePassword',
 };

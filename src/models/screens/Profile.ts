@@ -22,3 +22,30 @@ export interface IProfileData {
     createdAt: string | null;
     updatedAt: string | null;
 }
+
+export type IProfileNeededData = Omit<
+    IProfileData,
+    | '_id'
+    | 'role'
+    | 'email'
+    | 'image'
+    | 'countryCode'
+    | 'isBlocked'
+    | 'createdAt'
+    | 'updatedAt'
+>;
+
+export interface IProfilePayload {
+    data: FormData;
+    token: string;
+}
+
+export interface IChangePassword {
+    oldPassword: string;
+    newPassword: string;
+}
+
+export interface IChangePasswordPayload {
+    data: IChangePassword;
+    token: string;
+}

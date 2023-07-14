@@ -21660,11 +21660,11 @@ h3.cart-page-title {
   color: red;
 }
 
-.billing-info-wrap .billing-select select {
+.billing-info-wrap .billing-select select, .single-input-item select {
   display: block;
 }
 
-.billing-info-wrap .billing-select select {
+.billing-info-wrap .billing-select select, .single-input-item select {
   border: 1px solid #e6e6e6;
   -moz-appearance: none;
   height: 50px;
@@ -21673,7 +21673,7 @@ h3.cart-page-title {
   cursor: pointer;
 }
 
-.billing-info-wrap .billing-select select {
+.billing-info-wrap .billing-select select, .single-input-item select {
   height: 50px;
 }
 
@@ -22401,6 +22401,30 @@ h3.cart-page-title {
 .user-image svg {
   height: 64px;
   width: 64px;
+}
+
+.file-input {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-input label {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #ccc;
+  color: #fff;
+  cursor: pointer;
+}
+
+.file-input label span {
+  display: inline-block;
 }
 
 .loader {

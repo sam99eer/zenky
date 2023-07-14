@@ -26,7 +26,6 @@ const Routes = () => {
                 <Route path={Screens.HOME} index element={<Home />} />
                 <Route path={Screens.CART} element={<Cart />} />
                 <Route path={Screens.CHECKOUT} element={<Checkout />} />
-                <Route path={Screens.WISHLIST} element={<Wishlist />} />
                 <Route
                     element={
                         <ProtectedRoute
@@ -36,6 +35,16 @@ const Routes = () => {
                     }
                 >
                     <Route path={Screens.LOGIN} element={<Login />} />
+                </Route>
+                <Route
+                    element={
+                        <ProtectedRoute
+                            isRouteAccessible={isLoggedIn}
+                            redirectRoute={Screens.LOGIN}
+                        />
+                    }
+                >
+                    <Route path={Screens.WISHLIST} element={<Wishlist />} />
                 </Route>
                 <Route
                     element={

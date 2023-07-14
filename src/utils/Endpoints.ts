@@ -6,4 +6,5 @@ export const Endpoints = {
     PROFILE: 'profile',
     UPDATE_PROFILE: 'details',
     CHANGE_PASSWORD: 'changePassword',
+    WISHLIST: 'wishlist',
 };

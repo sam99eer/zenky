@@ -26,6 +26,11 @@ const App = () => {
                     })
                 );
             },
+            onError: () => {
+                if (!!token) {
+                    localStorage.removeItem('access-token');
+                }
+            },
         }
     );
 

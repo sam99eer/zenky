@@ -6,4 +6,5 @@ export const Keys = {
     PROFILE: 'profile',
     UPDATE_PROFILE: 'update-profile',
     CHANGE_PASSWORD: 'change-password',
+    WISHLIST: 'wishlist',
 };

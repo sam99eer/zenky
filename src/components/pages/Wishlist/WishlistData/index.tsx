@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { GetWishlist } from 'src/api/GetWishlist';
@@ -11,49 +12,102 @@ const WishlistData = () => {
         (state: IStoreModel) => state.personalDetailsReducer.token
     );
 
-    const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-        useInfiniteQuery(
-            Keys.WISHLIST,
-            ({ pageParam }) =>
-                GetWishlist({
-                    pageNumber: pageParam ?? 1,
-                    token: token!,
-                }),
-            {
-                getNextPageParam: (lastPage) =>
-                    Math.ceil(lastPage?.totalItems / 20) > +lastPage?.pageNumber
-                        ? +lastPage?.pageNumber + 1
-                        : undefined,
+    const intersectionRef = useRef<HTMLDivElement>(null);
+
+    const {
+        data,
+        isLoading,
+        hasNextPage,
+        fetchNextPage,
+        isFetchingNextPage,
+        isFetching,
+    } = useInfiniteQuery(
+        Keys.WISHLIST,
+        ({ pageParam }) =>
+            GetWishlist({
+                pageNumber: pageParam ?? 1,
+                token: token!,
+            }),
+        {
+            getNextPageParam: (lastPage) =>
+                Math.ceil(lastPage?.totalItems / 20) > +lastPage?.pageNumber
+                    ? +lastPage?.pageNumber + 1
+                    : undefined,
+        }
+    );
+
+    const wishlistData = useMemo(
+        () => (!!data ? data?.pages?.flatMap((item) => item.items) : []),
+        [data?.pages?.length]
+    );
+
+    const intersectionCallback: IntersectionObserverCallback = useCallback(
+        (entries) => {
+            const target = entries[0];
+            if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+                fetchNextPage();
             }
-        );
+        },
+        [hasNextPage, isFetchingNextPage]
+    );
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(intersectionCallback, {
+            rootMargin: '0px',
+        });
+
+        const { current: lastElement } = intersectionRef;
+        if (lastElement) {
+            observer.observe(lastElement);
+        }
+
+        return () => {
+            if (lastElement) {
+                observer.unobserve(lastElement);
+            }
+        };
+    }, [intersectionCallback]);
 
     return (
         <div className='cart-main-area pt-95 pb-100'>
             <div className='container'>
                 <div className='row'>
                     <div className='ms-auto me-auto col-lg-8 col-md-12 col-sm-12 col-12'>
-                        <form action='#'>
-                            <div className='table-content table-responsive cart-table-content'>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Add To Cart</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <WishlistItem />
-                                        <WishlistItem />
-                                        <WishlistItem />
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form>
-                        {false && (
+                        {isLoading ? (
+                            <div className='skeleton-564aqv2gpqj'></div>
+                        ) : null}
+                        {wishlistData?.length > 0 ? (
+                            <>
+                                <div className='table-content table-responsive cart-table-content'>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                                <th>Product</th>
+                                                <th>Price</th>
+                                                <th>Add To Cart</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {wishlistData?.map((item) => (
+                                                <WishlistItem
+                                                    key={item?._id}
+                                                    data={item}
+                                                />
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div
+                                    ref={intersectionRef}
+                                    style={{ height: '10px' }}
+                                />
+                                {isFetchingNextPage ? (
+                                    <div className='skeleton-564aqv2gpqj'></div>
+                                ) : null}
+                            </>
+                        ) : !isLoading || !isFetching ? (
                             <div className='d-flex flex-column justify-content-center align-items-center'>
                                 <div className='img-fluid svg-icon'>
                                     <EmptyWishlist />
@@ -62,7 +116,7 @@ const WishlistData = () => {
                                     Nothing here... Please add some items!
                                 </p>
                             </div>
-                        )}
+                        ) : null}
                     </div>
                 </div>
             </div>

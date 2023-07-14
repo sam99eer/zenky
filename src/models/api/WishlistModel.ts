@@ -17,7 +17,7 @@ interface IWishlistData {
     pageSize: string;
 }
 
-interface IWishListItem {
+export interface IWishListItem {
     _id: string;
     userId: string;
     productId: string;

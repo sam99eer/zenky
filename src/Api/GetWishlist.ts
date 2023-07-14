@@ -7,7 +7,7 @@ import { Endpoints } from 'src/utils/Endpoints';
 
 export const GetWishlist = async (data: IWishlistPayload) => {
     const apiCall = await ApiClient.get(
-        `${Endpoints.PROFILE}?pageNumber=${data.pageNumber}`,
+        `${Endpoints.WISHLIST}?pageNumber=${data.pageNumber}`,
         {
             headers: {
                 Authorization: data.token,

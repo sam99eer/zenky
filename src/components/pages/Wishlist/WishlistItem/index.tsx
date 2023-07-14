@@ -1,36 +1,57 @@
-const WishlistItem = () => {
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { IWishListItem } from 'src/models/api/WishlistModel';
+import { cartSliceActions } from 'src/store/Actions';
+import { CONSTANTS } from 'src/utils/Constants';
+import NoImage from '/assets/images/no-image.jpg';
+
+const WishlistItem = (props: { data: IWishListItem }) => {
+    const inStock = !!props?.data?.product?.isAvaliable;
+    const dispatch = useDispatch();
+
+    const addHandler = () => {
+        dispatch(
+            cartSliceActions.addItem({
+                data: {
+                    _id: props?.data?.product?._id,
+                    image: props?.data?.product?.image,
+                    name: props?.data?.product?.name,
+                    price: props?.data?.product?.price,
+                },
+            })
+        );
+        toast.success('Added to cart');
+    };
+
     return (
-        <tr>
+        <tr className='product-wrap'>
             <td className='product-remove'>
                 <a href='#'>
                     <i className=' ti-close'></i>
                 </a>
             </td>
-            <td className='product-img'>
-                <a href='#'>
-                    <img src='assets/images/cart/cart-3.jpg' alt='' />
+            <td className='product-img px-0 px-md-2'>
+                <a>
+                    <img
+                        src={
+                            !!props?.data?.product?.image
+                                ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.product?.image}`
+                                : NoImage
+                        }
+                        alt='Product Image'
+                    />
                 </a>
             </td>
             <td className='product-name'>
-                <a href='#'>High Collar Jacket</a>
+                <a href='#'>{props?.data?.product?.name}</a>
             </td>
             <td className='product-price'>
-                <span className='amount'>$26.00</span>
-            </td>
-            <td className='cart-quality'>
-                <div className='quickview-quality quality-height-dec2'>
-                    <div className='cart-plus-minus'>
-                        <input
-                            className='cart-plus-minus-box'
-                            type='text'
-                            name='qtybutton'
-                            value='2'
-                        />
-                    </div>
-                </div>
+                <span className='amount'>₹{props?.data?.product?.price}</span>
             </td>
             <td className='product-wishlist-cart'>
-                <a href='#'>add to cart</a>
+                <a onClick={inStock ? addHandler : undefined}>
+                    {inStock ? 'add to cart' : 'stock out'}
+                </a>
             </td>
         </tr>
     );

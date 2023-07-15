@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import Avatar from 'src/assets/Avatar';
 import { IStoreModel } from 'src/store';
-import { CONSTANTS } from 'src/utils/Constants';
+import { formatServerImagePath } from 'src/utils/Helpers';
 
 const DashboardPane = (props: { logoutHandler: () => void }) => {
     const profileData = useSelector(
@@ -19,7 +19,7 @@ const DashboardPane = (props: { logoutHandler: () => void }) => {
                     {profileData?.image ? (
                         <img
                             className='img-fluid user-image'
-                            src={`${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${profileData?.image}`}
+                            src={formatServerImagePath(profileData?.image)}
                             alt='User Image'
                         />
                     ) : (

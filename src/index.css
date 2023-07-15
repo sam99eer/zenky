@@ -19861,20 +19861,14 @@ body.body-menu-overlay::before {
   color: #e77878;
 }
 
-.easyzoom-style .easyzoom > a {
-  -webkit-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
-.easyzoom-style .easyzoom > a img {
+.easyzoom-style .easyzoom img {
   width: 100%;
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
 }
 
-.easyzoom-style .easyzoom-popup > a img {
+.easyzoom-style .easyzoom-popup img {
   width: 100%;
 }
 
@@ -19912,7 +19906,7 @@ body.body-menu-overlay::before {
   border: 1px solid transparent;
 }
 
-.product-dec-left .product-dec-small.slick-active.slick-current {
+.product-dec-left .slick-slide.slick-active.slick-current .product-dec-small {
   border: 1px solid #262626;
 }
 
@@ -20183,8 +20177,14 @@ body.body-menu-overlay::before {
   border-radius: 100%;
 }
 
+.single-review .review-img svg {
+  max-height: 64px;
+  max-width: 64px;
+}
+
 .single-review .review-content {
   margin-left: 50px;
+  width: 100%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -20269,7 +20269,7 @@ body.body-menu-overlay::before {
 }
 
 .ratting-form-wrapper .ratting-form {
-  margin: 30px 0 0;
+  margin: 0px;
 }
 
 .ratting-form-wrapper .ratting-form .star-box-wrap {
@@ -20288,7 +20288,7 @@ body.body-menu-overlay::before {
   display: flex;
 }
 
-.ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star:hover i {
+.ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star:hover i, .ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star.selected {
   color: #f5b223;
 }
 
@@ -20315,7 +20315,7 @@ body.body-menu-overlay::before {
   height: 150px;
 }
 
-.ratting-form-wrapper .ratting-form .form-submit input {
+.ratting-form-wrapper .ratting-form .form-submit button {
   padding: 10px 35px;
   line-height: 30px;
   color: #fff;
@@ -20325,9 +20325,10 @@ body.body-menu-overlay::before {
   width: auto;
   height: auto;
   background: #262626;
+  cursor: pointer;
 }
 
-.ratting-form-wrapper .ratting-form .form-submit input:hover {
+.ratting-form-wrapper .ratting-form .form-submit button:hover {
   background: #e77878;
 }
 
@@ -22427,6 +22428,10 @@ h3.cart-page-title {
   display: inline-block;
 }
 
+.slick-arrow::before {
+  visibility: hidden;
+}
+
 .loader {
   color: #ffffff;
   font-size: 12px;
@@ -22570,6 +22575,74 @@ h3.cart-page-title {
 }
 
 @keyframes shineForSkeleton-564aqv2gpqj {
+	to {
+		-webkit-mask-position: 120% 0
+	}
+}
+
+.skeleton-smj1yzhwf72:empty {
+	position: relative;
+	height: 400px;
+	background-color: #ffffff;
+	border-radius: 0px 0px 0px 0px;
+	background-image: linear-gradient(#cccccc 90px, transparent 0), linear-gradient(#cccccc 90px, transparent 0), linear-gradient(#cccccc 90px, transparent 0), linear-gradient(#e0e0e0 368px, transparent 0), linear-gradient(#E0E0E0 368px, transparent 0);
+	background-repeat: repeat-y;
+	background-size: 90px 400px, 90px 400px, 90px 400px, calc(50% - 24px) 400px, calc(50% - 128px) 400px;
+	background-position: left 16px top 224px, left 16px top 120px, left 16px top 16px, right 16px top 16px, left 124px top 16px;
+}
+
+.skeleton-smj1yzhwf72:empty:before {
+	content: ' ';
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 400px;
+	-webkit-mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+	-webkit-mask-repeat: repeat-y;
+	-webkit-mask-size: 50px 400px;
+	-webkit-mask-position: -20% 0;
+	background-image: linear-gradient(rgba(102, 102, 102, 1) 90px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 90px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 90px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 368px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 368px, transparent 0);
+	background-repeat: repeat-y;
+	background-size: 90px 400px, 90px 400px, 90px 400px, calc(50% - 24px) 400px, calc(50% - 128px) 400px;
+	background-position: left 16px top 224px, left 16px top 120px, left 16px top 16px, right 16px top 16px, left 124px top 16px;
+	animation: shineForSkeleton-smj1yzhwf72 2s infinite;
+}
+
+@keyframes shineForSkeleton-smj1yzhwf72 {
+	to {
+		-webkit-mask-position: 120% 0
+	}
+}
+
+.skeleton-2r3nin5n6xw:empty {
+	position: relative;
+	height: 420px;
+	background-color: #ffffff;
+	border-radius: 0px 0px 0px 0px;
+	background-image: linear-gradient(#F5F7F9 63px, transparent 0), linear-gradient(#F5F7F9 14px, transparent 0), radial-gradient(circle 32px at 32px 32px, #F5F7F9 99%, transparent 0);
+	background-repeat: repeat-y;
+	background-size: calc(100% - 116px) 140px, calc(100% - 116px) 140px, 64px 140px;
+	background-position: left 100px top 64px, left 100px top 24px, left 16px top 16px;
+}
+
+.skeleton-2r3nin5n6xw:empty:before {
+	content: ' ';
+	position: absolute;
+	z-index: 1000;
+	width: 100%;
+	height: 420px;
+	-webkit-mask-image: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+	-webkit-mask-repeat: repeat-y;
+	-webkit-mask-size: 50px 420px;
+	-webkit-mask-position: -20% 0;
+	background-image: linear-gradient(rgba(102, 102, 102, 1) 63px, transparent 0), linear-gradient(rgba(102, 102, 102, 1) 14px, transparent 0), radial-gradient(circle 32px at 32px 32px, rgba(102, 102, 102, 1) 99%, transparent 0);
+	background-repeat: repeat-y;
+	background-size: calc(100% - 116px) 140px, calc(100% - 116px) 140px, 64px 140px;
+	background-position: left 100px top 64px, left 100px top 24px, left 16px top 16px;
+	animation: shineForSkeleton-2r3nin5n6xw 2s infinite;
+}
+
+@keyframes shineForSkeleton-2r3nin5n6xw {
 	to {
 		-webkit-mask-position: 120% 0
 	}

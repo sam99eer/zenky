@@ -7,4 +7,6 @@ export const Endpoints = {
     UPDATE_PROFILE: 'details',
     CHANGE_PASSWORD: 'changePassword',
     WISHLIST: 'wishlist',
+    PRODUCT: 'product',
+    POST_REVIEW: 'review',
 };

@@ -1,4 +1,5 @@
 import { IKeyValue, IKeyValueRegex } from 'src/models/data/KeyValue';
+import { CONSTANTS } from 'src/utils/Constants';
 
 export const checkEmpty = (data: IKeyValue[]) => {
     let msg = '';
@@ -35,4 +36,18 @@ export const checkRegex = (data: IKeyValueRegex[]) => {
     }
 
     return msg;
+};
+
+export const formatServerImagePath = (imageName: string) => {
+    return `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${imageName}`;
+};
+
+export const formatServerTimestamp = (time: string) => {
+    const date = new Date(time);
+    const formattedDate = date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
+    return formattedDate;
 };

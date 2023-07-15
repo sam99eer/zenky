@@ -1,11 +1,13 @@
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { IGetProductItem } from 'src/models/api/GetProductsModel';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
-import { CONSTANTS } from 'src/utils/Constants';
+import { formatServerImagePath } from 'src/utils/Helpers';
+import { Screens } from 'src/utils/Screens';
 import NoImage from '/assets/images/no-image.jpg';
 
 const settings = {
@@ -50,6 +52,7 @@ const settings = {
 
 const HomeProductCard = (props: { data: IGetProductItem }) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
@@ -83,6 +86,10 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
             dispatch(cartSliceActions.removeItem({ _id: props?.data?._id }));
             return;
         }
+    };
+
+    const navigateHandler = () => {
+        navigate(`${Screens.PRODUCT_DETAILS}/${props?.data?._id}`);
     };
 
     return (
@@ -120,7 +127,10 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                                 <img
                                                     src={
                                                         props?.data?.image
-                                                            ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.image}`
+                                                            ? formatServerImagePath(
+                                                                  props?.data
+                                                                      ?.image
+                                                              )
                                                             : NoImage
                                                     }
                                                     alt='Cover Photo'
@@ -128,7 +138,10 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                                 <img
                                                     src={
                                                         props?.data?.image
-                                                            ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.image}`
+                                                            ? formatServerImagePath(
+                                                                  props?.data
+                                                                      ?.image
+                                                              )
                                                             : NoImage
                                                     }
                                                     alt='Cover Photo'
@@ -333,12 +346,14 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
             <div className='col-xl-3 col-lg-4 col-md-6 col-sm-6'>
                 <div className='product-wrap mb-50'>
                     <div className='product-img default-overlay mb-20'>
-                        <a href='product-details.html'>
+                        <a onClick={navigateHandler}>
                             <img
                                 className='default-img'
                                 src={
                                     props?.data?.image
-                                        ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.image}`
+                                        ? formatServerImagePath(
+                                              props?.data?.image
+                                          )
                                         : NoImage
                                 }
                                 alt='Cover'
@@ -346,7 +361,9 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                             {!!props?.data?.colors?.[0]?.image1 ? (
                                 <img
                                     className='hover-img'
-                                    src={`${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.colors?.[0]?.image1}`}
+                                    src={formatServerImagePath(
+                                        props?.data?.colors?.[0]?.image1
+                                    )}
                                     alt='Secondary'
                                 />
                             ) : null}

@@ -45,3 +45,43 @@ interface Color {
     createdAt: string;
     updatedAt: string;
 }
+
+export interface IProductDetails extends IGetProductItem {
+    reviews: IReview[];
+}
+
+export interface IProductDetailsResponse {
+    data: IProductDetails;
+    error: string;
+    message: string;
+    status: number;
+}
+export interface IReview {
+    _id: string;
+    rating: number;
+    review: string;
+    reviewDate: string;
+    reviewUser: ReviewUser;
+}
+
+interface ReviewUser {
+    email: string;
+    name: string;
+}
+
+export interface IReviewResponse {
+    data: IReviewData;
+    error: string;
+    message: string;
+    status: number;
+}
+
+interface IReviewData {
+    _id: string;
+    productId: string;
+    userId: string;
+    createdAt: string;
+    rating: number;
+    review: string;
+    updatedAt: string;
+}

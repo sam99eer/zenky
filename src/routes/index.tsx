@@ -10,6 +10,7 @@ import Checkout from 'src/pages/Checkout';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
+import ProductDetails from 'src/pages/ProductDetails';
 import Profile from 'src/pages/Profile';
 import Wishlist from 'src/pages/Wishlist';
 import { IStoreModel } from 'src/store';
@@ -26,6 +27,10 @@ const Routes = () => {
                 <Route path={Screens.HOME} index element={<Home />} />
                 <Route path={Screens.CART} element={<Cart />} />
                 <Route path={Screens.CHECKOUT} element={<Checkout />} />
+                <Route
+                    path={`${Screens.PRODUCT_DETAILS}/:productId`}
+                    element={<ProductDetails />}
+                />
                 <Route
                     element={
                         <ProtectedRoute

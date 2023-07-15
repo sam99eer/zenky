@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { IWishListItem } from 'src/models/api/WishlistModel';
 import { cartSliceActions } from 'src/store/Actions';
-import { CONSTANTS } from 'src/utils/Constants';
+import { formatServerImagePath } from 'src/utils/Helpers';
 import NoImage from '/assets/images/no-image.jpg';
 
 const WishlistItem = (props: { data: IWishListItem }) => {
@@ -35,7 +35,9 @@ const WishlistItem = (props: { data: IWishListItem }) => {
                     <img
                         src={
                             !!props?.data?.product?.image
-                                ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${props?.data?.product?.image}`
+                                ? formatServerImagePath(
+                                      props?.data?.product?.image
+                                  )
                                 : NoImage
                         }
                         alt='Product Image'

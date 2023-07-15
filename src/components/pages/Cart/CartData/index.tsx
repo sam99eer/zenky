@@ -5,7 +5,7 @@ import EmptyCart from 'src/assets/EmptyCart';
 import { ICartItem } from 'src/models/store/CartSliceModel';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
-import { CONSTANTS } from 'src/utils/Constants';
+import { formatServerImagePath } from 'src/utils/Helpers';
 import { Screens } from 'src/utils/Screens';
 import NoImage from '/assets/images/no-image.jpg';
 
@@ -87,7 +87,9 @@ const CartData = () => {
                                                                     <img
                                                                         src={
                                                                             !!item?.image
-                                                                                ? `${CONSTANTS.HOST}${CONSTANTS.IMG_PATH}${item?.image}`
+                                                                                ? formatServerImagePath(
+                                                                                      item?.image
+                                                                                  )
                                                                                 : NoImage
                                                                         }
                                                                         alt='Product Image'

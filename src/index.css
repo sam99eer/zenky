@@ -20762,7 +20762,7 @@ body.body-menu-overlay::before {
   background-color: #dc3545;
   transform: rotate(130deg);
   display: block;
-  margin-top: -14px;
+  margin-top: -15px;
 }
 
 .configurable-wrap .configurable-size {

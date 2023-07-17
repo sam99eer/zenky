@@ -42,3 +42,53 @@ export const settingsSmallImgSlider: Settings = {
         },
     ],
 };
+
+export const quickviewSliderSettings: Settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 5000,
+    prevArrow: (
+        <SlickButton customClass='owl-prev'>
+            <i className='ti-arrow-left'></i>
+        </SlickButton>
+    ),
+    nextArrow: (
+        <SlickButton customClass='owl-next'>
+            <i className='ti-arrow-right'></i>
+        </SlickButton>
+    ),
+    responsive: [
+        {
+            breakpoint: 992,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 576,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 0,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+    ],
+};

@@ -12324,12 +12324,17 @@ body.body-menu-overlay::before {
   border-radius: 100%;
 }
 
-.quickview-slider-active.owl-carousel > .owl-nav div.owl-next {
+.quickview-slider-active.owl-carousel img {
+  max-height: 600px;
+  object-fit: contain;
+}
+
+.quickview-slider-active.owl-carousel .owl-next {
   right: 20px;
   left: auto;
 }
 
-.quickview-slider-active.owl-carousel > .owl-nav div:hover {
+.quickview-slider-active.owl-carousel .slick-arrow:hover {
   color: #e77878;
 }
 

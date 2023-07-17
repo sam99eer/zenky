@@ -8,47 +8,8 @@ import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
 import { formatServerImagePath } from 'src/utils/Helpers';
 import { Screens } from 'src/utils/Screens';
+import { quickviewSliderSettings } from 'src/utils/SliderSettings';
 import NoImage from '/assets/images/no-image.jpg';
-
-const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 5000,
-    responsive: [
-        {
-            breakpoint: 992,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
-        },
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
-        },
-        {
-            breakpoint: 576,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
-        },
-        {
-            breakpoint: 0,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-            },
-        },
-    ],
-};
 
 const HomeProductCard = (props: { data: IGetProductItem }) => {
     const dispatch = useDispatch();
@@ -119,35 +80,31 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                             <div className='modal-body'>
                                 <div className='row g-0'>
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-xs-12'>
-                                        <div className='quickview-slider-active owl-carousel'>
-                                            <Slider
-                                                className='quickview-slider-active owl-carousel'
-                                                {...settings}
-                                            >
-                                                <img
-                                                    src={
-                                                        props?.data?.image
-                                                            ? formatServerImagePath(
-                                                                  props?.data
-                                                                      ?.image
-                                                              )
-                                                            : NoImage
-                                                    }
-                                                    alt='Cover Photo'
-                                                />
-                                                <img
-                                                    src={
-                                                        props?.data?.image
-                                                            ? formatServerImagePath(
-                                                                  props?.data
-                                                                      ?.image
-                                                              )
-                                                            : NoImage
-                                                    }
-                                                    alt='Cover Photo'
-                                                />
-                                            </Slider>
-                                        </div>
+                                        <Slider
+                                            className='quickview-slider-active owl-carousel'
+                                            {...quickviewSliderSettings}
+                                        >
+                                            <img
+                                                src={
+                                                    props?.data?.image
+                                                        ? formatServerImagePath(
+                                                              props?.data?.image
+                                                          )
+                                                        : NoImage
+                                                }
+                                                alt='Cover Photo'
+                                            />
+                                            <img
+                                                src={
+                                                    props?.data?.image
+                                                        ? formatServerImagePath(
+                                                              props?.data?.image
+                                                          )
+                                                        : NoImage
+                                                }
+                                                alt='Cover Photo'
+                                            />
+                                        </Slider>
                                     </div>
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-xs-12'>
                                         <div className='quickview-content'>

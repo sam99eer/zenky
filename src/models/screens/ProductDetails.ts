@@ -13,3 +13,8 @@ export interface IReviewPayload {
     };
     token: string;
 }
+
+export interface IProductData {
+    size: string | null;
+    colorId: string | null;
+}

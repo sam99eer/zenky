@@ -10,14 +10,13 @@ export const settingsBigImgSlider: Settings = {
 };
 
 export const settingsSmallImgSlider: Settings = {
-    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
     vertical: true,
     dots: false,
     focusOnSelect: true,
-    draggable: true,
+    draggable: false,
     fade: false,
     prevArrow: (
         <SlickButton customClass='pro-dec-icon pro-dec-prev'>

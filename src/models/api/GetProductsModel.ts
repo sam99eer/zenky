@@ -33,7 +33,7 @@ export interface IGetProductItem {
     ratedBy: number;
 }
 
-interface Color {
+export interface Color {
     _id: string;
     name: string;
     color_code: string;

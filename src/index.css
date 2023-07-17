@@ -19313,30 +19313,6 @@ body.body-menu-overlay::before {
   visibility: visible;
 }
 
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.blue {
-  background-color: #5097f7;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.brown {
-  background-color: #7a5816;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.green {
-  background-color: #81d742;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.pink {
-  background-color: #ff0c94;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.violet {
-  background-color: #8224e3;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.white {
-  background-color: #f3f3f3;
-}
-
 .sidebar-widget .sidebar-widget-brand ul li {
   width: 50%;
   float: left;
@@ -19863,6 +19839,7 @@ body.body-menu-overlay::before {
 
 .easyzoom-style .easyzoom img {
   width: 100%;
+  max-height: 759px;
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
@@ -20705,6 +20682,12 @@ body.body-menu-overlay::before {
   font-size: 0;
   display: inline-block;
   position: relative;
+  outline: 1px solid #000;
+}
+
+
+.configurable-wrap .configurable-color ul li a .swatch-anchor.active {
+  border: 1px solid #fff;
 }
 
 .configurable-wrap .configurable-color ul li a .swatch-anchor::before {
@@ -20763,16 +20746,18 @@ body.body-menu-overlay::before {
   visibility: visible;
 }
 
-.configurable-wrap .configurable-color ul li a .swatch-anchor.blue {
-  background-color: #5097f7;
+.configurable-wrap .configurable-color ul li a .swatch-anchor.unavailable {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.configurable-wrap .configurable-color ul li a .swatch-anchor.brown {
-  background-color: #7a5816;
-}
-
-.configurable-wrap .configurable-color ul li a .swatch-anchor.green {
-  background-color: #81d742;
+.configurable-wrap .configurable-color ul li a .swatch-anchor.unavailable .cut {
+  height: 3px;
+  width: 21px;
+  background-color: #dc3545;
+  transform: rotate(130deg);
+  display: block;
+  margin-top: -14px;
 }
 
 .configurable-wrap .configurable-size {
@@ -20817,6 +20802,10 @@ body.body-menu-overlay::before {
   display: inline-block;
   position: relative;
   color: #8D8D8D;
+}
+
+.configurable-wrap .configurable-size ul li a .swatch-anchor.text-active {
+  color: #000;
 }
 
 .configurable-wrap .configurable-size ul li a .swatch-anchor::before {

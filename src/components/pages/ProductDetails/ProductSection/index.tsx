@@ -1,11 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
-import { IProductDetails } from 'src/models/api/GetProductsModel';
-import { IProductSlider } from 'src/models/screens/ProductDetails';
+import { Color, IProductDetails } from 'src/models/api/GetProductsModel';
+import { IColorImage } from 'src/models/data/ColorImageModel';
+import {
+    IProductData,
+    IProductSlider,
+} from 'src/models/screens/ProductDetails';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
+import { formatServerImagePath } from 'src/utils/Helpers';
 import {
     settingsBigImgSlider,
     settingsSmallImgSlider,
@@ -21,6 +26,11 @@ const ProductSection = (props: {
         rightSlider: null,
     });
 
+    const [productData, setProductData] = useState<IProductData>({
+        colorId: null,
+        size: null,
+    });
+
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
     );
@@ -32,6 +42,44 @@ const ProductSection = (props: {
     const itemData = cartItems.find((item) => item?._id === props?.data?._id);
 
     const inStock = !!props?.data?.isAvaliable;
+
+    const imageData = useMemo(() => {
+        const images: IColorImage[] = !!props?.data
+            ? props?.data?.colors?.flatMap((item) => {
+                  const subImages: IColorImage[] = [];
+                  if (item?.image1) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '1',
+                          imageUrl: formatServerImagePath(item?.image1),
+                      });
+                  }
+                  if (item?.image2) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '2',
+                          imageUrl: formatServerImagePath(item?.image2),
+                      });
+                  }
+                  if (item?.image3) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '3',
+                          imageUrl: formatServerImagePath(item?.image3),
+                      });
+                  }
+                  return subImages;
+              })
+            : [];
+        images.unshift({
+            colorId: 'cover',
+            id: 'cover',
+            imageUrl: props?.data?.image
+                ? formatServerImagePath(props?.data?.image)
+                : NoImage,
+        });
+        return images;
+    }, [props.data]);
 
     const cartHandler = (
         action: 'add' | 'remove',
@@ -65,12 +113,36 @@ const ProductSection = (props: {
         }
     };
 
+    const colorHandler = (item: Color) => {
+        const findIndex = imageData?.findIndex(
+            (subData) => subData?.colorId === item._id
+        );
+
+        if (findIndex !== -1) {
+            leftSliderRef.current?.slickGoTo(findIndex);
+        }
+
+        if (item?.isAvaliable) {
+            setProductData((oldState) => ({
+                ...oldState,
+                colorId: item?._id,
+            }));
+        }
+    };
+
+    const sizeHandler = (size: string) => {
+        setProductData((oldState) => ({
+            ...oldState,
+            size,
+        }));
+    };
+
     useEffect(() => {
         setData({
             leftSlider: leftSliderRef.current,
             rightSlider: rightSliderRef.current,
         });
-    }, []);
+    }, [leftSliderRef.current, rightSliderRef.current, imageData]);
 
     return (
         <div className='product-details-area pb-90'>
@@ -88,53 +160,42 @@ const ProductSection = (props: {
                                         {...settingsBigImgSlider}
                                         className='product-dec-right pro-dec-big-img-slider'
                                     >
-                                        <div className='easyzoom-style'>
-                                            <div className='easyzoom easyzoom--overlay'>
-                                                <img src={NoImage} alt='' />
+                                        {imageData?.map((item) => (
+                                            <div
+                                                key={item?.id}
+                                                className='easyzoom-style'
+                                            >
+                                                <div className='easyzoom easyzoom--overlay'>
+                                                    <img
+                                                        src={item?.imageUrl}
+                                                        alt={item?.id}
+                                                    />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className='easyzoom-style'>
-                                            <div className='easyzoom easyzoom--overlay'>
-                                                <img src={NoImage} alt='' />
-                                            </div>
-                                        </div>
-                                        <div className='easyzoom-style'>
-                                            <div className='easyzoom easyzoom--overlay'>
-                                                <img src={NoImage} alt='' />
-                                            </div>
-                                        </div>
-                                        <div className='easyzoom-style'>
-                                            <div className='easyzoom easyzoom--overlay'>
-                                                <img src={NoImage} alt='' />
-                                            </div>
-                                        </div>
-                                        <div className='easyzoom-style'>
-                                            <div className='easyzoom easyzoom--overlay'>
-                                                <img src={NoImage} alt='' />
-                                            </div>
-                                        </div>
+                                        ))}
                                     </Slider>
                                     <Slider
                                         asNavFor={data.leftSlider!}
                                         ref={rightSliderRef}
+                                        slidesToShow={
+                                            imageData?.length > 4
+                                                ? 4
+                                                : imageData.length
+                                        }
                                         {...settingsSmallImgSlider}
                                         className='product-dec-slider product-dec-left'
                                     >
-                                        <div className='product-dec-small'>
-                                            <img src={NoImage} alt='' />
-                                        </div>
-                                        <div className='product-dec-small'>
-                                            <img src={NoImage} alt='' />
-                                        </div>
-                                        <div className='product-dec-small'>
-                                            <img src={NoImage} alt='' />
-                                        </div>
-                                        <div className='product-dec-small'>
-                                            <img src={NoImage} alt='' />
-                                        </div>
-                                        <div className='product-dec-small'>
-                                            <img src={NoImage} alt='' />
-                                        </div>
+                                        {imageData?.map((item) => (
+                                            <div
+                                                key={`left_${item?.id}`}
+                                                className='product-dec-small'
+                                            >
+                                                <img
+                                                    src={item?.imageUrl}
+                                                    alt={item?.id}
+                                                />
+                                            </div>
+                                        ))}
                                     </Slider>
                                 </div>
                             </div>
@@ -198,81 +259,74 @@ const ProductSection = (props: {
                                         <div className='configurable-color'>
                                             <span>Color</span>
                                             <ul>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='Blue'
-                                                            className='swatch-anchor blue'
-                                                        >
-                                                            Blue
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='Brown'
-                                                            className='swatch-anchor brown'
-                                                        >
-                                                            Brown
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='Green'
-                                                            className='swatch-anchor green'
-                                                        >
-                                                            Green
-                                                        </span>
-                                                    </a>
-                                                </li>
+                                                {props?.data?.colors?.map(
+                                                    (item) => (
+                                                        <li key={item?._id}>
+                                                            <a
+                                                                onClick={colorHandler.bind(
+                                                                    this,
+                                                                    item
+                                                                )}
+                                                            >
+                                                                <span
+                                                                    title={
+                                                                        item?.isAvaliable
+                                                                            ? item?.name
+                                                                            : 'Out of Stock'
+                                                                    }
+                                                                    className={`swatch-anchor ${
+                                                                        item?.isAvaliable
+                                                                            ? productData.colorId ===
+                                                                              item?._id
+                                                                                ? 'active'
+                                                                                : ''
+                                                                            : ' unavailable'
+                                                                    }`}
+                                                                    style={{
+                                                                        backgroundColor:
+                                                                            item?.color_code,
+                                                                    }}
+                                                                >
+                                                                    {item?.name}
+                                                                    {item?.isAvaliable ? (
+                                                                        ''
+                                                                    ) : (
+                                                                        <span className='cut'></span>
+                                                                    )}
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                         <div className='configurable-size'>
                                             <span>Size</span>
                                             <ul>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='L'
-                                                            className='swatch-anchor l'
-                                                        >
-                                                            L
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='M'
-                                                            className='swatch-anchor m'
-                                                        >
-                                                            M
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='S'
-                                                            className='swatch-anchor s'
-                                                        >
-                                                            S
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href='#'>
-                                                        <span
-                                                            title='XL'
-                                                            className='swatch-anchor xl'
-                                                        >
-                                                            XL
-                                                        </span>
-                                                    </a>
-                                                </li>
+                                                {props?.data?.sizes?.map(
+                                                    (item) => (
+                                                        <li key={item}>
+                                                            <a
+                                                                onClick={sizeHandler.bind(
+                                                                    this,
+                                                                    item
+                                                                )}
+                                                            >
+                                                                <span
+                                                                    title={item}
+                                                                    className={`swatch-anchor ${
+                                                                        item ===
+                                                                        productData.size
+                                                                            ? 'text-active'
+                                                                            : ''
+                                                                    }`}
+                                                                >
+                                                                    {item}
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                     </div>
@@ -342,16 +396,7 @@ const ProductSection = (props: {
                                     </div>
                                     <div className='quickview-meta'>
                                         <span>
-                                            SKU: <span>REF. LA-103</span>
-                                        </span>
-                                        <span>
-                                            Categories: <a href='#'>Fashions</a>
-                                            , <a href='#'>Main 03</a>
-                                        </span>
-                                        <span>
-                                            Tags: <a href='#'>Coat</a>,{' '}
-                                            <a href='#'>Dresses</a>,{' '}
-                                            <a href='#'>Fashion</a>
+                                            Category: {props?.data?.for}
                                         </span>
                                     </div>
                                     <div className='default-social'>

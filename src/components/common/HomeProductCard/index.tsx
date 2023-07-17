@@ -284,18 +284,7 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                             </div>
                                             <div className='quickview-meta'>
                                                 <span>
-                                                    SKU:{' '}
-                                                    <span>REF. LA-103</span>
-                                                </span>
-                                                <span>
-                                                    Categories:{' '}
-                                                    <a href='#'>Fashions</a>,{' '}
-                                                    <a href='#'>Main 03</a>
-                                                </span>
-                                                <span>
-                                                    Tags: <a href='#'>Coat</a>,{' '}
-                                                    <a href='#'>Dresses</a>,{' '}
-                                                    <a href='#'>Fashion</a>
+                                                    Category: {props?.data?.for}
                                                 </span>
                                             </div>
                                             <div className='default-social'>

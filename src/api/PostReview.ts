@@ -1,5 +1,3 @@
-// IReviewPayload
-
 import { ApiClient } from 'src/api/ApiClient';
 import { IReviewResponse } from 'src/models/api/GetProductsModel';
 import { IReviewPayload } from 'src/models/screens/ProductDetails';

@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -8,7 +8,11 @@ import Avatar from 'src/assets/Avatar';
 import { IError } from 'src/models/api/ErrorModel';
 import { IReview } from 'src/models/api/GetProductsModel';
 import { IStoreModel } from 'src/store';
-import { formatServerTimestamp } from 'src/utils/Helpers';
+import { isReviewDataValid } from 'src/utils/CacheValidators';
+import {
+    formatServerImagePath,
+    formatServerTimestamp,
+} from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 
@@ -19,6 +23,7 @@ const ReviewPane = (props: { data: IReview[] }) => {
     );
 
     const { productId } = useParams();
+    const queryClient = useQueryClient();
 
     const isLoggedIn = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
@@ -60,8 +65,35 @@ const ReviewPane = (props: { data: IReview[] }) => {
             },
             token: token!,
         })
-            .then((res) => {
+            .then(async (res) => {
                 if (res.status === 200) {
+                    const data = await queryClient.getQueryData([
+                        Keys.PRODUCT_DETAILS,
+                        productId,
+                    ]);
+
+                    if (isReviewDataValid(data)) {
+                        const findComment = data?.reviews?.findIndex(
+                            (item) => item?._id === res?.data?._id
+                        );
+
+                        if (findComment !== -1) {
+                            data.reviews[findComment] = res.data;
+                            data.reviews[findComment].reviewDate =
+                                res?.data.updatedAt;
+                        } else {
+                            const clone = { ...res.data };
+                            clone.reviewDate = res.data.updatedAt;
+                            data.reviews.push(clone);
+                            data.ratedBy += 1;
+                        }
+
+                        queryClient.setQueryData(
+                            [Keys.PRODUCT_DETAILS, productId],
+                            data
+                        );
+                    }
+
                     setActiveStars(0);
                     setReview('');
                     toast.success(res?.message);
@@ -85,11 +117,16 @@ const ReviewPane = (props: { data: IReview[] }) => {
                 {props?.data?.map((item) => (
                     <div key={item?._id} className='single-review'>
                         <div className='review-img'>
-                            <Avatar />
-                            {/* <img
-                            src='assets/images/product-details/client-1.jpg'
-                            alt=''
-                        /> */}
+                            {!!item?.reviewUser?.image ? (
+                                <img
+                                    src={formatServerImagePath(
+                                        item?.reviewUser?.image
+                                    )}
+                                    alt=''
+                                />
+                            ) : (
+                                <Avatar />
+                            )}
                         </div>
                         <div className='review-content'>
                             <div className='review-top-wrap'>

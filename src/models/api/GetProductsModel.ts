@@ -67,21 +67,16 @@ export interface IReview {
 interface ReviewUser {
     email: string;
     name: string;
+    image: string;
 }
 
 export interface IReviewResponse {
-    data: IReviewData;
+    data: IReviewUpdateResponse;
     error: string;
     message: string;
     status: number;
 }
 
-interface IReviewData {
-    _id: string;
-    productId: string;
-    userId: string;
-    createdAt: string;
-    rating: number;
-    review: string;
+export interface IReviewUpdateResponse extends IReview {
     updatedAt: string;
 }

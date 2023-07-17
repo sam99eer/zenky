@@ -20175,6 +20175,8 @@ body.body-menu-overlay::before {
 
 .single-review .review-img img {
   border-radius: 100%;
+  max-height: 64px;
+  max-width: 64px;
 }
 
 .single-review .review-img svg {

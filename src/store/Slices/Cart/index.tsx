@@ -46,6 +46,8 @@ const cartSlice = createSlice({
                     return;
                 }
                 state.cartItem[findItem].quantity -= 1;
+                state.cartItem[findItem].totalPrice -=
+                    state.cartItem[findItem].price;
             }
         },
         deleteItem(state, action: PayloadAction<{ _id: string }>) {

@@ -49,7 +49,7 @@ const MiniCart = (props: {
                             <ul>
                                 {cartItems.map((item) => (
                                     <li
-                                        key={`cart_${item?._id}`}
+                                        key={`cart_${item?._id}_${item?.colorName}_${item?.size}`}
                                         className='single-product-cart'
                                     >
                                         <div className='cart-img'>
@@ -74,12 +74,8 @@ const MiniCart = (props: {
                                                 {item?.quantity} × ₹
                                                 {item?.price}
                                             </span>
-                                            <p className='m-0'>
-                                                Color - {item?.colorName}
-                                            </p>
-                                            <p className='m-0'>
-                                                Size - {item?.size}
-                                            </p>
+                                            <p>Color - {item?.colorName}</p>
+                                            <p>Size - {item?.size}</p>
                                         </div>
                                         <div
                                             className='cart-delete'

@@ -16,7 +16,10 @@ const cartSlice = createSlice({
             }>
         ) {
             const findItem = state.cartItem?.findIndex(
-                (item) => item?._id === action.payload.data?._id
+                (item) =>
+                    item?._id === action.payload.data?._id &&
+                    item?.size === action.payload?.data?.size &&
+                    item?.colorName === action.payload?.data?.colorName
             );
 
             if (findItem === -1) {

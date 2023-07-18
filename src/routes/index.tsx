@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import {
     Route,
@@ -5,13 +6,10 @@ import {
     Routes as RoutesContainer,
 } from 'react-router-dom';
 import ProtectedRoute from 'src/components/common/ProtectedRoute';
-import Cart from 'src/pages/Cart';
-import Checkout from 'src/pages/Checkout';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
 import ProductDetails from 'src/pages/ProductDetails';
-import Profile from 'src/pages/Profile';
 import Shop from 'src/pages/Shop';
 import Wishlist from 'src/pages/Wishlist';
 import { IStoreModel } from 'src/store';
@@ -22,49 +20,55 @@ const Routes = () => {
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
 
+    const Checkout = lazy(() => import('src/pages/Checkout'));
+    const Cart = lazy(() => import('src/pages/Cart'));
+    const Profile = lazy(() => import('src/pages/Profile'));
+
     return (
         <Router>
-            <RoutesContainer>
-                <Route path={Screens.HOME} index element={<Home />} />
-                <Route path={Screens.CART} element={<Cart />} />
-                <Route path={Screens.CHECKOUT} element={<Checkout />} />
-                <Route path={Screens.SHOP} element={<Shop />} />
-                <Route
-                    path={`${Screens.PRODUCT_DETAILS}/:productId`}
-                    element={<ProductDetails />}
-                />
-                <Route
-                    element={
-                        <ProtectedRoute
-                            isRouteAccessible={!isLoggedIn}
-                            redirectRoute={Screens.PROFILE}
-                        />
-                    }
-                >
-                    <Route path={Screens.LOGIN} element={<Login />} />
-                </Route>
-                <Route
-                    element={
-                        <ProtectedRoute
-                            isRouteAccessible={isLoggedIn}
-                            redirectRoute={Screens.LOGIN}
-                        />
-                    }
-                >
-                    <Route path={Screens.WISHLIST} element={<Wishlist />} />
-                </Route>
-                <Route
-                    element={
-                        <ProtectedRoute
-                            isRouteAccessible={isLoggedIn}
-                            redirectRoute={Screens.LOGIN}
-                        />
-                    }
-                >
-                    <Route path={Screens.PROFILE} element={<Profile />} />
-                </Route>
-                <Route path={Screens.NOT_FOUND} element={<NotFound />} />
-            </RoutesContainer>
+            <Suspense>
+                <RoutesContainer>
+                    <Route path={Screens.HOME} index element={<Home />} />
+                    <Route path={Screens.CART} element={<Cart />} />
+                    <Route path={Screens.CHECKOUT} element={<Checkout />} />
+                    <Route path={Screens.SHOP} element={<Shop />} />
+                    <Route
+                        path={`${Screens.PRODUCT_DETAILS}/:productId`}
+                        element={<ProductDetails />}
+                    />
+                    <Route
+                        element={
+                            <ProtectedRoute
+                                isRouteAccessible={!isLoggedIn}
+                                redirectRoute={Screens.PROFILE}
+                            />
+                        }
+                    >
+                        <Route path={Screens.LOGIN} element={<Login />} />
+                    </Route>
+                    <Route
+                        element={
+                            <ProtectedRoute
+                                isRouteAccessible={isLoggedIn}
+                                redirectRoute={Screens.LOGIN}
+                            />
+                        }
+                    >
+                        <Route path={Screens.WISHLIST} element={<Wishlist />} />
+                    </Route>
+                    <Route
+                        element={
+                            <ProtectedRoute
+                                isRouteAccessible={isLoggedIn}
+                                redirectRoute={Screens.LOGIN}
+                            />
+                        }
+                    >
+                        <Route path={Screens.PROFILE} element={<Profile />} />
+                    </Route>
+                    <Route path={Screens.NOT_FOUND} element={<NotFound />} />
+                </RoutesContainer>
+            </Suspense>
         </Router>
     );
 };

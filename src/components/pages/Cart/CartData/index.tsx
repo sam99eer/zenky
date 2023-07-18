@@ -74,7 +74,7 @@ const CartData = () => {
                                                     {cartItems?.map((item) => (
                                                         <tr
                                                             className='product-wrap'
-                                                            key={`cart_item_${item?._id}`}
+                                                            key={`cart_item_${item?._id}_${item?.colorName}_${item?.size}`}
                                                         >
                                                             <td className='product-remove'>
                                                                 <a

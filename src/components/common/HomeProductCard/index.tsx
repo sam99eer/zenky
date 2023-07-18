@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
-import { IGetProductItem } from 'src/models/api/GetProductsModel';
+import { Color, IGetProductItem } from 'src/models/api/GetProductsModel';
 import { IColorImage } from 'src/models/data/ColorImageModel';
 import { IProductData } from 'src/models/screens/ProductDetails';
 import { IStoreModel } from 'src/store';
@@ -23,6 +23,8 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
         size: null,
         colorName: null,
     });
+
+    const mainSliderRef = useRef<Slider>(null);
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
@@ -116,6 +118,31 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
         }
     };
 
+    const colorHandler = (item: Color) => {
+        const findIndex = imageData?.findIndex(
+            (subData) => subData?.colorId === item._id
+        );
+
+        if (findIndex !== -1) {
+            mainSliderRef.current?.slickGoTo(findIndex);
+        }
+
+        if (item?.isAvaliable) {
+            setProductData((oldState) => ({
+                ...oldState,
+                colorId: item?._id,
+                colorName: item?.name,
+            }));
+        }
+    };
+
+    const sizeHandler = (size: string) => {
+        setProductData((oldState) => ({
+            ...oldState,
+            size,
+        }));
+    };
+
     const navigateHandler = () => {
         navigate(`${Screens.PRODUCT_DETAILS}/${props?.data?._id}`);
     };
@@ -150,6 +177,7 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-xs-12'>
                                         <Slider
                                             className='quickview-slider-active owl-carousel'
+                                            ref={mainSliderRef}
                                             {...quickviewSliderSettings}
                                         >
                                             {imageData?.map((item) => (
@@ -223,6 +251,91 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                                 <p>
                                                     {props?.data?.description}
                                                 </p>
+                                            </div>
+                                            <div className='configurable-wrap custom-wrap'>
+                                                <div className='configurable-color'>
+                                                    <span>Color</span>
+                                                    <ul>
+                                                        {props?.data?.colors?.map(
+                                                            (item) => (
+                                                                <li
+                                                                    key={
+                                                                        item?._id
+                                                                    }
+                                                                >
+                                                                    <a
+                                                                        onClick={colorHandler.bind(
+                                                                            this,
+                                                                            item
+                                                                        )}
+                                                                    >
+                                                                        <span
+                                                                            title={
+                                                                                item?.isAvaliable
+                                                                                    ? item?.name
+                                                                                    : 'Out of Stock'
+                                                                            }
+                                                                            className={`swatch-anchor ${
+                                                                                item?.isAvaliable
+                                                                                    ? productData.colorId ===
+                                                                                      item?._id
+                                                                                        ? 'active'
+                                                                                        : ''
+                                                                                    : ' unavailable'
+                                                                            }`}
+                                                                            style={{
+                                                                                backgroundColor:
+                                                                                    item?.color_code,
+                                                                            }}
+                                                                        >
+                                                                            {
+                                                                                item?.name
+                                                                            }
+                                                                            {item?.isAvaliable ? (
+                                                                                ''
+                                                                            ) : (
+                                                                                <span className='cut'></span>
+                                                                            )}
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
+                                                <div className='configurable-size'>
+                                                    <span>Size</span>
+                                                    <ul>
+                                                        {props?.data?.sizes?.map(
+                                                            (item) => (
+                                                                <li key={item}>
+                                                                    <a
+                                                                        onClick={sizeHandler.bind(
+                                                                            this,
+                                                                            item
+                                                                        )}
+                                                                    >
+                                                                        <span
+                                                                            title={
+                                                                                item
+                                                                            }
+                                                                            className={`swatch-anchor ${
+                                                                                item ===
+                                                                                productData.size
+                                                                                    ? 'text-active'
+                                                                                    : ''
+                                                                            }`}
+                                                                        >
+                                                                            {
+                                                                                item
+                                                                            }
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                            )
+                                                        )}
+                                                    </ul>
+                                                </div>
                                             </div>
                                             <div className='quickview-action-wrap'>
                                                 <div className='quickview-quality'>

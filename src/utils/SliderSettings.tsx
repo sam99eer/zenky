@@ -52,12 +52,12 @@ export const quickviewSliderSettings: Settings = {
     autoplay: false,
     autoplaySpeed: 5000,
     prevArrow: (
-        <SlickButton customClass='owl-prev'>
+        <SlickButton customClass='owl-prev quickview-arrow'>
             <i className='ti-arrow-left'></i>
         </SlickButton>
     ),
     nextArrow: (
-        <SlickButton customClass='owl-next'>
+        <SlickButton customClass='owl-next quickview-arrow'>
             <i className='ti-arrow-right'></i>
         </SlickButton>
     ),

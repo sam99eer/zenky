@@ -24,6 +24,8 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
         colorName: null,
     });
 
+    const [imageLoaded, setImageLoaded] = useState(false);
+
     const mainSliderRef = useRef<Slider>(null);
 
     const cartItems = useSelector(
@@ -220,7 +222,7 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                                             }
                                                         )}
                                                     </div>
-                                                    <a href='#'>
+                                                    <a>
                                                         {' '}
                                                         ({
                                                             props?.data?.ratedBy
@@ -462,7 +464,9 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                     <div className='product-img default-overlay mb-20'>
                         <a onClick={navigateHandler}>
                             <img
-                                className='default-img'
+                                className={`default-img ${
+                                    imageLoaded ? '' : 'hide'
+                                }`}
                                 src={
                                     props?.data?.image
                                         ? formatServerImagePath(
@@ -470,8 +474,13 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                           )
                                         : NoImage
                                 }
+                                onLoad={setImageLoaded.bind(this, true)}
+                                onError={setImageLoaded.bind(this, true)}
                                 alt='Cover'
                             />
+                            {!imageLoaded ? (
+                                <span className='product-skeleton'></span>
+                            ) : null}
                             {!!props?.data?.colors?.[0]?.image1 ? (
                                 <img
                                     className='hover-img'
@@ -487,12 +496,11 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                 data-bs-toggle='modal'
                                 data-bs-target={`#productModal_${props?.data?._id}`}
                                 title='Quick View'
-                                href='#'
                             >
                                 <i className=' ti-zoom-in'></i>
                                 <span>Quick Shop</span>
                             </a>
-                            <a title='Wishlist' href='#'>
+                            <a title='Wishlist'>
                                 <i className=' ti-heart '></i>
                                 <span>Add to Wishlist</span>
                             </a>

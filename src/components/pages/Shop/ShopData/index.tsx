@@ -8,17 +8,23 @@ import { Keys } from 'src/utils/Keys';
 const ShopData = () => {
     const [filterActive, setFilterActive] = useState(false);
 
-    const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-        useInfiniteQuery(
-            Keys.ALL_PRODUCTS,
-            ({ pageParam }) => GetProducts({ pageNumber: pageParam ?? 1 }),
-            {
-                getNextPageParam: (lastPage) =>
-                    Math.ceil(lastPage?.totalItems / 20) > +lastPage?.pageNumber
-                        ? +lastPage?.pageNumber + 1
-                        : undefined,
-            }
-        );
+    const {
+        data,
+        isLoading,
+        hasNextPage,
+        fetchNextPage,
+        isFetchingNextPage,
+        isFetching,
+    } = useInfiniteQuery(
+        Keys.ALL_PRODUCTS,
+        ({ pageParam }) => GetProducts({ pageNumber: pageParam ?? 1 }),
+        {
+            getNextPageParam: (lastPage) =>
+                Math.ceil(lastPage?.totalItems / 20) > +lastPage?.pageNumber
+                    ? +lastPage?.pageNumber + 1
+                    : undefined,
+        }
+    );
 
     const intersectionRef = useRef<HTMLDivElement>(null);
 
@@ -34,11 +40,16 @@ const ShopData = () => {
     const intersectionCallback: IntersectionObserverCallback = useCallback(
         (entries) => {
             const target = entries[0];
-            if (target.isIntersecting && hasNextPage && !isFetchingNextPage) {
+            if (
+                !isFetching &&
+                target.isIntersecting &&
+                hasNextPage &&
+                !isFetchingNextPage
+            ) {
                 fetchNextPage();
             }
         },
-        [hasNextPage, isFetchingNextPage]
+        [hasNextPage, isFetchingNextPage, isFetching]
     );
 
     useEffect(() => {
@@ -220,6 +231,18 @@ const ShopData = () => {
                 <div className='tab-content jump'>
                     <div className='tab-pane active'>
                         <div className='row'>
+                            {isLoading ? (
+                                <>
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                    <Skeleton />
+                                </>
+                            ) : null}
                             {productData?.length > 0 ? (
                                 <>
                                     {productData?.map((item) => (
@@ -228,10 +251,6 @@ const ShopData = () => {
                                             data={item}
                                         />
                                     ))}
-                                    <div
-                                        ref={intersectionRef}
-                                        style={{ height: '10px' }}
-                                    />
                                     {isFetchingNextPage ? (
                                         <>
                                             <Skeleton />
@@ -244,17 +263,12 @@ const ShopData = () => {
                                             <Skeleton />
                                         </>
                                     ) : null}
-                                </>
-                            ) : isLoading ? (
-                                <>
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
-                                    <Skeleton />
+                                    {hasNextPage ? (
+                                        <div
+                                            ref={intersectionRef}
+                                            style={{ height: '10px' }}
+                                        />
+                                    ) : null}
                                 </>
                             ) : null}
                         </div>

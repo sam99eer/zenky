@@ -1,10 +1,14 @@
 import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { GetProducts } from 'src/api/GetProducts';
 import HomeProductCard from 'src/components/common/HomeProductCard';
 import Skeleton from 'src/components/common/Skeleton';
 import { Keys } from 'src/utils/Keys';
+import { Screens } from 'src/utils/Screens';
 
 const NewProducts = () => {
+    const navigate = useNavigate();
+
     const { isLoading, data } = useQuery(
         Keys.GET_PRODUCTS,
         GetProducts.bind(this, {
@@ -12,6 +16,10 @@ const NewProducts = () => {
             pageSize: 12,
         })
     );
+
+    const shopHandler = () => {
+        navigate(Screens.SHOP, { state: { category: 'all' } });
+    };
 
     return (
         <div className='product-area section-padding-3 pb-100'>
@@ -41,7 +49,7 @@ const NewProducts = () => {
                         </div>
                     </div>
                     <div className='product-viewmore-wrap text-center'>
-                        <a href='shop-fullwide.html'>
+                        <a onClick={shopHandler}>
                             <div className='pro-viewmore-normal pro-viewmore-common'>
                                 <span>View more products</span>
                             </div>

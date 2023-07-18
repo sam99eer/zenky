@@ -58,6 +58,7 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
             {createPortal(
                 <div
                     className='modal fade'
+                    key={`productModal_${props?.data?._id}`}
                     id={`productModal_${props?.data?._id}`}
                     tabIndex={-1}
                     role='dialog'

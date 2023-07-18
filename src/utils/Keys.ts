@@ -9,4 +9,5 @@ export const Keys = {
     WISHLIST: 'wishlist',
     PRODUCT_DETAILS: 'product-details',
     POST_REVIEW: 'post-review',
+    ALL_PRODUCTS: 'all-products',
 };

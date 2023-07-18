@@ -1,7 +1,7 @@
 const Skeleton = () => {
     return (
         <div className='col-xl-3 col-lg-4 col-md-6 col-sm-6'>
-            <div className='skeleton-loader'>
+            <div className='skeleton-loader mb-50'>
                 <div className='skeleton-block'></div>
                 <div className='skeleton-block'></div>
                 <div className='skeleton-block'></div>

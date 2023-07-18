@@ -86,7 +86,6 @@ const WishlistData = () => {
                                                 <th></th>
                                                 <th>Product</th>
                                                 <th>Price</th>
-                                                <th>Add To Cart</th>
                                             </tr>
                                         </thead>
                                         <tbody>

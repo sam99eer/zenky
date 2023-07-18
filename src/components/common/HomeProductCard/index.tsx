@@ -1,9 +1,12 @@
+import { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { IGetProductItem } from 'src/models/api/GetProductsModel';
+import { IColorImage } from 'src/models/data/ColorImageModel';
+import { IProductData } from 'src/models/screens/ProductDetails';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
 import { formatServerImagePath } from 'src/utils/Helpers';
@@ -15,12 +18,60 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [productData, setProductData] = useState<IProductData>({
+        colorId: null,
+        size: null,
+        colorName: null,
+    });
+
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
     );
     const itemData = cartItems.find((item) => item?._id === props?.data?._id);
 
     const inStock = !!props?.data?.isAvaliable;
+
+    const imageData = useMemo(() => {
+        const images: IColorImage[] = !!props?.data
+            ? props?.data?.colors?.flatMap((item) => {
+                  const subImages: IColorImage[] = [];
+                  if (item?.image1) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '1',
+                          imageUrl: formatServerImagePath(item?.image1),
+                          colorName: item?.name,
+                      });
+                  }
+                  if (item?.image2) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '2',
+                          imageUrl: formatServerImagePath(item?.image2),
+                          colorName: item?.name,
+                      });
+                  }
+                  if (item?.image3) {
+                      subImages.push({
+                          colorId: item?._id,
+                          id: item?.color_code + '3',
+                          imageUrl: formatServerImagePath(item?.image3),
+                          colorName: item?.name,
+                      });
+                  }
+                  return subImages;
+              })
+            : [];
+        images.unshift({
+            colorId: 'cover',
+            id: 'cover',
+            colorName: 'cover',
+            imageUrl: props?.data?.image
+                ? formatServerImagePath(props?.data?.image)
+                : NoImage,
+        });
+        return images;
+    }, [props.data]);
 
     const cartHandler = (
         action: 'add' | 'remove',
@@ -32,20 +83,36 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
         }
 
         if (action === 'add') {
-            dispatch(
-                cartSliceActions.addItem({
-                    data: props?.data,
-                })
-            );
-            if (!!shouldShowPopup) {
-                toast.success('Added to cart');
+            if (productData?.colorName && productData?.size) {
+                dispatch(
+                    cartSliceActions.addItem({
+                        data: {
+                            ...props?.data,
+                            colorName: productData?.colorName,
+                            size: productData?.size,
+                        },
+                    })
+                );
+                if (!!shouldShowPopup) {
+                    toast.success('Added to cart');
+                }
+                return;
             }
+            toast.warn('Please select Color and Size');
             return;
         }
 
         if (action === 'remove') {
-            dispatch(cartSliceActions.removeItem({ _id: props?.data?._id }));
-            return;
+            if (productData?.colorName && productData?.size) {
+                dispatch(
+                    cartSliceActions.removeItem({
+                        _id: props?.data?._id,
+                        colorName: productData?.colorName,
+                        size: productData?.size,
+                    })
+                );
+                return;
+            }
         }
     };
 
@@ -85,26 +152,13 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                             className='quickview-slider-active owl-carousel'
                                             {...quickviewSliderSettings}
                                         >
-                                            <img
-                                                src={
-                                                    props?.data?.image
-                                                        ? formatServerImagePath(
-                                                              props?.data?.image
-                                                          )
-                                                        : NoImage
-                                                }
-                                                alt='Cover Photo'
-                                            />
-                                            <img
-                                                src={
-                                                    props?.data?.image
-                                                        ? formatServerImagePath(
-                                                              props?.data?.image
-                                                          )
-                                                        : NoImage
-                                                }
-                                                alt='Cover Photo'
-                                            />
+                                            {imageData?.map((item) => (
+                                                <img
+                                                    key={item?.id}
+                                                    src={item?.imageUrl}
+                                                    alt={item?.colorName}
+                                                />
+                                            ))}
                                         </Slider>
                                     </div>
                                     <div className='col-lg-6 col-md-12 col-sm-12 col-xs-12'>

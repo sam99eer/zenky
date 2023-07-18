@@ -17,4 +17,5 @@ export interface IReviewPayload {
 export interface IProductData {
     size: string | null;
     colorId: string | null;
+    colorName: string | null;
 }

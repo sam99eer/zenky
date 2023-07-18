@@ -27,6 +27,8 @@ const cartSlice = createSlice({
                     price: action.payload.data?.price,
                     quantity: 1,
                     totalPrice: action.payload.data?.price,
+                    colorName: action.payload.data?.colorName,
+                    size: action.payload.data?.size,
                 });
                 return;
             }
@@ -35,9 +37,19 @@ const cartSlice = createSlice({
             state.cartItem[findItem].totalPrice +=
                 state.cartItem[findItem].price;
         },
-        removeItem(state, action: PayloadAction<{ _id: string }>) {
+        removeItem(
+            state,
+            action: PayloadAction<{
+                _id: string;
+                colorName: string;
+                size: string;
+            }>
+        ) {
             const findItem = state.cartItem?.findIndex(
-                (item) => item?._id === action.payload?._id
+                (item) =>
+                    item?._id === action.payload?._id &&
+                    item?.colorName === action.payload?.colorName &&
+                    item?.size === action.payload?.size
             );
 
             if (findItem !== -1) {
@@ -50,9 +62,19 @@ const cartSlice = createSlice({
                     state.cartItem[findItem].price;
             }
         },
-        deleteItem(state, action: PayloadAction<{ _id: string }>) {
+        deleteItem(
+            state,
+            action: PayloadAction<{
+                _id: string;
+                colorName: string;
+                size: string;
+            }>
+        ) {
             const findItem = state.cartItem?.findIndex(
-                (item) => item?._id === action.payload?._id
+                (item) =>
+                    item?._id === action.payload?._id &&
+                    item?.colorName === action.payload?.colorName &&
+                    item?.size === action.payload?.size
             );
 
             if (findItem !== -1) {

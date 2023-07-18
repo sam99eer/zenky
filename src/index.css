@@ -21258,6 +21258,12 @@ h3.cart-page-title {
   color: #777;
 }
 
+.cart-table-content table tbody > tr td.product-name p {
+  font-size: 12px;
+  color: #777;
+  margin: 0px;
+}
+
 .cart-table-content table tbody > tr td.product-name a:hover {
   color: #e77878;
 }

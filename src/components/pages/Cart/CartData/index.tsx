@@ -16,14 +16,19 @@ const CartData = () => {
 
     const dispatch = useDispatch();
 
-    const removeHandler = (uid: 'remove' | 'delete', id: string) => {
+    const removeHandler = (
+        uid: 'remove' | 'delete',
+        id: string,
+        colorName: string,
+        size: string
+    ) => {
         if (uid === 'remove') {
-            dispatch(cartSliceActions.removeItem({ _id: id }));
+            dispatch(cartSliceActions.removeItem({ _id: id, colorName, size }));
             return;
         }
 
         if (uid === 'delete') {
-            dispatch(cartSliceActions.deleteItem({ _id: id }));
+            dispatch(cartSliceActions.deleteItem({ _id: id, colorName, size }));
             return;
         }
     };
@@ -76,7 +81,9 @@ const CartData = () => {
                                                                     onClick={removeHandler.bind(
                                                                         this,
                                                                         'delete',
-                                                                        item?._id
+                                                                        item?._id,
+                                                                        item?.colorName,
+                                                                        item?.size
                                                                     )}
                                                                 >
                                                                     <i className=' ti-close'></i>
@@ -98,9 +105,21 @@ const CartData = () => {
                                                                 </a>
                                                             </td>
                                                             <td className='product-name'>
-                                                                <a href='#'>
+                                                                <Link
+                                                                    to={`${Screens.PRODUCT_DETAILS}/${item?._id}`}
+                                                                >
                                                                     {item?.name}
-                                                                </a>
+                                                                </Link>
+                                                                <p>
+                                                                    Color -{' '}
+                                                                    {
+                                                                        item?.colorName
+                                                                    }
+                                                                </p>
+                                                                <p>
+                                                                    Size -{' '}
+                                                                    {item?.size}
+                                                                </p>
                                                             </td>
                                                             <td className='product-price'>
                                                                 <span className='amount'>
@@ -118,7 +137,9 @@ const CartData = () => {
                                                                             onClick={removeHandler.bind(
                                                                                 this,
                                                                                 'remove',
-                                                                                item?._id
+                                                                                item?._id,
+                                                                                item?.colorName,
+                                                                                item?.size
                                                                             )}
                                                                         >
                                                                             -

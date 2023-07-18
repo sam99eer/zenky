@@ -29,6 +29,7 @@ const ProductSection = (props: {
     const [productData, setProductData] = useState<IProductData>({
         colorId: null,
         size: null,
+        colorName: null,
     });
 
     const cartItems = useSelector(
@@ -52,6 +53,7 @@ const ProductSection = (props: {
                           colorId: item?._id,
                           id: item?.color_code + '1',
                           imageUrl: formatServerImagePath(item?.image1),
+                          colorName: item?.name,
                       });
                   }
                   if (item?.image2) {
@@ -59,6 +61,7 @@ const ProductSection = (props: {
                           colorId: item?._id,
                           id: item?.color_code + '2',
                           imageUrl: formatServerImagePath(item?.image2),
+                          colorName: item?.name,
                       });
                   }
                   if (item?.image3) {
@@ -66,6 +69,7 @@ const ProductSection = (props: {
                           colorId: item?._id,
                           id: item?.color_code + '3',
                           imageUrl: formatServerImagePath(item?.image3),
+                          colorName: item?.name,
                       });
                   }
                   return subImages;
@@ -74,6 +78,7 @@ const ProductSection = (props: {
         images.unshift({
             colorId: 'cover',
             id: 'cover',
+            colorName: 'cover',
             imageUrl: props?.data?.image
                 ? formatServerImagePath(props?.data?.image)
                 : NoImage,
@@ -91,25 +96,39 @@ const ProductSection = (props: {
         }
 
         if (action === 'add') {
-            dispatch(
-                cartSliceActions.addItem({
-                    data: {
-                        _id: props.data!._id,
-                        image: props?.data!.image,
-                        name: props?.data!.name,
-                        price: props?.data!.price,
-                    },
-                })
-            );
-            if (!!shouldShowPopup) {
-                toast.success('Added to cart');
+            if (productData?.colorName && productData?.size) {
+                dispatch(
+                    cartSliceActions.addItem({
+                        data: {
+                            _id: props.data!._id,
+                            image: props?.data!.image,
+                            name: props?.data!.name,
+                            price: props?.data!.price,
+                            colorName: productData?.colorName,
+                            size: productData?.size,
+                        },
+                    })
+                );
+                if (!!shouldShowPopup) {
+                    toast.success('Added to cart');
+                }
+                return;
             }
+            toast.warn('Please select Color and Size');
             return;
         }
 
         if (action === 'remove') {
-            dispatch(cartSliceActions.removeItem({ _id: props?.data!._id }));
-            return;
+            if (productData?.colorName && productData?.size) {
+                dispatch(
+                    cartSliceActions.removeItem({
+                        _id: props?.data!._id,
+                        colorName: productData?.colorName,
+                        size: productData?.size,
+                    })
+                );
+                return;
+            }
         }
     };
 
@@ -126,6 +145,7 @@ const ProductSection = (props: {
             setProductData((oldState) => ({
                 ...oldState,
                 colorId: item?._id,
+                colorName: item?.name,
             }));
         }
     };

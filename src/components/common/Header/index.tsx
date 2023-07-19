@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
@@ -22,6 +22,8 @@ const Header = () => {
         mobileNav: false,
         search: false,
     });
+
+    const { pathname } = useLocation();
 
     const navigate = useNavigate();
 
@@ -236,17 +238,19 @@ const Header = () => {
                             </div>
                             <div className='col-lg-3'>
                                 <div className='lang-cart-search-wrap'>
-                                    <div className='same-style header-search'>
-                                        <a
-                                            className='search-active'
-                                            onClick={toggleHandler.bind(
-                                                this,
-                                                'search'
-                                            )}
-                                        >
-                                            <i className='ti-search'></i>
-                                        </a>
-                                    </div>
+                                    {pathname === Screens.SHOP ? null : (
+                                        <div className='same-style header-search'>
+                                            <a
+                                                className='search-active'
+                                                onClick={toggleHandler.bind(
+                                                    this,
+                                                    'search'
+                                                )}
+                                            >
+                                                <i className='ti-search'></i>
+                                            </a>
+                                        </div>
+                                    )}
                                     <div className='same-style cart-wrap ml-20'>
                                         <a
                                             onClick={toggleHandler.bind(

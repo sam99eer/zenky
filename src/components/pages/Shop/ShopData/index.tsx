@@ -3,6 +3,7 @@ import 'rc-slider/assets/index.css';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { GetColors } from 'src/api/GetColors';
 import { GetFilteredProducts } from 'src/api/GetFilteredProducts';
 import HomeProductCard from 'src/components/common/HomeProductCard';
@@ -16,6 +17,7 @@ const ShopData = () => {
     }: {
         state: {
             filter?: string;
+            search?: string;
         };
     } = useLocation();
 
@@ -28,6 +30,7 @@ const ShopData = () => {
         minPrice: null,
         maxPrice: null,
         isAvaliable: null,
+        search: !!state?.search ? state?.search : null,
     });
 
     const [cloneFilterData, setCloneFilterData] = useState<IFilter>({
@@ -39,6 +42,7 @@ const ShopData = () => {
         minPrice: null,
         maxPrice: null,
         isAvaliable: null,
+        search: !!state?.search ? state?.search : null,
     });
 
     const [rangeValue, setRangeValue] = useState([100, 10000]);
@@ -63,6 +67,7 @@ const ShopData = () => {
             'isAvaliable=' + cloneFilterData.isAvaliable,
             'sortBy=' + cloneFilterData.sortBy,
             'sortColumn=' + cloneFilterData.sortColumn,
+            'search=' + cloneFilterData.search,
         ],
         ({ pageParam }) =>
             GetFilteredProducts({
@@ -124,6 +129,7 @@ const ShopData = () => {
             sortColumn: null,
             minPrice: null,
             maxPrice: null,
+            search: null,
             isAvaliable: oldState.isAvaliable,
         }));
         setCloneFilterData((oldState) => ({
@@ -134,6 +140,7 @@ const ShopData = () => {
             sortColumn: null,
             minPrice: null,
             maxPrice: null,
+            search: null,
             isAvaliable: oldState.isAvaliable,
         }));
     };
@@ -172,7 +179,15 @@ const ShopData = () => {
     };
 
     const finalApplyHandler = () => {
-        setCloneFilterData(filterData);
+        if (!!filterData?.search && filterData?.search?.trim()?.length < 3) {
+            toast.warn('Please enter atleast 3 characters in search query');
+            return;
+        }
+
+        setCloneFilterData({
+            ...filterData,
+            search: filterData.search === '' ? null : filterData.search,
+        });
     };
 
     const resetSortData = () => {
@@ -652,18 +667,39 @@ const ShopData = () => {
                                         )}
                                     </ul>
                                 </div>
-                                <div className='container'>
-                                    <div className='actions d-flex flex-column gap-4 row mt-50'>
-                                        <button onClick={finalApplyHandler}>
-                                            Apply Filters
-                                        </button>
-                                        <a
-                                            className='filter-close'
-                                            onClick={resetHandler}
-                                        >
-                                            <i className='ti-close'></i> Clear
-                                            All Filters
-                                        </a>
+                            </div>
+                            <div className='sidebar-widget sw-overflow mb-65'>
+                                <h4 className='pro-sidebar-title'>Search</h4>
+                                <div className='sidebar-widget-color mt-50'>
+                                    <input
+                                        type='text'
+                                        placeholder='Search (min 3 characters)'
+                                        value={
+                                            filterData?.search
+                                                ? filterData?.search
+                                                : ''
+                                        }
+                                        onChange={(event) =>
+                                            filterHandler(
+                                                'search',
+                                                event.target.value
+                                            )
+                                        }
+                                    />
+
+                                    <div className='container'>
+                                        <div className='actions d-flex flex-column gap-4 row mt-50'>
+                                            <button onClick={finalApplyHandler}>
+                                                Apply Filters
+                                            </button>
+                                            <a
+                                                className='filter-close'
+                                                onClick={resetHandler}
+                                            >
+                                                <i className='ti-close'></i>{' '}
+                                                Clear All Filters
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

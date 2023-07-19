@@ -1,5 +1,7 @@
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { IToggle } from 'src/models/screens/Home';
 import { IStoreModel } from 'src/store';
 import { personalDetailsSliceActions } from 'src/store/Actions';
@@ -14,11 +16,28 @@ const MobileHeader = (props: {
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
 
+    const [search, setSearch] = useState('');
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const navigateHandler = (filter: string) => {
         navigate(Screens.SHOP, { state: { filter } });
+    };
+
+    const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+    };
+
+    const formHandler = (event: FormEvent) => {
+        event.preventDefault();
+
+        if (search.trim().length < 3) {
+            toast.warn('Please enter atleast 3 characters');
+            return;
+        }
+
+        navigate(Screens.SHOP, { state: { search } });
     };
 
     const logoutHandler = () => {
@@ -40,8 +59,13 @@ const MobileHeader = (props: {
             </a>
             <div className='header-mobile-aside-wrap'>
                 <div className='mobile-search'>
-                    <form className='search-form' action='#'>
-                        <input type='text' placeholder='Search entire store…' />
+                    <form className='search-form' onSubmit={formHandler}>
+                        <input
+                            type='text'
+                            placeholder='Search entire store…'
+                            value={search}
+                            onChange={searchHandler}
+                        />
                         <button className='button-search'>
                             <i className='ti-search'></i>
                         </button>

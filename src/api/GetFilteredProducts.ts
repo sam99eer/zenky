@@ -38,6 +38,10 @@ export const GetFilteredProducts = async (data: IFilterPayload) => {
         urlData.append('sortBy', data.filters.sortBy.toString());
     }
 
+    if (!!data.filters.search) {
+        urlData.append('search', data.filters.search);
+    }
+
     const queryString = urlData.toString();
 
     const apiCall = await ApiClient.get(

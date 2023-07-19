@@ -3,7 +3,6 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,7 +30,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Provider store={store}>
             <QueryClientProvider client={queryClient}>
                 <App />
-                <ReactQueryDevtools initialIsOpen />
             </QueryClientProvider>
         </Provider>
         <ToastContainer

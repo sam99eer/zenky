@@ -7,6 +7,7 @@ export interface IFilter {
     minPrice: number | null;
     maxPrice: number | null;
     isAvaliable: true | null;
+    search: string | null;
 }
 
 export interface IFilterPayload {

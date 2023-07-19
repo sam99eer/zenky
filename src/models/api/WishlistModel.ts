@@ -10,7 +10,7 @@ export interface IWishlistResponse {
     status: number;
 }
 
-interface IWishlistData {
+export interface IWishlistData {
     items: IWishListItem[];
     totalItems: number;
     pageNumber: string;
@@ -37,4 +37,20 @@ interface IWishlistProduct {
     isAvaliable: boolean;
     createdAt: string;
     updatedAt: string;
+}
+
+export interface IPostWishlistPayload {
+    productId: string;
+    token: string;
+}
+
+export interface IPostWishlistResponse {
+    data: WishlistProduct;
+    error: string;
+    message: string;
+    status: number;
+}
+
+interface WishlistProduct {
+    id: string;
 }

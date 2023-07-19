@@ -12,4 +12,5 @@ export const Keys = {
     ALL_PRODUCTS: 'all-products',
     GET_COLORS: 'get-colors',
     GET_FILTERED_PRODUCTS: 'get-filtered-products',
+    TOGGLE_WISHLIST: 'toggle-wishlist',
 };

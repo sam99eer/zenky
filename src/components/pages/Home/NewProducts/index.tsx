@@ -18,7 +18,7 @@ const NewProducts = () => {
     );
 
     const shopHandler = () => {
-        navigate(Screens.SHOP, { state: { category: 'all' } });
+        navigate(Screens.SHOP);
     };
 
     return (

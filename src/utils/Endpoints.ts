@@ -9,4 +9,5 @@ export const Endpoints = {
     WISHLIST: 'wishlist',
     PRODUCT: 'product',
     POST_REVIEW: 'review',
+    COLOR_LIST: 'colors_list',
 };

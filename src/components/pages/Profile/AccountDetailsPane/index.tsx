@@ -30,9 +30,9 @@ const AccountDetailsPane = () => {
         name: profileData?.name ? profileData?.name : '',
         address: profileData?.address ? profileData?.address : '',
         city: profileData?.city ? profileData?.city : '',
-        country: profileData?.country ? profileData?.country : '',
+        country: profileData?.country ? profileData?.country : 'India',
         phoneNumber: profileData?.phoneNumber ? profileData?.phoneNumber : '',
-        state: profileData?.state ? profileData?.state : '',
+        state: profileData?.state ? profileData?.state : 'Andhra Pradesh',
         zipCode: profileData?.zipCode ? profileData?.zipCode : '',
     });
 

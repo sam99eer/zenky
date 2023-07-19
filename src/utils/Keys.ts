@@ -10,4 +10,6 @@ export const Keys = {
     PRODUCT_DETAILS: 'product-details',
     POST_REVIEW: 'post-review',
     ALL_PRODUCTS: 'all-products',
+    GET_COLORS: 'get-colors',
+    GET_FILTERED_PRODUCTS: 'get-filtered-products',
 };

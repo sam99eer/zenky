@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { IToggle } from 'src/models/screens/Home';
 import { IStoreModel } from 'src/store';
 import { personalDetailsSliceActions } from 'src/store/Actions';
@@ -12,7 +12,13 @@ const MobileHeader = (props: {
     const isLoggedIn = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const navigateHandler = (filter: string) => {
+        navigate(Screens.SHOP, { state: { filter } });
+    };
 
     const logoutHandler = () => {
         localStorage.removeItem('access-token');
@@ -54,17 +60,32 @@ const MobileHeader = (props: {
                                             <a>Shop For</a>
                                             <ul className='dropdown'>
                                                 <li>
-                                                    <a href='shop-fullwide.html'>
+                                                    <a
+                                                        onClick={navigateHandler.bind(
+                                                            this,
+                                                            'MEN'
+                                                        )}
+                                                    >
                                                         Men
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href='shop-sidebar.html'>
+                                                    <a
+                                                        onClick={navigateHandler.bind(
+                                                            this,
+                                                            'WOMEN'
+                                                        )}
+                                                    >
                                                         Women
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href='shop-3col.html'>
+                                                    <a
+                                                        onClick={navigateHandler.bind(
+                                                            this,
+                                                            'BOTH'
+                                                        )}
+                                                    >
                                                         Both
                                                     </a>
                                                 </li>

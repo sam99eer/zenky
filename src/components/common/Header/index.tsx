@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
@@ -22,6 +22,8 @@ const Header = () => {
         search: false,
     });
 
+    const navigate = useNavigate();
+
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem.length
     );
@@ -40,6 +42,10 @@ const Header = () => {
             ...oldState,
             [uid]: !oldState[uid],
         }));
+    };
+
+    const navigateHandler = (filter: string) => {
+        navigate(Screens.SHOP, { state: { filter } });
     };
 
     const logoutHandler = () => {
@@ -99,17 +105,32 @@ const Header = () => {
                                                         </a>
                                                         <ul>
                                                             <li>
-                                                                <a href='shop-fullwide.html'>
+                                                                <a
+                                                                    onClick={navigateHandler.bind(
+                                                                        this,
+                                                                        'MEN'
+                                                                    )}
+                                                                >
                                                                     Men
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='shop-sidebar.html'>
+                                                                <a
+                                                                    onClick={navigateHandler.bind(
+                                                                        this,
+                                                                        'WOMEN'
+                                                                    )}
+                                                                >
                                                                     Women
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href='shop-3col.html'>
+                                                                <a
+                                                                    onClick={navigateHandler.bind(
+                                                                        this,
+                                                                        'BOTH'
+                                                                    )}
+                                                                >
                                                                     Both
                                                                 </a>
                                                             </li>

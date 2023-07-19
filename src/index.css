@@ -19127,7 +19127,12 @@ body.body-menu-overlay::before {
   text-decoration: underline;
 }
 
-.sidebar-widget .price-filter #slider-range {
+.sidebar-widget .price-filter .slider-range {
+  width: 90%;
+  margin-inline: auto;
+}
+
+.sidebar-widget .price-filter .slider-range .rc-slider-rail {
   background: #eee none repeat scroll 0 0;
   border: medium none;
   border-radius: 50px;
@@ -19136,13 +19141,7 @@ body.body-menu-overlay::before {
   margin-left: auto;
 }
 
-.sidebar-widget .price-filter #slider-range span {
-  -webkit-transition: all .0s ease 0s;
-  -o-transition: all .0s ease 0s;
-  transition: all .0s ease 0s;
-}
-
-.sidebar-widget .price-filter #slider-range .ui-slider-range {
+.sidebar-widget .price-filter .slider-range .rc-slider-track {
   position: absolute;
   display: block;
   border: 0;
@@ -19153,7 +19152,7 @@ body.body-menu-overlay::before {
   transition: all .0s ease 0s;
 }
 
-.sidebar-widget .price-filter #slider-range .ui-slider-handle {
+.sidebar-widget .price-filter .slider-range .rc-slider-handle {
   background: #fff none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
@@ -19162,8 +19161,11 @@ body.body-menu-overlay::before {
   width: 23px;
   -webkit-box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2);
-  top: -10px;
+  top: 0px;
   cursor: ew-resize;
+  -webkit-transition: all .0s ease 0s;
+  -o-transition: all .0s ease 0s;
+  transition: all .0s ease 0s;
 }
 
 .sidebar-widget .price-filter .price-slider-amount {
@@ -19230,6 +19232,30 @@ body.body-menu-overlay::before {
   border: 1px solid #e77878;
 }
 
+.sidebar-widget .actions button {
+  width: 100%;
+  background-color: transparent;
+  padding: 8px 10px;
+  margin-top: 15px;
+  border: 1px solid #262626;
+  font-size: 12px;
+  font-weight: 400;
+  color: #262626;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.sidebar-widget .actions button:hover {
+  background-color: #e77878;
+  color: #fff;
+  border: 1px solid #e77878;
+}
+
+.sidebar-widget .actions a {
+  text-align: center;
+}
+
 .sidebar-widget .sidebar-widget-size ul li {
   display: inline-block;
   margin-right: 7px;
@@ -19252,7 +19278,7 @@ body.body-menu-overlay::before {
   }
 }
 
-.sidebar-widget .sidebar-widget-size ul li a:hover {
+.sidebar-widget .sidebar-widget-size ul li a:hover, .sidebar-widget .sidebar-widget-size ul li a.active {
   background-color: #e77878;
   color: #fff;
   border: 1px solid #e77878;
@@ -19262,6 +19288,14 @@ body.body-menu-overlay::before {
   margin-bottom: 12px;
   display: inline-block;
   margin-right: 18px;
+}
+
+.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor {
+  outline: 1px solid #000;
+}
+
+.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor.active {
+  border: 2px solid #48b5b5;
 }
 
 @media only screen and (min-width: 1366px) and (max-width: 1600px) {
@@ -19293,50 +19327,6 @@ body.body-menu-overlay::before {
   font-size: 0;
   display: inline-block;
   position: relative;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor::before {
-  content: attr(title);
-  position: absolute;
-  bottom: 80%;
-  text-indent: 0;
-  background: #000;
-  padding: 4px 10px 6px;
-  line-height: 1;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  min-width: 50px;
-  color: #fff;
-  left: 50%;
-  white-space: pre;
-  text-align: center;
-  text-transform: none;
-  -webkit-transform: translate(-50%, 0);
-      -ms-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
-  font-size: 12px;
-}
-
-.sidebar-widget .sidebar-widget-color ul li a .swatch-anchor::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 80%;
-  border-width: 4px 4px 0 4px;
-  border-style: solid;
-  border-color: #000 transparent transparent transparent;
-  margin-bottom: 6px;
-  margin-left: -4px;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: all 250ms ease-out;
-  -o-transition: all 250ms ease-out;
-  transition: all 250ms ease-out;
 }
 
 .sidebar-widget .sidebar-widget-color ul li a .swatch-anchor:hover::before {
@@ -19457,6 +19447,10 @@ body.body-menu-overlay::before {
   opacity: .4;
   z-index: 1;
   pointer-events: none;
+}
+
+.shop-sidebar-style ul li a.active {
+  color: #e77878;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {

@@ -8,5 +8,5 @@ export const Screens = {
     NOT_FOUND: '/*',
     DUMMY_NOT_FOUND: '/notfound',
     PRODUCT_DETAILS: '/product',
-    SHOP: 'shop',
+    SHOP: '/shop',
 };

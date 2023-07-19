@@ -22423,6 +22423,10 @@ h3.cart-page-title {
   animation: skeletonAnimation 1s infinite 0.4s;
 }
 
+.empty-wishlist {
+  width: clamp(200px, 50%, 450px);
+}
+
 .svg-icon svg {
   height: 100%;
   width: 100%;

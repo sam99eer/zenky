@@ -32,8 +32,7 @@ const WishlistItem = (props: { data: IWishListItem }) => {
             .then(async (res) => {
                 if (res.status === 200) {
                     const queryData = await queryClient.getQueryData(
-                        Keys.WISHLIST,
-                        { exact: true }
+                        Keys.WISHLIST
                     );
 
                     if (isWishlistRemoveValid(queryData)) {
@@ -52,6 +51,7 @@ const WishlistItem = (props: { data: IWishListItem }) => {
                                 break;
                             }
                         }
+                        queryClient.setQueryData(Keys.WISHLIST, queryData);
                     }
                     toast.success(res?.message);
                 }

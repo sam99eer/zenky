@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { GetWishlist } from 'src/api/GetWishlist';
@@ -36,10 +36,9 @@ const WishlistData = () => {
         }
     );
 
-    const wishlistData = useMemo(
-        () => (!!data ? data?.pages?.flatMap((item) => item.items) : []),
-        [data?.pages?.length]
-    );
+    const wishlistData = !!data
+        ? data?.pages?.flatMap((item) => item.items)
+        : [];
 
     const intersectionCallback: IntersectionObserverCallback = useCallback(
         (entries) => {
@@ -107,7 +106,7 @@ const WishlistData = () => {
                                 ) : null}
                             </>
                         ) : !isLoading || !isFetching ? (
-                            <div className='d-flex flex-column justify-content-center align-items-center'>
+                            <div className='d-flex flex-column justify-content-center align-items-center mx-auto empty-wishlist'>
                                 <div className='img-fluid svg-icon'>
                                     <EmptyWishlist />
                                 </div>

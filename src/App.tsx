@@ -3,11 +3,12 @@ import { useDispatch } from 'react-redux';
 import { GetProfile } from 'src/api/GetProfile';
 import Routes from 'src/routes';
 import { personalDetailsSliceActions } from 'src/store/Actions';
+import { deleteCookie, getCookie } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 
 const App = () => {
     const dispatch = useDispatch();
-    const token = localStorage.getItem('access-token');
+    const token = getCookie('access-token');
 
     const { isLoading } = useQuery(
         Keys.PROFILE,
@@ -28,7 +29,7 @@ const App = () => {
             },
             onError: () => {
                 if (!!token) {
-                    localStorage.removeItem('access-token');
+                    deleteCookie('access-token');
                 }
             },
         }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { IToggle } from 'src/models/screens/Home';
 import { IStoreModel } from 'src/store';
 import { personalDetailsSliceActions } from 'src/store/Actions';
+import { deleteCookie } from 'src/utils/Helpers';
 import { Screens } from 'src/utils/Screens';
 
 const MobileHeader = (props: {
@@ -21,7 +22,7 @@ const MobileHeader = (props: {
     };
 
     const logoutHandler = () => {
-        localStorage.removeItem('access-token');
+        deleteCookie('access-token');
         dispatch(personalDetailsSliceActions.flushData());
     };
 

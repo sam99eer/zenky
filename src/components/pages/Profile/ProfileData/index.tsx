@@ -7,6 +7,7 @@ import DashboardPane from 'src/components/pages/Profile/DashboardPane';
 import OrdersPane from 'src/components/pages/Profile/OrdersPane';
 import { IStoreModel } from 'src/store';
 import { personalDetailsSliceActions } from 'src/store/Actions';
+import { deleteCookie } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 
 const ProfileData = () => {
@@ -34,7 +35,7 @@ const ProfileData = () => {
     );
 
     const logoutHandler = () => {
-        localStorage.removeItem('access-token');
+        deleteCookie('access-token');
         dispatch(personalDetailsSliceActions.flushData());
     };
 

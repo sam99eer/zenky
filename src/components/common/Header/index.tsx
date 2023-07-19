@@ -11,6 +11,7 @@ import {
     homeSliceActions,
     personalDetailsSliceActions,
 } from 'src/store/Actions';
+import { deleteCookie } from 'src/utils/Helpers';
 import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/logo.png';
 
@@ -49,7 +50,7 @@ const Header = () => {
     };
 
     const logoutHandler = () => {
-        localStorage.removeItem('access-token');
+        deleteCookie('access-token');
         dispatch(personalDetailsSliceActions.flushData());
     };
 

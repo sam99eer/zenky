@@ -8,6 +8,7 @@ import { IError } from 'src/models/api/ErrorModel';
 import { IRegisterModel } from 'src/models/screens/Login';
 import { personalDetailsSliceActions } from 'src/store/Actions';
 import { REGEX } from 'src/utils/Constants';
+import { setCookie } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 
@@ -60,7 +61,7 @@ const RegisterForm = () => {
         mutateAsync(data)
             .then((res) => {
                 if (res.status === 200) {
-                    localStorage.setItem('access-token', res.data.token);
+                    setCookie('access-token', res.data.token, 30);
                     dispatch(
                         personalDetailsSliceActions.setCredentials({
                             token: res.data.token,

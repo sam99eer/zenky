@@ -10,3 +10,8 @@ export const REGEX = {
     ZIP: /^\d{6}$/,
     PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/,
 };
+
+export const WISHLIST_MSG = {
+    ADDED: 'Product added to wishlist successfully',
+    REMOVED: 'Product removed from wishlist successfully',
+};

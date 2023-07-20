@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
+import CardWishlistButton from 'src/components/common/CardWishlistButton';
 import { Color, IGetProductItem } from 'src/models/api/GetProductsModel';
 import { IColorImage } from 'src/models/data/ColorImageModel';
 import { IProductData } from 'src/models/screens/ProductDetails';
@@ -500,10 +501,7 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                                 <i className=' ti-zoom-in'></i>
                                 <span>Quick Shop</span>
                             </a>
-                            <a title='Wishlist'>
-                                <i className=' ti-heart '></i>
-                                <span>Add to Wishlist</span>
-                            </a>
+                            <CardWishlistButton productData={props?.data} />
                         </div>
                         <div className='product-action-2'>
                             <a

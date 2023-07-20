@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
+import ProductWishlist from 'src/components/pages/ProductDetails/ProductWishlist';
 import { Color, IProductDetails } from 'src/models/api/GetProductsModel';
 import { IColorImage } from 'src/models/data/ColorImageModel';
 import {
@@ -403,11 +404,9 @@ const ProductSection = (props: {
                                                     : 'Out of Stock'}
                                             </a>
                                         </div>
-                                        <div className='quickview-wishlist'>
-                                            <a title='Add to wishlist' href='#'>
-                                                <i className=' ti-heart '></i>
-                                            </a>
-                                        </div>
+                                        <ProductWishlist
+                                            productData={props?.data}
+                                        />
                                         <div className='quickview-compare'>
                                             <a title='Add to compare' href='#'>
                                                 <i className='ti-bar-chart-alt'></i>

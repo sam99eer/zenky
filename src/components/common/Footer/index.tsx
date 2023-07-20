@@ -1,6 +1,19 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/logo.png';
 
 const Footer = () => {
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
+
+    const clickHandler = () => {
+        if (pathname === Screens.HOME) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+        navigate(Screens.HOME);
+    };
+
     return (
         <footer className='footer-area section-padding-1 bg-black pt-70'>
             <div className='container'>
@@ -9,7 +22,7 @@ const Footer = () => {
                         <div className='footer-widget mb-40'>
                             <div className='footer-about'>
                                 <div className='footer-logo'>
-                                    <a href='index.html'>
+                                    <a onClick={clickHandler}>
                                         <img src={Logo} alt='logo' />
                                     </a>
                                 </div>

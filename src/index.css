@@ -3214,13 +3214,7 @@ button, input, optgroup, select, textarea {
   left: -570px;
 }
 
-@media only screen and (min-width: 1366px) and (max-width: 1600px) {
-  .main-menu > nav > ul > li > ul.menu-negative-mrg2 {
-    left: -435px;
-  }
-}
-
-@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+@media only screen and (min-width: 1200px) and (max-width: 1600px) {
   .main-menu > nav > ul > li > ul.menu-negative-mrg2 {
     left: -400px;
     width: 742px;
@@ -6397,7 +6391,7 @@ body.body-menu-overlay::before {
 }
 
 .product-wrap .product-img .product-action a span::after {
-  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #e77878;
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #262626E6;
   border-style: solid;
   border-width: 5px 0 5px 5px;
   content: "";
@@ -6411,7 +6405,13 @@ body.body-menu-overlay::before {
   width: 0;
 }
 
-.product-wrap .product-img .product-action a:hover {
+.product-wrap .product-img .product-action a.active span::after {
+  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #e77878;
+}
+
+
+
+.product-wrap .product-img .product-action a.active {
   background-color: #e77878;
 }
 
@@ -11987,6 +11987,14 @@ body.body-menu-overlay::before {
 .quickview-content .quickview-action-wrap .quickview-wishlist a, .quickview-content .quickview-action-wrap .quickview-compare a {
   font-size: 20px;
   font-weight: bold;
+}
+
+.quickview-wishlist .heart:hover {
+  color: unset;
+}
+
+.quickview-wishlist .heart.active {
+  color: #e77878;
 }
 
 .quickview-content .quickview-action-wrap .quickview-compare {

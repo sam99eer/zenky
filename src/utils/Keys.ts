@@ -13,4 +13,6 @@ export const Keys = {
     GET_COLORS: 'get-colors',
     GET_FILTERED_PRODUCTS: 'get-filtered-products',
     TOGGLE_WISHLIST: 'toggle-wishlist',
+    SEND_OTP: 'send-otp',
+    RESET_PASSWORD: 'reset-password',
 };

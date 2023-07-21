@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { LoginUser } from 'src/api/LoginUser';
 import { IError } from 'src/models/api/ErrorModel';
@@ -115,7 +115,7 @@ const LoginForm = () => {
                                 </button>
                             </div>
                         </div>
-                        <a href='#'>Lost your password?</a>
+                        <Link to={Screens.FORGOT}>Lost your password?</Link>
                     </form>
                 </div>
             </div>

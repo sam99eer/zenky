@@ -9,4 +9,5 @@ export const Screens = {
     DUMMY_NOT_FOUND: '/notfound',
     PRODUCT_DETAILS: '/product',
     SHOP: '/shop',
+    FORGOT: '/forgot',
 };

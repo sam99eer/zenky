@@ -160,12 +160,12 @@ const MobileHeader = (props: {
                                             <a href='about-us.html'>About Us</a>
                                         </li>
                                         <li>
-                                            <a href='contact-us.html'>
+                                            <Link to={Screens.CONTACT}>
                                                 Contact Us
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href='faq.html'>FAQ</a>
+                                            <Link to={Screens.FAQ}>FAQ</Link>
                                         </li>
                                         {isLoggedIn ? (
                                             <li>

@@ -210,14 +210,16 @@ const Header = () => {
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href='contact-us.html'>
+                                                        <Link
+                                                            to={Screens.CONTACT}
+                                                        >
                                                             Contact Us
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                     <li>
-                                                        <a href='faq.html'>
+                                                        <Link to={Screens.FAQ}>
                                                             FAQ
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                     {isLoggedIn ? (
                                                         <li>

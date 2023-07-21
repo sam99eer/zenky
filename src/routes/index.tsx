@@ -6,6 +6,8 @@ import {
     Routes as RoutesContainer,
 } from 'react-router-dom';
 import ProtectedRoute from 'src/components/common/ProtectedRoute';
+import Contact from 'src/pages/Contact';
+import Faq from 'src/pages/Faq';
 import Forgot from 'src/pages/Forgot';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
@@ -34,6 +36,8 @@ const Routes = () => {
                     <Route path={Screens.CHECKOUT} element={<Checkout />} />
                     <Route path={Screens.SHOP} element={<Shop />} />
                     <Route path={Screens.FORGOT} element={<Forgot />} />
+                    <Route path={Screens.CONTACT} element={<Contact />} />
+                    <Route path={Screens.FAQ} element={<Faq />} />
                     <Route
                         path={`${Screens.PRODUCT_DETAILS}/:productId`}
                         element={<ProductDetails />}

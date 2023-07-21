@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/logo.png';
 
@@ -34,7 +34,7 @@ const Footer = () => {
                             <div className='footer-list'>
                                 <ul>
                                     <li>
-                                        <a href='#'>Help</a>
+                                        <Link to={Screens.FAQ}>FAQ</Link>
                                     </li>
                                     <li>
                                         <a href='#'>Returns</a>
@@ -46,7 +46,9 @@ const Footer = () => {
                                         <a href='#'>Terms & Conditions</a>
                                     </li>
                                     <li>
-                                        <a href='#'>Affiliate</a>
+                                        <Link to={Screens.CONTACT}>
+                                            Contact Us
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

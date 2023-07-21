@@ -10,4 +10,6 @@ export const Screens = {
     PRODUCT_DETAILS: '/product',
     SHOP: '/shop',
     FORGOT: '/forgot',
+    CONTACT: '/contact',
+    FAQ: '/faq',
 };

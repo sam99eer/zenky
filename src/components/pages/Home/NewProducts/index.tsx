@@ -23,7 +23,7 @@ const NewProducts = () => {
 
     return (
         <>
-            <div className='product-area section-padding-3'>
+            <div className='product-area section-padding-3 pt-100'>
                 <div className='container-fluid'>
                     <div className='row'>
                         <div className='column-pro-custom pro-width-22'>

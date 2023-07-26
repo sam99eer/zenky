@@ -8476,3 +8476,34 @@ textarea {
 .pro-categories-wrap-all .pro-categories-wrap .pro-categorie-list ul li a {
     text-transform: uppercase;
 }
+
+.rev-slider {
+    overflow: hidden;
+    height: 800px;
+    background-color: rgb(239, 239, 239);
+}
+
+.rev-slider .rev-slider-content {
+    display: flex !important;
+    gap: 6.75rem;
+}
+
+.rev-slider .rev-slider-content .description {
+    align-self: center;
+}
+
+@media only screen and (max-width: 767px) {
+    .rev-slider .rev-slider-content {
+        display: inline-block !important;
+    }
+
+    .rev-slider img {
+        margin-inline: auto;
+    }
+
+    .rev-slider .rev-slider-content .description {
+        padding-inline: 1rem;
+        text-align: center;
+        padding-top: 1.5rem;
+    }
+}

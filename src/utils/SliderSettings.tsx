@@ -92,3 +92,13 @@ export const quickviewSliderSettings: Settings = {
         },
     ],
 };
+
+export const revolutionSliderSettings: Settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: true,
+    arrows: true,
+};

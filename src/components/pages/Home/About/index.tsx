@@ -2,7 +2,7 @@ import AboutUs from '/assets/images/about-us.jpg';
 
 const About = () => {
     return (
-        <div className='about-us-area section-padding-1 pt-100 pb-95'>
+        <div className='about-us-area section-padding-1 pt-100 mt-100 pb-95'>
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-6 col-md-6 col-sm-6'>

@@ -131,10 +131,20 @@ const Header = () => {
                                                                 <a
                                                                     onClick={navigateHandler.bind(
                                                                         this,
-                                                                        'BOTH'
+                                                                        'KIDS'
                                                                     )}
                                                                 >
-                                                                    Both
+                                                                    Kids
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a
+                                                                    onClick={navigateHandler.bind(
+                                                                        this,
+                                                                        'ALL'
+                                                                    )}
+                                                                >
+                                                                    All
                                                                 </a>
                                                             </li>
                                                         </ul>

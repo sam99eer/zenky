@@ -14,8 +14,8 @@ const Home = () => {
         <Wrapper>
             <Overlay />
             <Header />
-            <About />
             <NewProducts />
+            <About />
             <Subscribe />
             <Testimonials />
             <Footer />

@@ -15,7 +15,10 @@ import { Screens } from 'src/utils/Screens';
 import { quickviewSliderSettings } from 'src/utils/SliderSettings';
 import NoImage from '/assets/images/no-image.jpg';
 
-const HomeProductCard = (props: { data: IGetProductItem }) => {
+const HomeProductCard = (props: {
+    data: IGetProductItem;
+    max3perRow?: boolean;
+}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -460,7 +463,13 @@ const HomeProductCard = (props: { data: IGetProductItem }) => {
                 </div>,
                 document.getElementById('modal')!
             )}
-            <div className='col-xl-3 col-lg-4 col-md-6 col-sm-6'>
+            <div
+                className={
+                    props?.max3perRow
+                        ? 'col-lg-4 col-md-6 col-sm-6'
+                        : 'col-xl-3 col-lg-4 col-md-6 col-sm-6'
+                }
+            >
                 <div className='product-wrap mb-50'>
                     <div className='product-img default-overlay mb-20'>
                         <a onClick={navigateHandler}>

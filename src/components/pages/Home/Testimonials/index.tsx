@@ -1,6 +1,5 @@
 import Slider from 'react-slick';
-import Avatar1 from '/assets/images/avatar-1.png';
-import Avatar2 from '/assets/images/avatar-2.png';
+import { TESTIMONIAL_DATA } from 'src/data/Testimonials';
 
 const settings = {
     dots: false,
@@ -48,31 +47,18 @@ const Testimonials = () => {
             <div className='container'>
                 <div className='testimonial-active owl-carousel'>
                     <Slider {...settings}>
-                        <div className='single-testimonial text-center'>
-                            <p>
-                                “I can't say enough good things about the zenky.
-                                Their trendy and unique t-shirt designs never
-                                fail to impress me and draw compliments wherever
-                                I go. The customer service is top-notch,
-                                ensuring a delightful shopping experience every
-                                time. This is definitely my go-to destination
-                                for stylish t-shirts!”
-                            </p>
-                            <img src={Avatar1} alt='Avatar' />
-                            <span>Karan - Designer</span>
-                        </div>
-                        <div className='single-testimonial text-center'>
-                            <p>
-                                “I am absolutely thrilled with my experience at
-                                the zenky. The quality of their t-shirts is
-                                exceptional, and their extensive collection
-                                offers something for everyone. The seamless
-                                ordering process and prompt delivery have made
-                                me a loyal customer. Highly recommend!”
-                            </p>
-                            <img src={Avatar2} alt='Avatar' />
-                            <span>Shubham - Customer</span>
-                        </div>
+                        {TESTIMONIAL_DATA.map((item, index) => (
+                            <div
+                                key={`testimonial_${index}`}
+                                className='single-testimonial text-center'
+                            >
+                                <p>“{item.review}”</p>
+                                <img src={item.image} alt='Avatar' />
+                                <span>
+                                    {item.username} - {item.designation}
+                                </span>
+                            </div>
+                        ))}
                     </Slider>
                 </div>
             </div>

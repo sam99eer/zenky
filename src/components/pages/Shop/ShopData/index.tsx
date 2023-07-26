@@ -243,169 +243,7 @@ const ShopData = () => {
     return (
         <div className='shop-area section-padding-1 pt-50 pb-80'>
             <div className='container-fluid'>
-                <div className='row flex-row-reverse'>
-                    <div className='col-lg-9'>
-                        <div className='shop-top-bar'>
-                            <div className='shop-top-bar-right'>
-                                <div className='shop-short-by ml-30'>
-                                    <span>
-                                        Sort by{' '}
-                                        <i className='fa fa-angle-down angle-down'></i>{' '}
-                                        <i className='fa fa-angle-up angle-up'></i>
-                                    </span>
-                                    <ul>
-                                        <li
-                                            className={
-                                                !!cloneFilterData.sortBy ===
-                                                    false &&
-                                                !!cloneFilterData.sortColumn ===
-                                                    false
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a onClick={resetSortData}>
-                                                Default Sorting
-                                            </a>
-                                        </li>
-                                        <li
-                                            className={
-                                                cloneFilterData.sortColumn ===
-                                                    'rating' &&
-                                                cloneFilterData.sortBy === -1
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a
-                                                onClick={sortHandler.bind(
-                                                    this,
-                                                    'rating',
-                                                    -1
-                                                )}
-                                            >
-                                                Sort by Average Rating
-                                            </a>
-                                        </li>
-                                        <li
-                                            className={
-                                                cloneFilterData.sortColumn ===
-                                                    'updatedAt' &&
-                                                cloneFilterData.sortBy === -1
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a
-                                                onClick={sortHandler.bind(
-                                                    this,
-                                                    'updatedAt',
-                                                    -1
-                                                )}
-                                            >
-                                                Sort by Latest
-                                            </a>
-                                        </li>
-                                        <li
-                                            className={
-                                                cloneFilterData.sortColumn ===
-                                                    'price' &&
-                                                cloneFilterData.sortBy === 1
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a
-                                                onClick={sortHandler.bind(
-                                                    this,
-                                                    'price',
-                                                    1
-                                                )}
-                                            >
-                                                Sort by Price: Low to High
-                                            </a>
-                                        </li>
-                                        <li
-                                            className={
-                                                cloneFilterData.sortColumn ===
-                                                    'price' &&
-                                                cloneFilterData.sortBy === -1
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a
-                                                onClick={sortHandler.bind(
-                                                    this,
-                                                    'price',
-                                                    -1
-                                                )}
-                                            >
-                                                Sort by Price: High to Low
-                                            </a>
-                                        </li>
-                                        <li
-                                            className={
-                                                cloneFilterData.isAvaliable
-                                                    ? 'active'
-                                                    : ''
-                                            }
-                                        >
-                                            <a onClick={availableHandler}>
-                                                Only Stock products
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='tab-content jump'>
-                            <div className='tab-pane active'>
-                                <div className='row'>
-                                    {isLoading ? (
-                                        <>
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                        </>
-                                    ) : null}
-                                    {productData?.length > 0 ? (
-                                        <>
-                                            {productData?.map((item) => (
-                                                <HomeProductCard
-                                                    key={item._id}
-                                                    data={item}
-                                                />
-                                            ))}
-                                            {isFetchingNextPage ? (
-                                                <>
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                    <Skeleton />
-                                                </>
-                                            ) : null}
-                                            {hasNextPage ? (
-                                                <div
-                                                    ref={intersectionRef}
-                                                    style={{ height: '10px' }}
-                                                />
-                                            ) : null}
-                                        </>
-                                    ) : null}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className='row'>
                     <div className='col-lg-3'>
                         <div className='shop-sidebar-style mt-25 mr-35'>
                             <div className='sidebar-widget mb-70'>
@@ -428,7 +266,7 @@ const ShopData = () => {
                                                 )}
                                             >
                                                 Men
-                                            </a>{' '}
+                                            </a>
                                         </li>
                                         <li>
                                             <a
@@ -445,23 +283,39 @@ const ShopData = () => {
                                                 )}
                                             >
                                                 Women
-                                            </a>{' '}
+                                            </a>
                                         </li>
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.filter === 'BOTH'
+                                                    filterData.filter === 'KIDS'
                                                         ? 'active'
                                                         : ''
                                                 }
                                                 onClick={filterHandler.bind(
                                                     this,
                                                     'filter',
-                                                    'BOTH'
+                                                    'KIDS'
                                                 )}
                                             >
-                                                Both
-                                            </a>{' '}
+                                                Kids
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className={
+                                                    filterData.filter === 'ALL'
+                                                        ? 'active'
+                                                        : ''
+                                                }
+                                                onClick={filterHandler.bind(
+                                                    this,
+                                                    'filter',
+                                                    'ALL'
+                                                )}
+                                            >
+                                                All
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -701,6 +555,168 @@ const ShopData = () => {
                                             </a>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='col-lg-9'>
+                        <div className='shop-top-bar'>
+                            <div className='shop-top-bar-right'>
+                                <div className='shop-short-by ml-30'>
+                                    <span>
+                                        Sort by{' '}
+                                        <i className='fa fa-angle-down angle-down'></i>{' '}
+                                        <i className='fa fa-angle-up angle-up'></i>
+                                    </span>
+                                    <ul>
+                                        <li
+                                            className={
+                                                !!cloneFilterData.sortBy ===
+                                                    false &&
+                                                !!cloneFilterData.sortColumn ===
+                                                    false
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a onClick={resetSortData}>
+                                                Default Sorting
+                                            </a>
+                                        </li>
+                                        <li
+                                            className={
+                                                cloneFilterData.sortColumn ===
+                                                    'rating' &&
+                                                cloneFilterData.sortBy === -1
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a
+                                                onClick={sortHandler.bind(
+                                                    this,
+                                                    'rating',
+                                                    -1
+                                                )}
+                                            >
+                                                Sort by Average Rating
+                                            </a>
+                                        </li>
+                                        <li
+                                            className={
+                                                cloneFilterData.sortColumn ===
+                                                    'updatedAt' &&
+                                                cloneFilterData.sortBy === -1
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a
+                                                onClick={sortHandler.bind(
+                                                    this,
+                                                    'updatedAt',
+                                                    -1
+                                                )}
+                                            >
+                                                Sort by Latest
+                                            </a>
+                                        </li>
+                                        <li
+                                            className={
+                                                cloneFilterData.sortColumn ===
+                                                    'price' &&
+                                                cloneFilterData.sortBy === 1
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a
+                                                onClick={sortHandler.bind(
+                                                    this,
+                                                    'price',
+                                                    1
+                                                )}
+                                            >
+                                                Sort by Price: Low to High
+                                            </a>
+                                        </li>
+                                        <li
+                                            className={
+                                                cloneFilterData.sortColumn ===
+                                                    'price' &&
+                                                cloneFilterData.sortBy === -1
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a
+                                                onClick={sortHandler.bind(
+                                                    this,
+                                                    'price',
+                                                    -1
+                                                )}
+                                            >
+                                                Sort by Price: High to Low
+                                            </a>
+                                        </li>
+                                        <li
+                                            className={
+                                                cloneFilterData.isAvaliable
+                                                    ? 'active'
+                                                    : ''
+                                            }
+                                        >
+                                            <a onClick={availableHandler}>
+                                                Only Stock products
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='tab-content jump'>
+                            <div className='tab-pane active'>
+                                <div className='row'>
+                                    {isLoading ? (
+                                        <>
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                            <Skeleton />
+                                        </>
+                                    ) : null}
+                                    {productData?.length > 0 ? (
+                                        <>
+                                            {productData?.map((item) => (
+                                                <HomeProductCard
+                                                    key={item._id}
+                                                    data={item}
+                                                />
+                                            ))}
+                                            {isFetchingNextPage ? (
+                                                <>
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                    <Skeleton />
+                                                </>
+                                            ) : null}
+                                            {hasNextPage ? (
+                                                <div
+                                                    ref={intersectionRef}
+                                                    style={{ height: '10px' }}
+                                                />
+                                            ) : null}
+                                        </>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>

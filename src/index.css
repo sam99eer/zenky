@@ -8480,8 +8480,12 @@ textarea {
 .rev-slider,
 .rev-slider .rev-slider-content {
     overflow: hidden;
-    height: 800px;
+    height: 700px;
     background-color: rgb(239, 239, 239);
+}
+
+.rev-slider .slick-slide {
+    transition: opacity 0.35s ease 0s, visibility 1s ease 0s !important;
 }
 
 .rev-slider .rev-slider-content {
@@ -8501,25 +8505,55 @@ textarea {
 .rev-slider .rev-slider-content img {
     object-fit: contain;
     max-height: 80%;
+    transform: translateY(40px);
+    transition: transform 0.7s ease-in !important;
+}
+
+.rev-slider .slick-slide.slick-active .rev-slider-content img {
+    transform: translateY(0px);
 }
 
 .rev-slider .rev-slider-content .description p {
     font-size: 1.25rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.7s ease-in, opacity 0.7s ease-in !important;
+}
+
+.rev-slider .slick-slide.slick-active .rev-slider-content p {
+    transform: translateY(0%);
+    opacity: 1;
 }
 
 .rev-slider .rev-slider-content .description h2 {
     font-size: 2rem;
     font-weight: 700;
+    transform: translateX(-28px);
+    opacity: 0;
+    transition: transform 0.85s ease-in, opacity 0.85s ease-in !important;
+}
+
+.rev-slider .slick-slide.slick-active .rev-slider-content .description h2 {
+    transform: translateX(0px);
+    opacity: 1;
 }
 
 .rev-slider .rev-slider-content .description button {
-    margin-top: 1.5rem;
+    margin-top: calc(1.5rem + 28px);
     border: 1px solid #262626;
     padding: 10px 22px;
     font-size: 9px;
     line-height: 11px;
     font-weight: 600;
     cursor: pointer;
+    transform: translateY(0px);
+    opacity: 0;
+    transition: transform 1.2s ease-in, opacity 1.2s ease-in !important;
+}
+
+.rev-slider .slick-slide.slick-active .rev-slider-content .description button {
+    transform: translateY(-28px);
+    opacity: 1;
 }
 
 .rev-slider .rev-slider-content .description button:hover {
@@ -8529,8 +8563,12 @@ textarea {
 }
 
 @media only screen and (max-width: 767px) {
+    .rev-slider {
+        height: 780px;
+    }
     .rev-slider .rev-slider-content {
         display: inline-block !important;
+        height: 100%;
     }
 
     .rev-slider img {

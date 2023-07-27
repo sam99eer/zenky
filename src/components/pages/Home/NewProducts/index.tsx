@@ -83,10 +83,10 @@ const NewProducts = () => {
                                 <div className='row'>
                                     {isLoading ? (
                                         <>
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
                                         </>
                                     ) : (
                                         data?.items?.map((item) => (
@@ -170,10 +170,10 @@ const NewProducts = () => {
                                 <div className='row'>
                                     {isLoading ? (
                                         <>
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
                                         </>
                                     ) : (
                                         data?.items?.map((item) => (
@@ -257,10 +257,10 @@ const NewProducts = () => {
                                 <div className='row'>
                                     {isLoading ? (
                                         <>
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
-                                            <Skeleton />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
+                                            <Skeleton max3perRow />
                                         </>
                                     ) : (
                                         data?.items?.map((item) => (

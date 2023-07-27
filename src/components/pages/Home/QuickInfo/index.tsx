@@ -71,27 +71,26 @@ const QuickInfo = (props: {
                     <div className='quickinfo-social'>
                         <ul>
                             <li>
-                                <a href='#'>
+                                <a
+                                    href='https://www.facebook.com/people/The-Zenky/100095030589458/'
+                                    target='_blank'
+                                >
                                     <i className='fa fa-facebook'></i>
                                 </a>
                             </li>
                             <li>
-                                <a href='#'>
+                                <a
+                                    href='https://twitter.com/ZenkyOfficial'
+                                    target='_blank'
+                                >
                                     <i className='fa fa-twitter'></i>
                                 </a>
                             </li>
                             <li>
-                                <a href='#'>
-                                    <i className='fa fa-google-plus'></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#'>
-                                    <i className='fa fa-behance'></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href='#'>
+                                <a
+                                    href='https://www.instagram.com/the_zenky_official/'
+                                    target='_blank'
+                                >
                                     <i className='fa fa-instagram'></i>
                                 </a>
                             </li>

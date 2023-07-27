@@ -2561,13 +2561,6 @@ textarea {
 .mobile-off-canvas-active
     .header-mobile-aside-wrap
     .mobile-social-wrap
-    a.pinterest {
-    color: #bd081c;
-}
-
-.mobile-off-canvas-active
-    .header-mobile-aside-wrap
-    .mobile-social-wrap
     a.instagram {
     color: #e4405f;
 }
@@ -4431,11 +4424,7 @@ textarea {
     background-color: #1da1f2;
 }
 
-.footer-widget .footer-about .footer-social ul li a.youtube:hover {
-    background-color: #cd201f;
-}
-
-.footer-widget .footer-about .footer-social ul li a.dribbble:hover {
+.footer-widget .footer-about .footer-social ul li a.instagram:hover {
     background-color: #ea4c89;
 }
 
@@ -5173,11 +5162,7 @@ textarea {
     background-color: #1da1f2;
 }
 
-.default-social ul li a.youtube:hover {
-    background-color: #cd201f;
-}
-
-.default-social ul li a.dribbble:hover {
+.default-social ul li a.instagram:hover {
     background-color: #ea4c89;
 }
 
@@ -6242,6 +6227,10 @@ textarea {
     float: right;
     position: relative;
     width: calc(100% - 101px);
+}
+
+.product-dec-left .slick-track {
+    height: 100% !important;
 }
 
 .easyzoom-style {
@@ -8484,10 +8473,6 @@ textarea {
     background-color: rgb(239, 239, 239);
 }
 
-.rev-slider .slick-slide {
-    transition: opacity 0.35s ease 0s, visibility 1s ease 0s !important;
-}
-
 .rev-slider .rev-slider-content {
     display: flex !important;
     gap: 6.75rem;
@@ -8664,5 +8649,34 @@ textarea {
     .tp-bullets {
         top: auto;
         bottom: 90px;
+    }
+}
+
+.pro-column-width-100 {
+    width: 100%;
+    margin-left: 15px;
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+    .pro-column-width-100 {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .pro-column-width-100 {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .pro-column-width-100 {
+        margin-left: 0px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .pro-column-width-100 {
+        margin-left: 0px;
     }
 }

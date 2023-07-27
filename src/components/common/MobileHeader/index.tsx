@@ -191,20 +191,26 @@ const MobileHeader = (props: {
                     </div>
                 </div>
                 <div className='mobile-social-wrap'>
-                    <a className='facebook' href='#'>
+                    <a
+                        className='facebook'
+                        href='https://www.facebook.com/people/The-Zenky/100095030589458/'
+                        target='_blank'
+                    >
                         <i className='ti-facebook'></i>
                     </a>
-                    <a className='twitter' href='#'>
+                    <a
+                        className='twitter'
+                        href='https://twitter.com/ZenkyOfficial'
+                        target='_blank'
+                    >
                         <i className='ti-twitter-alt'></i>
                     </a>
-                    <a className='pinterest' href='#'>
-                        <i className='ti-pinterest'></i>
-                    </a>
-                    <a className='instagram' href='#'>
+                    <a
+                        className='instagram'
+                        href='https://www.instagram.com/the_zenky_official/'
+                        target='_blank'
+                    >
                         <i className='ti-instagram'></i>
-                    </a>
-                    <a className='google' href='#'>
-                        <i className='ti-google'></i>
                     </a>
                 </div>
             </div>

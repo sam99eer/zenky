@@ -70,23 +70,30 @@ const Footer = () => {
                                 <div className='footer-social footer-social-dec'>
                                     <ul>
                                         <li>
-                                            <a className='facebook' href='#'>
+                                            <a
+                                                className='facebook'
+                                                href='https://www.facebook.com/people/The-Zenky/100095030589458/'
+                                                target='_blank'
+                                            >
                                                 <i className='fa fa-facebook'></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a className='twitter' href='#'>
+                                            <a
+                                                className='twitter'
+                                                href='https://twitter.com/ZenkyOfficial'
+                                                target='_blank'
+                                            >
                                                 <i className='fa fa-twitter'></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a className='youtube' href='#'>
-                                                <i className='fa fa-youtube'></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a className='dribbble' href='#'>
-                                                <i className='fa fa-dribbble'></i>
+                                            <a
+                                                className='instagram'
+                                                href='https://www.instagram.com/the_zenky_official/'
+                                                target='_blank'
+                                            >
+                                                <i className='fa fa-instagram'></i>
                                             </a>
                                         </li>
                                     </ul>

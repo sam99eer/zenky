@@ -423,27 +423,28 @@ const ProductSection = (props: {
                                             <li>
                                                 <a
                                                     className='facebook'
-                                                    href='#'
+                                                    target='_blank'
+                                                    href='https://www.facebook.com/people/The-Zenky/100095030589458/'
                                                 >
                                                     <i className='fa fa-facebook'></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a className='twitter' href='#'>
+                                                <a
+                                                    className='twitter'
+                                                    target='_blank'
+                                                    href='https://twitter.com/ZenkyOfficial'
+                                                >
                                                     <i className='fa fa-twitter'></i>
                                                 </a>
                                             </li>
                                             <li>
-                                                <a className='youtube' href='#'>
-                                                    <i className='fa fa-pinterest-p'></i>
-                                                </a>
-                                            </li>
-                                            <li>
                                                 <a
-                                                    className='dribbble'
-                                                    href='#'
+                                                    className='instagram'
+                                                    target='_blank'
+                                                    href='https://www.instagram.com/the_zenky_official/'
                                                 >
-                                                    <i className='fa fa-google-plus'></i>
+                                                    <i className='fa fa-instagram'></i>
                                                 </a>
                                             </li>
                                         </ul>

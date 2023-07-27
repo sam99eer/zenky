@@ -34,16 +34,25 @@ const RightContact = () => {
                         </li>
                     </ul>
                     <div className='contact-info-social'>
-                        <a href='#'>
+                        <a
+                            href='https://www.facebook.com/people/The-Zenky/100095030589458/'
+                            target='_blank'
+                        >
                             <i className='fa fa-facebook'></i>
                         </a>
-                        <a href='#'>
+                        <a
+                            href='https://twitter.com/ZenkyOfficial'
+                            target='_blank'
+                        >
                             <i className='fa fa-twitter'></i>
                         </a>
-                        <a href='#'>
-                            <i className='fa fa-google-plus'></i>
+                        <a
+                            href='https://www.instagram.com/the_zenky_official/'
+                            target='_blank'
+                        >
+                            <i className='fa fa-instagram'></i>
                         </a>
-                        <a href='#'>
+                        <a href='#' target='_blank'>
                             <i className='fa fa-whatsapp'></i>
                         </a>
                     </div>

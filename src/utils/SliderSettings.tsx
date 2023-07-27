@@ -100,5 +100,11 @@ export const revolutionSliderSettings: Settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: true,
-    arrows: true,
+    arrows: false,
+    dotsClass: 'tp-bullets',
+    customPaging: (index) => (
+        <div className='tp-bullet'>
+            <span className='tp-bullet-title'>0{index + 1}</span>
+        </div>
+    ),
 };

@@ -9,13 +9,17 @@ const HeroSlider = () => {
             <div className='rev-slider-content'>
                 <img src={imgSlide1} alt='' className='img-fluid' />
                 <div className='description'>
-                    <div>Loose - Fitting Dress</div>
+                    <p>Loose - Fitting Dress</p>
+                    <h2>20% off buy it now</h2>
+                    <button>Shop Now</button>
                 </div>
             </div>
             <div className='rev-slider-content'>
                 <img src={imgSlide2} alt='' className='img-fluid' />
                 <div className='description'>
-                    <div>Loose - Fitting Dress</div>
+                    <p>Loose - Fitting Dress</p>
+                    <h2>20% off buy it now</h2>
+                    <button>Shop Now</button>
                 </div>
             </div>
         </Slider>

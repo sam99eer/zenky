@@ -1,3 +1,5 @@
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Settings } from 'react-slick';
 import SlickButton from 'src/components/common/SlickButton';
 
@@ -20,12 +22,12 @@ export const settingsSmallImgSlider: Settings = {
     fade: false,
     prevArrow: (
         <SlickButton customClass='pro-dec-icon pro-dec-prev'>
-            <i className='fa fa-angle-up'></i>
+            <FontAwesomeIcon icon={faAngleUp} />
         </SlickButton>
     ),
     nextArrow: (
         <SlickButton customClass='pro-dec-icon pro-dec-next'>
-            <i className='fa fa-angle-down'></i>
+            <FontAwesomeIcon icon={faAngleDown} />
         </SlickButton>
     ),
     responsive: [

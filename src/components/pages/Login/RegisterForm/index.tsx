@@ -1,3 +1,5 @@
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
@@ -86,7 +88,7 @@ const RegisterForm = () => {
         <div className='col-lg-6 col-md-6'>
             <div className='login-register-wrap register-wrap'>
                 <h3>
-                    <i className='fa fa-user-o'></i> Register
+                    <FontAwesomeIcon icon={faUser} /> Register
                 </h3>
                 <div className='login-register-form'>
                     <form onSubmit={submitHandler}>

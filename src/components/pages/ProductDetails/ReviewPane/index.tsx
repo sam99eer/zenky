@@ -1,3 +1,5 @@
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -142,17 +144,18 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                     {Array.from(new Array(5), (_, index) => {
                                         if (index < (item?.rating ?? 0)) {
                                             return (
-                                                <i
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                    className='yellow'
                                                     key={`${item?._id}_filled_star_${index}`}
-                                                    className='yellow fa fa-star'
-                                                ></i>
+                                                />
                                             );
                                         }
                                         return (
-                                            <i
+                                            <FontAwesomeIcon
+                                                icon={faStar}
                                                 key={`${item?._id}_unfilled_star_${index}`}
-                                                className='fa fa-star'
-                                            ></i>
+                                            />
                                         );
                                     })}
                                 </div>
@@ -200,7 +203,9 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                             )}
                                         >
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                         </div>
                                         <div
@@ -215,10 +220,14 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                             )}
                                         >
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                         </div>
                                         <div
@@ -233,13 +242,19 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                             )}
                                         >
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                         </div>
                                         <div
@@ -254,16 +269,24 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                             )}
                                         >
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                         </div>
                                         <div
@@ -278,19 +301,29 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                             )}
                                         >
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                             <a>
-                                                <i className='fa fa-star'></i>
+                                                <FontAwesomeIcon
+                                                    icon={faStar}
+                                                />
                                             </a>
                                         </div>
                                     </div>

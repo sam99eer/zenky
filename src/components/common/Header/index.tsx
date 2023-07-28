@@ -1,3 +1,5 @@
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -99,7 +101,9 @@ const Header = () => {
                                             <li>
                                                 <a>
                                                     Shop{' '}
-                                                    <i className='fa fa-angle-down'></i>
+                                                    <FontAwesomeIcon
+                                                        icon={faAngleDown}
+                                                    />
                                                 </a>
                                                 <ul className='mega-menu mega-menu-width2 menu-negative-mrg2'>
                                                     <li className='mega-menu-sub-width20'>
@@ -211,7 +215,9 @@ const Header = () => {
                                             <li>
                                                 <a>
                                                     More{' '}
-                                                    <i className='fa fa-angle-down'></i>
+                                                    <FontAwesomeIcon
+                                                        icon={faAngleDown}
+                                                    />
                                                 </a>
                                                 <ul className='sub-menu-width'>
                                                     <li>

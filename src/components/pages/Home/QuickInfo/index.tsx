@@ -1,3 +1,9 @@
+import {
+    faFacebookF,
+    faInstagram,
+    faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IToggle } from 'src/models/screens/Home';
 import { Screens } from 'src/utils/Screens';
@@ -75,7 +81,7 @@ const QuickInfo = (props: {
                                     href='https://www.facebook.com/people/The-Zenky/100095030589458/'
                                     target='_blank'
                                 >
-                                    <i className='fa fa-facebook'></i>
+                                    <FontAwesomeIcon icon={faFacebookF} />
                                 </a>
                             </li>
                             <li>
@@ -83,7 +89,7 @@ const QuickInfo = (props: {
                                     href='https://twitter.com/ZenkyOfficial'
                                     target='_blank'
                                 >
-                                    <i className='fa fa-twitter'></i>
+                                    <FontAwesomeIcon icon={faTwitter} />
                                 </a>
                             </li>
                             <li>
@@ -91,7 +97,7 @@ const QuickInfo = (props: {
                                     href='https://www.instagram.com/the_zenky_official/'
                                     target='_blank'
                                 >
-                                    <i className='fa fa-instagram'></i>
+                                    <FontAwesomeIcon icon={faInstagram} />
                                 </a>
                             </li>
                         </ul>

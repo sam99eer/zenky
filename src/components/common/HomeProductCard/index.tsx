@@ -1,3 +1,11 @@
+import {
+    faFacebookF,
+    faInstagram,
+    faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -211,17 +219,22 @@ const HomeProductCard = (props: {
                                                                         0)
                                                                 ) {
                                                                     return (
-                                                                        <i
+                                                                        <FontAwesomeIcon
+                                                                            icon={
+                                                                                faStar
+                                                                            }
+                                                                            className='yellow'
                                                                             key={`${props?.data?._id}_filled_star_${index}`}
-                                                                            className='yellow fa fa-star'
-                                                                        ></i>
+                                                                        />
                                                                     );
                                                                 }
                                                                 return (
-                                                                    <i
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faStar
+                                                                        }
                                                                         key={`${props?.data?._id}_unfilled_star_${index}`}
-                                                                        className='fa fa-star'
-                                                                    ></i>
+                                                                    />
                                                                 );
                                                             }
                                                         )}
@@ -238,12 +251,18 @@ const HomeProductCard = (props: {
                                                     {props?.data
                                                         ?.isAvaliable ? (
                                                         <span>
-                                                            <i className='fa fa-check-circle-o'></i>{' '}
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faCircleCheck
+                                                                }
+                                                            />{' '}
                                                             in stock
                                                         </span>
                                                     ) : (
                                                         <span>
-                                                            <i className='fa fa-times'></i>{' '}
+                                                            <FontAwesomeIcon
+                                                                icon={faXmark}
+                                                            />{' '}
                                                             out of stock
                                                         </span>
                                                     )}
@@ -426,7 +445,11 @@ const HomeProductCard = (props: {
                                                             href='https://www.facebook.com/people/The-Zenky/100095030589458/'
                                                             target='_blank'
                                                         >
-                                                            <i className='fa fa-facebook'></i>
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faFacebookF
+                                                                }
+                                                            />
                                                         </a>
                                                     </li>
                                                     <li>
@@ -435,7 +458,9 @@ const HomeProductCard = (props: {
                                                             href='https://twitter.com/ZenkyOfficial'
                                                             target='_blank'
                                                         >
-                                                            <i className='fa fa-twitter'></i>
+                                                            <FontAwesomeIcon
+                                                                icon={faTwitter}
+                                                            />
                                                         </a>
                                                     </li>
                                                     <li>
@@ -444,7 +469,11 @@ const HomeProductCard = (props: {
                                                             href='https://www.instagram.com/the_zenky_official/'
                                                             target='_blank'
                                                         >
-                                                            <i className='fa fa-instagram'></i>
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faInstagram
+                                                                }
+                                                            />
                                                         </a>
                                                     </li>
                                                 </ul>

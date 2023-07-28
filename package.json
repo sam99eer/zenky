@@ -8,10 +8,15 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "pm2build": "npm run build && pm2 start \"serve -s dist -p 3001\" --name \"zenky\"",
+    "pm2build": "rm -rf dist && npm run build && pm2 start \"serve -s dist -p 3001\" --name \"zenky\"",
     "type-check": "tsc"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",

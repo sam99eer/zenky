@@ -1,3 +1,5 @@
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -565,8 +567,14 @@ const ShopData = () => {
                                 <div className='shop-short-by ml-30'>
                                     <span>
                                         Sort by{' '}
-                                        <i className='fa fa-angle-down angle-down'></i>{' '}
-                                        <i className='fa fa-angle-up angle-up'></i>
+                                        <FontAwesomeIcon
+                                            icon={faAngleDown}
+                                            className='angle-down'
+                                        />{' '}
+                                        <FontAwesomeIcon
+                                            icon={faAngleUp}
+                                            className='angle-up'
+                                        />
                                     </span>
                                     <ul>
                                         <li

@@ -1,3 +1,11 @@
+import {
+    faFacebookF,
+    faInstagram,
+    faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
@@ -235,17 +243,20 @@ const ProductSection = (props: {
                                                                 ?.rating ?? 0)
                                                         ) {
                                                             return (
-                                                                <i
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faStar
+                                                                    }
+                                                                    className='yellow'
                                                                     key={`${props?.data?._id}_filled_star_${index}`}
-                                                                    className='yellow fa fa-star'
-                                                                ></i>
+                                                                />
                                                             );
                                                         }
                                                         return (
-                                                            <i
+                                                            <FontAwesomeIcon
+                                                                icon={faStar}
                                                                 key={`${props?.data?._id}_unfilled_star_${index}`}
-                                                                className='fa fa-star'
-                                                            ></i>
+                                                            />
                                                         );
                                                     }
                                                 )}
@@ -261,12 +272,16 @@ const ProductSection = (props: {
                                         <div className='quickview-stock'>
                                             {inStock ? (
                                                 <span>
-                                                    <i className='fa fa-check-circle-o'></i>{' '}
+                                                    <FontAwesomeIcon
+                                                        icon={faCircleCheck}
+                                                    />{' '}
                                                     in stock
                                                 </span>
                                             ) : (
                                                 <span>
-                                                    <i className='fa fa-times'></i>{' '}
+                                                    <FontAwesomeIcon
+                                                        icon={faXmark}
+                                                    />{' '}
                                                     out of stock
                                                 </span>
                                             )}
@@ -426,7 +441,9 @@ const ProductSection = (props: {
                                                     target='_blank'
                                                     href='https://www.facebook.com/people/The-Zenky/100095030589458/'
                                                 >
-                                                    <i className='fa fa-facebook'></i>
+                                                    <FontAwesomeIcon
+                                                        icon={faFacebookF}
+                                                    />
                                                 </a>
                                             </li>
                                             <li>
@@ -435,7 +452,9 @@ const ProductSection = (props: {
                                                     target='_blank'
                                                     href='https://twitter.com/ZenkyOfficial'
                                                 >
-                                                    <i className='fa fa-twitter'></i>
+                                                    <FontAwesomeIcon
+                                                        icon={faTwitter}
+                                                    />
                                                 </a>
                                             </li>
                                             <li>
@@ -444,7 +463,9 @@ const ProductSection = (props: {
                                                     target='_blank'
                                                     href='https://www.instagram.com/the_zenky_official/'
                                                 >
-                                                    <i className='fa fa-instagram'></i>
+                                                    <FontAwesomeIcon
+                                                        icon={faInstagram}
+                                                    />
                                                 </a>
                                             </li>
                                         </ul>

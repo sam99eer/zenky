@@ -1,3 +1,11 @@
+import {
+    faFacebookF,
+    faInstagram,
+    faTwitter,
+    faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const RightContact = () => {
     return (
         <div className='col-xl-3 col-lg-4 col-md-5'>
@@ -38,22 +46,22 @@ const RightContact = () => {
                             href='https://www.facebook.com/people/The-Zenky/100095030589458/'
                             target='_blank'
                         >
-                            <i className='fa fa-facebook'></i>
+                            <FontAwesomeIcon icon={faFacebookF} />
                         </a>
                         <a
                             href='https://twitter.com/ZenkyOfficial'
                             target='_blank'
                         >
-                            <i className='fa fa-twitter'></i>
+                            <FontAwesomeIcon icon={faTwitter} />
                         </a>
                         <a
                             href='https://www.instagram.com/the_zenky_official/'
                             target='_blank'
                         >
-                            <i className='fa fa-instagram'></i>
+                            <FontAwesomeIcon icon={faInstagram} />
                         </a>
                         <a href='#' target='_blank'>
-                            <i className='fa fa-whatsapp'></i>
+                            <FontAwesomeIcon icon={faWhatsapp} />
                         </a>
                     </div>
                 </div>

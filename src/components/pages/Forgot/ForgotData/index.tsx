@@ -1,3 +1,5 @@
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ChangeEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -107,7 +109,7 @@ const ForgotData = () => {
                 <div className='row'>
                     <div className='login-register-wrap mr-70'>
                         <h3>
-                            <i className='fa fa-lock'></i> Forgot Password?
+                            <FontAwesomeIcon icon={faLock} /> Forgot Password?
                         </h3>
                         <div className='login-register-form'>
                             {activeStep.step1 ? (

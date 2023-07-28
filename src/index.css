@@ -2716,6 +2716,10 @@ textarea {
     text-decoration: underline;
 }
 
+.main-menu > nav > ul > li > a > svg {
+    font-size: 12px;
+}
+
 .main-menu > nav > ul > li > ul.mega-menu-width2 {
     left: -570px;
     width: 1170px;
@@ -4433,10 +4437,9 @@ textarea {
     width: 32px;
     height: 32px;
     font-size: 16px;
-}
-
-.footer-widget .footer-about .footer-social.footer-social-dec ul li a i {
-    line-height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-widget .footer-list ul li {
@@ -4695,7 +4698,7 @@ textarea {
     .quickview-ratting-review
     .quickview-ratting-wrap
     .quickview-ratting
-    i {
+    svg {
     color: #d5d6d8;
     font-size: 12px;
 }
@@ -4704,7 +4707,7 @@ textarea {
     .quickview-ratting-review
     .quickview-ratting-wrap
     .quickview-ratting
-    i.yellow {
+    svg.yellow {
     color: #f5b223;
 }
 
@@ -4722,7 +4725,7 @@ textarea {
     font-size: 10px;
 }
 
-.quickview-content .quickview-ratting-review .quickview-stock span i {
+.quickview-content .quickview-ratting-review .quickview-stock span svg {
     font-size: 16px;
     color: #e77878;
     margin-right: 2px;
@@ -5137,17 +5140,15 @@ textarea {
     border-color: #e1e1e1;
     border-radius: 100%;
     text-align: center;
-    display: inline-block;
     color: #262626;
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     width: 38px;
     height: 38px;
-}
-
-.default-social ul li a i {
-    line-height: 37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .default-social ul li a:hover {
@@ -5710,7 +5711,7 @@ textarea {
     cursor: pointer;
 }
 
-.shop-top-bar .shop-top-bar-right .shop-short-by > span i {
+.shop-top-bar .shop-top-bar-right .shop-short-by > span svg {
     color: #282828;
     font-weight: 700;
     margin-left: 3px;
@@ -5719,9 +5720,9 @@ textarea {
     transition: all 0.4s ease 0s;
 }
 
-.shop-top-bar .shop-top-bar-right .shop-short-by > span i.angle-up {
+.shop-top-bar .shop-top-bar-right .shop-short-by > span svg.angle-up {
     position: absolute;
-    right: 3px;
+    right: 0px;
     top: 1px;
     opacity: 0;
     visibility: hidden;
@@ -5764,12 +5765,12 @@ textarea {
     background-color: #262626;
 }
 
-.shop-top-bar .shop-top-bar-right .shop-short-by:hover span i.angle-down {
+.shop-top-bar .shop-top-bar-right .shop-short-by:hover span svg.angle-down {
     opacity: 0;
     visibility: hidden;
 }
 
-.shop-top-bar .shop-top-bar-right .shop-short-by:hover span i.angle-up {
+.shop-top-bar .shop-top-bar-right .shop-short-by:hover span svg.angle-up {
     opacity: 1;
     visibility: visible;
 }
@@ -6430,12 +6431,12 @@ textarea {
     }
 }
 
-.single-review .review-content .review-top-wrap .review-rating i {
+.single-review .review-content .review-top-wrap .review-rating svg {
     font-size: 12px;
     color: #d5d6d8;
 }
 
-.single-review .review-content .review-top-wrap .review-rating i.yellow {
+.single-review .review-content .review-top-wrap .review-rating svg.yellow {
     color: #f5b223;
 }
 
@@ -6487,7 +6488,11 @@ textarea {
     display: flex;
 }
 
-.ratting-form-wrapper .ratting-form .star-box-wrap .single-ratting-star:hover i,
+.ratting-form-wrapper
+    .ratting-form
+    .star-box-wrap
+    .single-ratting-star:hover
+    svg,
 .ratting-form-wrapper
     .ratting-form
     .star-box-wrap
@@ -6836,7 +6841,7 @@ textarea {
     margin: 0;
 }
 
-.login-register-wrap h3 i {
+.login-register-wrap h3 svg {
     margin-right: 3px;
 }
 

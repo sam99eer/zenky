@@ -62,6 +62,16 @@ const Header = () => {
         <>
             <header className='header-area header-padding-1'>
                 <div className='main-header-wrap'>
+                    <div className='nav-strip container-fluid d-flex justify-content-between align-items-center'>
+                        <div>
+                            <a>Offers</a>
+                            <a>Download App</a>
+                            <a>COD Available</a>
+                        </div>
+                        <div>
+                            <a>Track Order</a>
+                        </div>
+                    </div>
                     <div className='container-fluid'>
                         <div className='row align-items-center'>
                             <div className='col-lg-3'>

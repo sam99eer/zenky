@@ -8685,3 +8685,13 @@ textarea {
         margin-left: 0px;
     }
 }
+
+.nav-strip {
+    background-color: #eee;
+}
+
+.nav-strip > div > a {
+    color: rgba(0, 0, 0, 0.8);
+    margin-inline: 0.5rem;
+    font-size: 10px;
+}

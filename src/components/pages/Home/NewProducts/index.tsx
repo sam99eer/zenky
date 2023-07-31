@@ -30,7 +30,7 @@ const NewProducts = () => {
                             <div className='pro-categories-wrap-all'>
                                 <div className='pro-categories-wrap'>
                                     <div className='pro-categorie-title'>
-                                        <h3>WOMAN</h3>
+                                        <h3>MAN</h3>
                                     </div>
                                     <div className='pro-categorie-list'>
                                         <ul>
@@ -117,7 +117,7 @@ const NewProducts = () => {
                             <div className='pro-categories-wrap-all'>
                                 <div className='pro-categories-wrap'>
                                     <div className='pro-categorie-title'>
-                                        <h3>MAN</h3>
+                                        <h3>WOMAN</h3>
                                     </div>
                                     <div className='pro-categorie-list'>
                                         <ul>

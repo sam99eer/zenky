@@ -1,29 +1,7 @@
-import { ITestimonial } from 'src/models/data/TestimonialModel';
-import Avatar1 from '/assets/images/avatar-1.png';
-import Avatar2 from '/assets/images/avatar-2.png';
-
-export const TESTIMONIAL_DATA: ITestimonial[] = [
-    {
-        username: 'Karan',
-        designation: 'Designer',
-        image: Avatar1,
-        review: `I can't say enough good things about the zenky.
-        Their trendy and unique t-shirt designs never
-        fail to impress me and draw compliments wherever
-        I go. The customer service is top-notch,
-        ensuring a delightful shopping experience every
-        time. This is definitely my go-to destination
-        for stylish t-shirts!`,
-    },
-    {
-        username: 'Shubham',
-        designation: 'Customer',
-        image: Avatar2,
-        review: `I am absolutely thrilled with my experience at
-        the zenky. The quality of their t-shirts is
-        exceptional, and their extensive collection
-        offers something for everyone. The seamless
-        ordering process and prompt delivery have made
-        me a loyal customer. Highly recommend!`,
-    },
+export const TESTIMONIAL_DATA: string[] = [
+    `This Zenky T-shirt is very light, fairly in summer to wear that will be awesome for the sports or casual . The fabric is very soft as it is pure cotton . It’s nice and snuggly! I can’t wait for it to get cool enough to wear it!`,
+    `These are the best Cotton t-shirt ever!! I have several pairs in different colors & LOVE them!! They’re super soft & the colored fashionable do not look like heavy at all. Very figure flattering with just the right amount of stretch.`,
+    `Excellent shirt! Very comfortable and it has a soft lining which keeps you cool. Great shirt, i wear it almost daily. It’s not water-proof so keep that in mind when outside. Also, get 1 size bigger so when it shrinks, it’ll still fit.`,
+    `Perfect & Plenty We needed 105 shirts for an event and The yoga camp T-Shirt Company was able to fulfill our order and get them to us in a timely manner.`,
+    `Recently bought 3 classic white T-shirts - one, V-neck, short sleeve; one, V-neck, long sleeve; and one, crew neck, long sleeve. Loved them all and really appreciated the solid density of the fabric and its smooth finish.`,
 ];

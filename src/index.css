@@ -6746,6 +6746,49 @@ textarea {
     }
 }
 
+.configurable-wrap .delivery > p {
+    font-size: 18px;
+    margin: 0px;
+    margin-right: 38px;
+    padding-bottom: 0.5rem;
+}
+
+.configurable-wrap .delivery .pin {
+    display: flex;
+    align-items: center;
+    position: relative;
+    max-width: 220px;
+}
+
+.configurable-wrap .delivery .pin span {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+}
+
+.configurable-wrap .delivery input {
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.configurable-wrap .delivery input.error,
+.configurable-wrap .delivery small.error {
+    border-color: #dc3545 !important;
+    color: #dc3545 !important;
+}
+
+.configurable-wrap .delivery input.success,
+.configurable-wrap .delivery small.success {
+    border-color: #198754 !important;
+    color: #198754 !important;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .configurable-wrap .delivery > p {
+        margin-right: 10px;
+    }
+}
+
 .configurable-wrap .configurable-size ul li {
     display: inline-block;
     margin-right: 14px;
@@ -8697,17 +8740,17 @@ textarea {
 }
 
 .nav-strip {
-    background-color: #eee;
+    background-color: #262626;
 }
 
 .nav-strip > div > a {
-    color: rgba(0, 0, 0, 0.7) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
     margin-inline: 0.5rem;
     font-size: 10px;
 }
 
 .nav-strip > div > a:hover {
-    color: #000 !important;
+    color: #fff !important;
 }
 
 .single-brand-logo-2 {

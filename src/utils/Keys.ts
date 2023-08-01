@@ -16,4 +16,5 @@ export const Keys = {
     SEND_OTP: 'send-otp',
     RESET_PASSWORD: 'reset-password',
     SEND_MESSAGE: 'send-message',
+    VALIDATE_PIN: 'validate-pin',
 };

@@ -34,7 +34,7 @@ const ShopData = () => {
         !!state?.search ? state?.search : null
     );
 
-    const [cloneFilterData, setCloneFilterData] = useState<IFilter>({
+    const [filterData, setFilterData] = useState<IFilter>({
         filter: !!state?.filter ? state?.filter : null,
         color: null,
         sizes: [],
@@ -60,20 +60,20 @@ const ShopData = () => {
     } = useInfiniteQuery(
         [
             Keys.GET_FILTERED_PRODUCTS,
-            'color=' + cloneFilterData.color,
-            'filter=' + cloneFilterData.filter,
-            'maxPrice=' + cloneFilterData.maxPrice,
-            'minPrice=' + cloneFilterData.minPrice,
-            'sizes=' + cloneFilterData.sizes.toString(),
-            'isAvaliable=' + cloneFilterData.isAvaliable,
-            'sortBy=' + cloneFilterData.sortBy,
-            'sortColumn=' + cloneFilterData.sortColumn,
-            'search=' + cloneFilterData.search,
+            'color=' + filterData.color,
+            'filter=' + filterData.filter,
+            'maxPrice=' + filterData.maxPrice,
+            'minPrice=' + filterData.minPrice,
+            'sizes=' + filterData.sizes.toString(),
+            'isAvaliable=' + filterData.isAvaliable,
+            'sortBy=' + filterData.sortBy,
+            'sortColumn=' + filterData.sortColumn,
+            'search=' + filterData.search,
         ],
         ({ pageParam }) =>
             GetFilteredProducts({
                 pageNumber: pageParam ?? 1,
-                filters: cloneFilterData,
+                filters: filterData,
             }),
         {
             getNextPageParam: (lastPage) =>
@@ -118,7 +118,7 @@ const ShopData = () => {
     };
 
     const applyFilterHandler = () => {
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             minPrice: rangeValue[0],
             maxPrice: rangeValue[1],
@@ -128,7 +128,7 @@ const ShopData = () => {
     const resetHandler = () => {
         setRangeValue([100, 10000]);
         setSearch('');
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             filter: null,
             color: null,
             sizes: [],
@@ -143,7 +143,7 @@ const ShopData = () => {
 
     const toggleHandler = (uid: keyof IFilter, value: string) => {
         if (uid === 'sizes') {
-            const clone = [...cloneFilterData.sizes];
+            const clone = [...filterData.sizes];
             const findItem = clone?.findIndex((item) => item === value);
             if (findItem === -1) {
                 clone.push(value);
@@ -151,7 +151,7 @@ const ShopData = () => {
                 clone.splice(findItem, 1);
             }
 
-            setCloneFilterData((oldState) => ({
+            setFilterData((oldState) => ({
                 ...oldState,
                 sizes: clone,
             }));
@@ -159,14 +159,14 @@ const ShopData = () => {
         }
 
         if (uid === 'color') {
-            if (cloneFilterData.color === value) {
-                setCloneFilterData((oldState) => ({
+            if (filterData.color === value) {
+                setFilterData((oldState) => ({
                     ...oldState,
                     color: null,
                 }));
                 return;
             }
-            setCloneFilterData((oldState) => ({
+            setFilterData((oldState) => ({
                 ...oldState,
                 color: value,
             }));
@@ -180,21 +180,21 @@ const ShopData = () => {
             return;
         }
 
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             search: search === '' ? null : search,
         }));
     };
 
     const cloneFilterHandler = (uid: keyof IFilter, value: string) => {
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             [uid]: value,
         }));
     };
 
     const resetSortData = () => {
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             sortBy: null,
             sortColumn: null,
@@ -202,8 +202,8 @@ const ShopData = () => {
     };
 
     const sortHandler = (fieldName: string, sortType: number) => {
-        if (cloneFilterData.isAvaliable) {
-            setCloneFilterData((oldState) => ({
+        if (filterData.isAvaliable) {
+            setFilterData((oldState) => ({
                 ...oldState,
                 sortColumn: fieldName,
                 sortBy: sortType,
@@ -212,7 +212,7 @@ const ShopData = () => {
             return;
         }
 
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             sortColumn: fieldName,
             sortBy: sortType,
@@ -220,7 +220,7 @@ const ShopData = () => {
     };
 
     const availableHandler = () => {
-        setCloneFilterData((oldState) => ({
+        setFilterData((oldState) => ({
             ...oldState,
             isAvaliable: true,
         }));
@@ -228,9 +228,9 @@ const ShopData = () => {
 
     const hidePriceApplyButton = useMemo(
         () =>
-            rangeValue?.[0] === cloneFilterData.minPrice &&
-            rangeValue?.[1] === cloneFilterData.maxPrice,
-        [rangeValue, cloneFilterData.minPrice, cloneFilterData.maxPrice]
+            rangeValue?.[0] === filterData.minPrice &&
+            rangeValue?.[1] === filterData.maxPrice,
+        [rangeValue, filterData.minPrice, filterData.maxPrice]
     );
 
     useEffect(() => {
@@ -265,8 +265,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.filter ===
-                                                    'MEN'
+                                                    filterData.filter === 'MEN'
                                                         ? 'active'
                                                         : ''
                                                 }
@@ -282,7 +281,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.filter ===
+                                                    filterData.filter ===
                                                     'WOMEN'
                                                         ? 'active'
                                                         : ''
@@ -299,8 +298,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.filter ===
-                                                    'KIDS'
+                                                    filterData.filter === 'KIDS'
                                                         ? 'active'
                                                         : ''
                                                 }
@@ -358,7 +356,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'S'
                                                     )
                                                         ? 'active'
@@ -376,7 +374,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'M'
                                                     )
                                                         ? 'active'
@@ -394,7 +392,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'L'
                                                     )
                                                         ? 'active'
@@ -412,7 +410,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'XL'
                                                     )
                                                         ? 'active'
@@ -430,7 +428,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'XXL'
                                                     )
                                                         ? 'active'
@@ -448,7 +446,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'POLO'
                                                     )
                                                         ? 'active'
@@ -466,7 +464,7 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    cloneFilterData.sizes.includes(
+                                                    filterData.sizes.includes(
                                                         'OVERSIZED'
                                                     )
                                                         ? 'active'
@@ -500,7 +498,7 @@ const ShopData = () => {
                                                     >
                                                         <span
                                                             className={`swatch-anchor ${
-                                                                cloneFilterData?.color ===
+                                                                filterData?.color ===
                                                                 item
                                                                     ? 'active'
                                                                     : ''
@@ -565,9 +563,8 @@ const ShopData = () => {
                                     <ul>
                                         <li
                                             className={
-                                                !!cloneFilterData.sortBy ===
-                                                    false &&
-                                                !!cloneFilterData.sortColumn ===
+                                                !!filterData.sortBy === false &&
+                                                !!filterData.sortColumn ===
                                                     false
                                                     ? 'active'
                                                     : ''
@@ -579,9 +576,9 @@ const ShopData = () => {
                                         </li>
                                         <li
                                             className={
-                                                cloneFilterData.sortColumn ===
+                                                filterData.sortColumn ===
                                                     'rating' &&
-                                                cloneFilterData.sortBy === -1
+                                                filterData.sortBy === -1
                                                     ? 'active'
                                                     : ''
                                             }
@@ -598,9 +595,9 @@ const ShopData = () => {
                                         </li>
                                         <li
                                             className={
-                                                cloneFilterData.sortColumn ===
+                                                filterData.sortColumn ===
                                                     'updatedAt' &&
-                                                cloneFilterData.sortBy === -1
+                                                filterData.sortBy === -1
                                                     ? 'active'
                                                     : ''
                                             }
@@ -617,9 +614,9 @@ const ShopData = () => {
                                         </li>
                                         <li
                                             className={
-                                                cloneFilterData.sortColumn ===
+                                                filterData.sortColumn ===
                                                     'price' &&
-                                                cloneFilterData.sortBy === 1
+                                                filterData.sortBy === 1
                                                     ? 'active'
                                                     : ''
                                             }
@@ -636,9 +633,9 @@ const ShopData = () => {
                                         </li>
                                         <li
                                             className={
-                                                cloneFilterData.sortColumn ===
+                                                filterData.sortColumn ===
                                                     'price' &&
-                                                cloneFilterData.sortBy === -1
+                                                filterData.sortBy === -1
                                                     ? 'active'
                                                     : ''
                                             }
@@ -655,7 +652,7 @@ const ShopData = () => {
                                         </li>
                                         <li
                                             className={
-                                                cloneFilterData.isAvaliable
+                                                filterData.isAvaliable
                                                     ? 'active'
                                                     : ''
                                             }

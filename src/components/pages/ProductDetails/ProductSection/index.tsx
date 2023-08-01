@@ -6,21 +6,27 @@ import {
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { useMutation } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
+import { ValidatePin } from 'src/api/ValidatePin';
 import ProductWishlist from 'src/components/pages/ProductDetails/ProductWishlist';
+import { IError } from 'src/models/api/ErrorModel';
 import { Color, IProductDetails } from 'src/models/api/GetProductsModel';
 import { IColorImage } from 'src/models/data/ColorImageModel';
 import {
+    IPin,
     IProductData,
     IProductSlider,
 } from 'src/models/screens/ProductDetails';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
+import { REGEX } from 'src/utils/Constants';
 import { formatServerImagePath } from 'src/utils/Helpers';
+import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 import {
     settingsBigImgSlider,
@@ -32,6 +38,19 @@ const ProductSection = (props: {
     isLoading: boolean;
     data: IProductDetails | undefined;
 }) => {
+    const {
+        data: apiData,
+        isLoading,
+        mutateAsync,
+    } = useMutation(Keys.VALIDATE_PIN, ValidatePin);
+
+    const [pin, setPin] = useState('');
+
+    const [pinData, setPinData] = useState<IPin>({
+        status: null,
+        text: '',
+    });
+
     const [data, setData] = useState<IProductSlider>({
         leftSlider: null,
         rightSlider: null,
@@ -96,6 +115,16 @@ const ProductSection = (props: {
         });
         return images;
     }, [props.data]);
+
+    const pinHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        if (!!pinData.status) {
+            setPinData({
+                status: null,
+                text: '',
+            });
+        }
+        setPin(event.target.value);
+    };
 
     const cartHandler = (
         action: 'add' | 'remove',
@@ -166,6 +195,35 @@ const ProductSection = (props: {
             ...oldState,
             size,
         }));
+    };
+
+    const pinValidator = () => {
+        if (!REGEX.ZIP.test(pin)) {
+            toast.warn('Please enter a valid 6 digit Pin Code');
+            return;
+        }
+
+        if (!!pinData.status) return;
+
+        mutateAsync(pin)
+            .then((res) => {
+                if (res.status === 200) {
+                    setPinData({
+                        status: 'success',
+                        text: res?.data,
+                    });
+                    return;
+                }
+                throw res?.error;
+            })
+            .catch((err: IError) =>
+                setPinData({
+                    status: 'error',
+                    text: err.response?.data?.error
+                        ? err.response?.data?.error
+                        : 'Unable to check this PIN Code availability!',
+                })
+            );
     };
 
     useEffect(() => {
@@ -374,6 +432,41 @@ const ProductSection = (props: {
                                                     )
                                                 )}
                                             </ul>
+                                        </div>
+                                        <div className='delivery'>
+                                            <p>Delivery Servicable</p>
+                                            <div className='pin'>
+                                                <input
+                                                    type='text'
+                                                    maxLength={6}
+                                                    value={pin}
+                                                    onChange={pinHandler}
+                                                    placeholder='Enter Pin Code'
+                                                    className={
+                                                        pinData?.status || ''
+                                                    }
+                                                />
+                                                <span
+                                                    onClick={
+                                                        isLoading
+                                                            ? undefined
+                                                            : pinValidator
+                                                    }
+                                                >
+                                                    {isLoading
+                                                        ? 'Checking'
+                                                        : 'Check'}
+                                                </span>
+                                            </div>
+                                            <small
+                                                className={
+                                                    pinData?.status || ''
+                                                }
+                                            >
+                                                {!!pinData.status
+                                                    ? pinData.text
+                                                    : ''}
+                                            </small>
                                         </div>
                                     </div>
                                     <div className='quickview-action-wrap configurable-mrg-dec'>

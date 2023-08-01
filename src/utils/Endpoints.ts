@@ -14,4 +14,5 @@ export const Endpoints = {
     RESET_PASSWORD: 'resetPassword',
     SEND_MESSAGE: 'query',
     HOME_PRODUCTS: 'home_products',
+    VALIDATE_PIN: 'check_pincode',
 };

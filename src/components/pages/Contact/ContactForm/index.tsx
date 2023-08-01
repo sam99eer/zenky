@@ -31,7 +31,7 @@ const ContactForm = () => {
         }));
     };
 
-    const submitHandler = async (event: FormEvent) => {
+    const submitHandler = (event: FormEvent) => {
         event.preventDefault();
 
         if (isLoading) return;
@@ -63,7 +63,7 @@ const ContactForm = () => {
             return;
         }
 
-        await mutateAsync(data)
+        mutateAsync(data)
             .then((res) => {
                 if (res.status === 200) {
                     setData({

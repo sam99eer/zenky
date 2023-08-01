@@ -114,16 +114,6 @@ const MobileHeader = (props: {
                                                         Kids
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a
-                                                        onClick={navigateHandler.bind(
-                                                            this,
-                                                            'ALL'
-                                                        )}
-                                                    >
-                                                        All
-                                                    </a>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li className='menu-item-has-children'>

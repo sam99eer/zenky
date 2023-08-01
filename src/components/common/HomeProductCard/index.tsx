@@ -78,7 +78,7 @@ const HomeProductCard = (props: {
                   return subImages;
               })
             : [];
-        images.unshift({
+        images?.unshift({
             colorId: 'cover',
             id: 'cover',
             colorName: 'cover',

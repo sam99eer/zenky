@@ -143,16 +143,6 @@ const Header = () => {
                                                                     Kids
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a
-                                                                    onClick={navigateHandler.bind(
-                                                                        this,
-                                                                        'ALL'
-                                                                    )}
-                                                                >
-                                                                    All
-                                                                </a>
-                                                            </li>
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>

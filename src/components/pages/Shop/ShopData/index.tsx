@@ -2,7 +2,14 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    ChangeEvent,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react';
 import { useInfiniteQuery, useQuery } from 'react-query';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,17 +30,9 @@ const ShopData = () => {
         };
     } = useLocation();
 
-    const [filterData, setFilterData] = useState<IFilter>({
-        filter: !!state?.filter ? state?.filter : null,
-        color: null,
-        sizes: [],
-        sortBy: null,
-        sortColumn: null,
-        minPrice: null,
-        maxPrice: null,
-        isAvaliable: null,
-        search: !!state?.search ? state?.search : null,
-    });
+    const [search, setSearch] = useState(
+        !!state?.search ? state?.search : null
+    );
 
     const [cloneFilterData, setCloneFilterData] = useState<IFilter>({
         filter: !!state?.filter ? state?.filter : null,
@@ -114,8 +113,12 @@ const ShopData = () => {
         }
     };
 
+    const searchHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearch(event.target.value);
+    };
+
     const applyFilterHandler = () => {
-        setFilterData((oldState) => ({
+        setCloneFilterData((oldState) => ({
             ...oldState,
             minPrice: rangeValue[0],
             maxPrice: rangeValue[1],
@@ -123,17 +126,8 @@ const ShopData = () => {
     };
 
     const resetHandler = () => {
-        setFilterData((oldState) => ({
-            filter: null,
-            color: null,
-            sizes: [],
-            sortBy: null,
-            sortColumn: null,
-            minPrice: null,
-            maxPrice: null,
-            search: null,
-            isAvaliable: oldState.isAvaliable,
-        }));
+        setRangeValue([100, 10000]);
+        setSearch('');
         setCloneFilterData((oldState) => ({
             filter: null,
             color: null,
@@ -147,9 +141,9 @@ const ShopData = () => {
         }));
     };
 
-    const filterHandler = (uid: keyof IFilter, value: string) => {
+    const toggleHandler = (uid: keyof IFilter, value: string) => {
         if (uid === 'sizes') {
-            const clone = [...filterData.sizes];
+            const clone = [...cloneFilterData.sizes];
             const findItem = clone?.findIndex((item) => item === value);
             if (findItem === -1) {
                 clone.push(value);
@@ -157,7 +151,7 @@ const ShopData = () => {
                 clone.splice(findItem, 1);
             }
 
-            setFilterData((oldState) => ({
+            setCloneFilterData((oldState) => ({
                 ...oldState,
                 sizes: clone,
             }));
@@ -165,31 +159,38 @@ const ShopData = () => {
         }
 
         if (uid === 'color') {
-            if (filterData.color === value) {
-                setFilterData((oldState) => ({
+            if (cloneFilterData.color === value) {
+                setCloneFilterData((oldState) => ({
                     ...oldState,
                     color: null,
                 }));
                 return;
             }
+            setCloneFilterData((oldState) => ({
+                ...oldState,
+                color: value,
+            }));
+            return;
         }
-
-        setFilterData((oldState) => ({
-            ...oldState,
-            [uid]: value,
-        }));
     };
 
-    const finalApplyHandler = () => {
-        if (!!filterData?.search && filterData?.search?.trim()?.length < 3) {
+    const searchApplyHandler = () => {
+        if (!!search && search?.trim()?.length < 3) {
             toast.warn('Please enter atleast 3 characters in search query');
             return;
         }
 
-        setCloneFilterData({
-            ...filterData,
-            search: filterData.search === '' ? null : filterData.search,
-        });
+        setCloneFilterData((oldState) => ({
+            ...oldState,
+            search: search === '' ? null : search,
+        }));
+    };
+
+    const cloneFilterHandler = (uid: keyof IFilter, value: string) => {
+        setCloneFilterData((oldState) => ({
+            ...oldState,
+            [uid]: value,
+        }));
     };
 
     const resetSortData = () => {
@@ -225,6 +226,13 @@ const ShopData = () => {
         }));
     };
 
+    const hidePriceApplyButton = useMemo(
+        () =>
+            rangeValue?.[0] === cloneFilterData.minPrice &&
+            rangeValue?.[1] === cloneFilterData.maxPrice,
+        [rangeValue, cloneFilterData.minPrice, cloneFilterData.maxPrice]
+    );
+
     useEffect(() => {
         const observer = new IntersectionObserver(intersectionCallback, {
             rootMargin: '0px',
@@ -257,11 +265,12 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.filter === 'MEN'
+                                                    cloneFilterData.filter ===
+                                                    'MEN'
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={cloneFilterHandler.bind(
                                                     this,
                                                     'filter',
                                                     'MEN'
@@ -273,12 +282,12 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.filter ===
+                                                    cloneFilterData.filter ===
                                                     'WOMEN'
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={cloneFilterHandler.bind(
                                                     this,
                                                     'filter',
                                                     'WOMEN'
@@ -290,33 +299,18 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.filter === 'KIDS'
+                                                    cloneFilterData.filter ===
+                                                    'KIDS'
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={cloneFilterHandler.bind(
                                                     this,
                                                     'filter',
                                                     'KIDS'
                                                 )}
                                             >
                                                 Kids
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className={
-                                                    filterData.filter === 'ALL'
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                                onClick={filterHandler.bind(
-                                                    this,
-                                                    'filter',
-                                                    'ALL'
-                                                )}
-                                            >
-                                                All
                                             </a>
                                         </li>
                                     </ul>
@@ -346,8 +340,7 @@ const ShopData = () => {
                                                 readOnly
                                             />
                                         </div>
-                                        {!!filterData.minPrice &&
-                                        !!filterData.maxPrice ? null : (
+                                        {hidePriceApplyButton ? null : (
                                             <button
                                                 type='button'
                                                 onClick={applyFilterHandler}
@@ -365,13 +358,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'S'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'S'
@@ -383,13 +376,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'M'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'M'
@@ -401,13 +394,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'L'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'L'
@@ -419,13 +412,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'XL'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'XL'
@@ -437,13 +430,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'XXL'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'XXL'
@@ -455,13 +448,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'POLO'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'POLO'
@@ -473,13 +466,13 @@ const ShopData = () => {
                                         <li>
                                             <a
                                                 className={
-                                                    filterData.sizes.includes(
+                                                    cloneFilterData.sizes.includes(
                                                         'OVERSIZED'
                                                     )
                                                         ? 'active'
                                                         : ''
                                                 }
-                                                onClick={filterHandler.bind(
+                                                onClick={toggleHandler.bind(
                                                     this,
                                                     'sizes',
                                                     'OVERSIZED'
@@ -499,7 +492,7 @@ const ShopData = () => {
                                             (item) => (
                                                 <li key={item}>
                                                     <a
-                                                        onClick={filterHandler.bind(
+                                                        onClick={toggleHandler.bind(
                                                             this,
                                                             'color',
                                                             item
@@ -507,7 +500,7 @@ const ShopData = () => {
                                                     >
                                                         <span
                                                             className={`swatch-anchor ${
-                                                                filterData?.color ===
+                                                                cloneFilterData?.color ===
                                                                 item
                                                                     ? 'active'
                                                                     : ''
@@ -527,27 +520,20 @@ const ShopData = () => {
                             <div className='sidebar-widget sw-overflow mb-65'>
                                 <h4 className='pro-sidebar-title'>Search</h4>
                                 <div className='sidebar-widget-color mt-50'>
-                                    <input
-                                        type='text'
-                                        placeholder='Search (min 3 characters)'
-                                        value={
-                                            filterData?.search
-                                                ? filterData?.search
-                                                : ''
-                                        }
-                                        onChange={(event) =>
-                                            filterHandler(
-                                                'search',
-                                                event.target.value
-                                            )
-                                        }
-                                    />
+                                    <div className='search'>
+                                        <input
+                                            type='text'
+                                            placeholder='Search (min 3 characters)'
+                                            value={search ? search : ''}
+                                            onChange={searchHandler}
+                                        />
+                                        <button onClick={searchApplyHandler}>
+                                            Go
+                                        </button>
+                                    </div>
 
                                     <div className='container'>
-                                        <div className='actions d-flex flex-column gap-4 row mt-50'>
-                                            <button onClick={finalApplyHandler}>
-                                                Apply Filters
-                                            </button>
+                                        <div className='actions row mt-50'>
                                             <a
                                                 className='filter-close'
                                                 onClick={resetHandler}

@@ -13,4 +13,5 @@ export const Endpoints = {
     SEND_OTP: 'forgotPassword',
     RESET_PASSWORD: 'resetPassword',
     SEND_MESSAGE: 'query',
+    HOME_PRODUCTS: 'home_products',
 };

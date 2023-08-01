@@ -9,16 +9,10 @@ import { Screens } from 'src/utils/Screens';
 const NewProducts = () => {
     const navigate = useNavigate();
 
-    const { isLoading, data } = useQuery(
-        Keys.GET_PRODUCTS,
-        GetProducts.bind(this, {
-            pageNumber: 1,
-            pageSize: 12,
-        })
-    );
+    const { isLoading, data } = useQuery(Keys.HOME_PRODUCTS, GetProducts);
 
-    const shopHandler = () => {
-        navigate(Screens.SHOP);
+    const shopHandler = (filter: string) => {
+        navigate(Screens.SHOP, { state: { filter } });
     };
 
     return (
@@ -89,7 +83,7 @@ const NewProducts = () => {
                                             <Skeleton max3perRow />
                                         </>
                                     ) : (
-                                        data?.items?.map((item) => (
+                                        data?.MEN?.map((item) => (
                                             <HomeProductCard
                                                 max3perRow
                                                 key={item?._id}
@@ -98,16 +92,23 @@ const NewProducts = () => {
                                         ))
                                     )}
                                 </div>
-                                <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
-                                    <a onClick={shopHandler}>
-                                        <div className='pro-viewmore-normal pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                        <div className='pro-viewmore-hover pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                {!!data?.MEN && data?.MEN?.length > 0 ? (
+                                    <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
+                                        <a
+                                            onClick={shopHandler.bind(
+                                                this,
+                                                'MEN'
+                                            )}
+                                        >
+                                            <div className='pro-viewmore-normal pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                            <div className='pro-viewmore-hover pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                ) : null}
                             </div>
                         </div>
                     </div>
@@ -176,7 +177,7 @@ const NewProducts = () => {
                                             <Skeleton max3perRow />
                                         </>
                                     ) : (
-                                        data?.items?.map((item) => (
+                                        data?.WOMEN?.map((item) => (
                                             <HomeProductCard
                                                 max3perRow
                                                 key={item?._id}
@@ -185,16 +186,23 @@ const NewProducts = () => {
                                         ))
                                     )}
                                 </div>
-                                <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
-                                    <a onClick={shopHandler}>
-                                        <div className='pro-viewmore-normal pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                        <div className='pro-viewmore-hover pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                {!!data?.WOMEN && data?.WOMEN?.length > 0 ? (
+                                    <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
+                                        <a
+                                            onClick={shopHandler.bind(
+                                                this,
+                                                'WOMEN'
+                                            )}
+                                        >
+                                            <div className='pro-viewmore-normal pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                            <div className='pro-viewmore-hover pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                ) : null}
                             </div>
                         </div>
                     </div>
@@ -263,7 +271,7 @@ const NewProducts = () => {
                                             <Skeleton max3perRow />
                                         </>
                                     ) : (
-                                        data?.items?.map((item) => (
+                                        data?.KIDS?.map((item) => (
                                             <HomeProductCard
                                                 max3perRow
                                                 key={item?._id}
@@ -272,16 +280,23 @@ const NewProducts = () => {
                                         ))
                                     )}
                                 </div>
-                                <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
-                                    <a onClick={shopHandler}>
-                                        <div className='pro-viewmore-normal pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                        <div className='pro-viewmore-hover pro-viewmore-common'>
-                                            <span>View more products</span>
-                                        </div>
-                                    </a>
-                                </div>
+                                {!!data?.KIDS && data?.KIDS?.length > 0 ? (
+                                    <div className='product-viewmore-wrap about-learnwmore-btn text-center'>
+                                        <a
+                                            onClick={shopHandler.bind(
+                                                this,
+                                                'KIDS'
+                                            )}
+                                        >
+                                            <div className='pro-viewmore-normal pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                            <div className='pro-viewmore-hover pro-viewmore-common'>
+                                                <span>View more products</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                ) : null}
                             </div>
                         </div>
                     </div>

@@ -1,17 +1,11 @@
 import { ApiClient } from 'src/api/ApiClient';
-import {
-    IGetProductsPayload,
-    IGetProductsResponse,
-} from 'src/models/api/GetProductsModel';
+import { IHomeProductsResponse } from 'src/models/api/GetProductsModel';
 import { Endpoints } from 'src/utils/Endpoints';
 
-export const GetProducts = async (data: IGetProductsPayload) => {
-    const apiCall = await ApiClient.get(
-        `${Endpoints.GET_PRODUCTS}?pageNumber=${data.pageNumber}${
-            data?.pageSize ? `&pageSize=${data.pageSize}` : ''
-        }`
-    );
-    const apiData: IGetProductsResponse = apiCall.data;
+export const GetProducts = async () => {
+    const apiCall = await ApiClient.get(Endpoints.HOME_PRODUCTS);
+
+    const apiData: IHomeProductsResponse = apiCall.data;
 
     if (apiData.status === 200) {
         return apiData.data;

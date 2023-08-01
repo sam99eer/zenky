@@ -5908,7 +5908,7 @@ textarea {
     border: 1px solid #e77878;
 }
 
-.sidebar-widget .actions button {
+.sidebar-widget .search button {
     width: 100%;
     background-color: transparent;
     padding: 8px 10px;
@@ -5922,13 +5922,13 @@ textarea {
     transition: all 0.3s;
 }
 
-.sidebar-widget .actions button:hover {
+.sidebar-widget .search button:hover {
     background-color: #e77878;
     color: #fff;
     border: 1px solid #e77878;
 }
 
-.sidebar-widget .actions a {
+.sidebar-widget-color .filter-close {
     text-align: center;
 }
 

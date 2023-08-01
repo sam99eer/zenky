@@ -1,5 +1,5 @@
 export const Keys = {
-    GET_PRODUCTS: 'get-products',
+    HOME_PRODUCTS: 'home-products',
     SUBSCRIBE: 'subscribe',
     REGISTER: 'register',
     LOGIN: 'login',

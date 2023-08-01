@@ -17,6 +17,17 @@ interface IGetProductsData {
     pageSize: string;
 }
 
+export interface IHomeProductsResponse {
+    data: {
+        MEN: IGetProductItem[];
+        WOMEN: IGetProductItem[];
+        KIDS: IGetProductItem[];
+    };
+    error: string;
+    message: string;
+    status: number;
+}
+
 export interface IGetProductItem {
     _id: string;
     for: string;

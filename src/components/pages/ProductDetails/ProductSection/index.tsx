@@ -38,11 +38,10 @@ const ProductSection = (props: {
     isLoading: boolean;
     data: IProductDetails | undefined;
 }) => {
-    const {
-        data: apiData,
-        isLoading,
-        mutateAsync,
-    } = useMutation(Keys.VALIDATE_PIN, ValidatePin);
+    const { isLoading, mutateAsync } = useMutation(
+        Keys.VALIDATE_PIN,
+        ValidatePin
+    );
 
     const [pin, setPin] = useState('');
 

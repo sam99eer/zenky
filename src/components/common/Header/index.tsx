@@ -2,7 +2,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import HeaderStrip from 'src/components/common/HeaderStrip';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
@@ -28,7 +28,7 @@ const Header = () => {
 
     const { pathname } = useLocation();
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem.length
@@ -50,9 +50,9 @@ const Header = () => {
         }));
     };
 
-    const navigateHandler = (filter: string) => {
-        navigate(Screens.SHOP, { state: { filter } });
-    };
+    // const navigateHandler = (filter: string) => {
+    //     navigate(Screens.SHOP, { state: { filter } });
+    // };
 
     const logoutHandler = () => {
         deleteCookie('access-token');

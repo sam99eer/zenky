@@ -109,90 +109,149 @@ const Header = () => {
                                                 </a>
                                                 <ul className='mega-menu mega-menu-width2 menu-negative-mrg2'>
                                                     <li className='mega-menu-sub-width20'>
-                                                        <a className='menu-title'>
-                                                            Shop For
+                                                        <a
+                                                            className='menu-title'
+                                                            href='#'
+                                                        >
+                                                            Shop Layout
                                                         </a>
                                                         <ul>
                                                             <li>
-                                                                <a
-                                                                    onClick={navigateHandler.bind(
-                                                                        this,
-                                                                        'MEN'
-                                                                    )}
-                                                                >
-                                                                    Men
+                                                                <a href='shop-fullwide.html'>
+                                                                    Shop
+                                                                    Fullwidth
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a
-                                                                    onClick={navigateHandler.bind(
-                                                                        this,
-                                                                        'WOMEN'
-                                                                    )}
-                                                                >
-                                                                    Women
+                                                                <a href='shop-sidebar.html'>
+                                                                    Shop Sidebar
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a
-                                                                    onClick={navigateHandler.bind(
-                                                                        this,
-                                                                        'KIDS'
-                                                                    )}
-                                                                >
-                                                                    Kids
+                                                                <a href='shop-3col.html'>
+                                                                    Shop 03
+                                                                    Column
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-4col.html'>
+                                                                    Shop 04
+                                                                    Column
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-masonry.html'>
+                                                                    Shop Mansory
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-metro.html'>
+                                                                    Shop Metro
+                                                                    Layout
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-instagram.html'>
+                                                                    Shop
+                                                                    Instagram
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-collection-classic.html'>
+                                                                    Collection
+                                                                    Classic
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='shop-collection-modern.html'>
+                                                                    Collection
+                                                                    Modern
                                                                 </a>
                                                             </li>
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>
-                                                        <a className='menu-title'>
-                                                            Cart
+                                                        <a
+                                                            className='menu-title'
+                                                            href='#'
+                                                        >
+                                                            Product Layout
                                                         </a>
                                                         <ul>
                                                             <li>
-                                                                <Link
-                                                                    to={
-                                                                        Screens.CART
-                                                                    }
-                                                                >
+                                                                <a href='product-details.html'>
+                                                                    Simple 01
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-2.html'>
+                                                                    Simple 02
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-3.html'>
+                                                                    Simple 03
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-carousel.html'>
+                                                                    Product
+                                                                    Carousel
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-grouped.html'>
+                                                                    Product
+                                                                    Grouped
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-affiliate.html'>
+                                                                    Product
+                                                                    Affiliate
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='product-details-configurable.html'>
+                                                                    Product
+                                                                    Configurable
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li className='mega-menu-sub-width20'>
+                                                        <a
+                                                            className='menu-title'
+                                                            href='#'
+                                                        >
+                                                            Shop Page
+                                                        </a>
+                                                        <ul>
+                                                            <li>
+                                                                <a href='cart.html'>
                                                                     Shopping
                                                                     Cart
-                                                                </Link>
+                                                                </a>
                                                             </li>
                                                             <li>
-                                                                <Link
-                                                                    to={
-                                                                        Screens.CHECKOUT
-                                                                    }
-                                                                >
+                                                                <a href='checkout.html'>
                                                                     Check Out
-                                                                </Link>
+                                                                </a>
                                                             </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li className='mega-menu-sub-width20'>
-                                                        <a className='menu-title'>
-                                                            Profile
-                                                        </a>
-                                                        <ul>
                                                             <li>
-                                                                <Link
-                                                                    to={
-                                                                        Screens.PROFILE
-                                                                    }
-                                                                >
+                                                                <a href='my-account.html'>
                                                                     My Account
-                                                                </Link>
+                                                                </a>
                                                             </li>
                                                             <li>
-                                                                <Link
-                                                                    to={
-                                                                        Screens.WISHLIST
-                                                                    }
-                                                                >
+                                                                <a href='wishlist.html'>
                                                                     Wishlist
-                                                                </Link>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href='compare.html'>
+                                                                    Compare
+                                                                </a>
                                                             </li>
                                                             <li>
                                                                 <a href='order-tracking.html'>
@@ -202,6 +261,68 @@ const Header = () => {
                                                             </li>
                                                         </ul>
                                                     </li>
+                                                    <li className='mega-menu-sub-width37'>
+                                                        <div className='banner-menu-content-wrap default-overlay'>
+                                                            <a href='product-details.html'>
+                                                                <img
+                                                                    src='/assets/images/new-collection.jpg'
+                                                                    alt='banner'
+                                                                />
+                                                            </a>
+                                                            <div className='banner-menu-content'>
+                                                                <span>
+                                                                    Hello{' '}
+                                                                    {new Date().getFullYear()}
+                                                                </span>
+                                                                <h2>
+                                                                    New <br />
+                                                                    arrival
+                                                                </h2>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a>
+                                                    Profile{' '}
+                                                    <FontAwesomeIcon
+                                                        icon={faAngleDown}
+                                                    />
+                                                </a>
+                                                <ul className='sub-menu-width'>
+                                                    <li>
+                                                        <Link
+                                                            to={Screens.PROFILE}
+                                                        >
+                                                            My Account
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link
+                                                            to={
+                                                                Screens.WISHLIST
+                                                            }
+                                                        >
+                                                            Wishlist
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <a href='order-tracking.html'>
+                                                            Order Tracking
+                                                        </a>
+                                                    </li>
+                                                    {isLoggedIn ? (
+                                                        <li>
+                                                            <a
+                                                                onClick={
+                                                                    logoutHandler
+                                                                }
+                                                            >
+                                                                Logout
+                                                            </a>
+                                                        </li>
+                                                    ) : null}
                                                 </ul>
                                             </li>
                                             <li>
@@ -229,17 +350,6 @@ const Header = () => {
                                                             FAQ
                                                         </Link>
                                                     </li>
-                                                    {isLoggedIn ? (
-                                                        <li>
-                                                            <a
-                                                                onClick={
-                                                                    logoutHandler
-                                                                }
-                                                            >
-                                                                Logout
-                                                            </a>
-                                                        </li>
-                                                    ) : null}
                                                 </ul>
                                             </li>
                                         </ul>

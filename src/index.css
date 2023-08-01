@@ -43,6 +43,10 @@
 
 :root {
     scroll-behavior: unset;
+    --hue: 223;
+    --bg: hsl(var(--hue), 90%, 95%);
+    --fg: hsl(var(--hue), 90%, 5%);
+    --trans-dur: 0.3s;
 }
 
 *,
@@ -2879,17 +2883,6 @@ textarea {
 }
 
 .quickinfo-wrapper-active .quickinfo-wrap .quickinfo-address ul li a:hover {
-    color: #e77878;
-}
-
-.quickinfo-wrapper-active .quickinfo-wrap .quickinfo-map-link a {
-    color: #5d5d5d;
-    font-size: 12px;
-    display: inline-block;
-    text-decoration: underline;
-}
-
-.quickinfo-wrapper-active .quickinfo-wrap .quickinfo-map-link a:hover {
     color: #e77878;
 }
 
@@ -6756,6 +6749,23 @@ textarea {
 .configurable-wrap .configurable-size ul li {
     display: inline-block;
     margin-right: 14px;
+    margin-bottom: 14px;
+    height: 48px;
+    min-width: 48px;
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+    padding-inline: 0.25rem;
+}
+
+.configurable-wrap .configurable-size ul li.active {
+    border-color: #000;
+}
+
+.configurable-wrap .configurable-size ul li a span {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -8691,7 +8701,106 @@ textarea {
 }
 
 .nav-strip > div > a {
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 0.7) !important;
     margin-inline: 0.5rem;
     font-size: 10px;
+}
+
+.nav-strip > div > a:hover {
+    color: #000 !important;
+}
+
+.single-brand-logo-2 {
+    text-align: center;
+    opacity: 0.4;
+    -webkit-transition: all 0.35s ease 0s;
+    -o-transition: all 0.35s ease 0s;
+    transition: all 0.35s ease 0s;
+}
+
+.single-brand-logo-2 a img {
+    width: 126px;
+}
+
+.single-brand-logo-2:hover {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 767px) {
+    .brand-logo-area.pb-60 {
+        padding-bottom: 20px;
+    }
+    .brand-logo-area.pb-40 {
+        padding-bottom: 20px;
+    }
+    .brand-logo-area.pt-70 {
+        padding-top: 50px;
+    }
+}
+
+.main-loader {
+    font-size: calc(16px + 8 * (100vw - 320px) / 960);
+    min-height: 100vh;
+    min-height: 100svh;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ip {
+    width: 16em;
+    height: 8em;
+}
+
+.ip__track {
+    stroke: hsl(var(--hue), 90%, 90%);
+    transition: stroke var(--trans-dur);
+}
+
+.ip__worm1,
+.ip__worm2 {
+    animation: worm1 2s linear infinite;
+}
+
+.ip__worm2 {
+    animation-name: worm2;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: hsl(var(--hue), 90%, 5%);
+        --fg: hsl(var(--hue), 90%, 95%);
+    }
+    .ip__track {
+        stroke: hsl(var(--hue), 90%, 15%);
+    }
+}
+
+@keyframes worm1 {
+    from {
+        stroke-dashoffset: 0;
+    }
+    50% {
+        animation-timing-function: steps(1);
+        stroke-dashoffset: -358;
+    }
+    50.01% {
+        animation-timing-function: linear;
+        stroke-dashoffset: 358;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes worm2 {
+    from {
+        stroke-dashoffset: 358;
+    }
+    50% {
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dashoffset: -358;
+    }
 }

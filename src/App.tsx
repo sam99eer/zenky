@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { GetProfile } from 'src/api/GetProfile';
+import Loader from 'src/components/common/Loader';
 import Routes from 'src/routes';
 import { personalDetailsSliceActions } from 'src/store/Actions';
 import { deleteCookie, getCookie } from 'src/utils/Helpers';
@@ -35,7 +36,7 @@ const App = () => {
         }
     );
 
-    return <>{isLoading ? null : <Routes />}</>;
+    return <>{isLoading ? <Loader /> : <Routes />}</>;
 };
 
 export default App;

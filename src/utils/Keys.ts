@@ -15,4 +15,5 @@ export const Keys = {
     TOGGLE_WISHLIST: 'toggle-wishlist',
     SEND_OTP: 'send-otp',
     RESET_PASSWORD: 'reset-password',
+    SEND_MESSAGE: 'send-message',
 };

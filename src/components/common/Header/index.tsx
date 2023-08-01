@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import HeaderStrip from 'src/components/common/HeaderStrip';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
@@ -61,17 +62,8 @@ const Header = () => {
     return (
         <>
             <header className='header-area header-padding-1'>
+                <HeaderStrip />
                 <div className='main-header-wrap'>
-                    <div className='nav-strip container-fluid d-flex justify-content-between align-items-center'>
-                        <div>
-                            <a>Offers</a>
-                            <a>Download App</a>
-                            <a>COD Available</a>
-                        </div>
-                        <div>
-                            <a>Track Order</a>
-                        </div>
-                    </div>
                     <div className='container-fluid'>
                         <div className='row align-items-center'>
                             <div className='col-lg-3'>

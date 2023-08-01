@@ -380,7 +380,9 @@ const CheckoutForm = () => {
                             <div className='your-order-middle'>
                                 <ul>
                                     {cartItems?.map((item) => (
-                                        <li key={`checkout_item_${item?._id}`}>
+                                        <li
+                                            key={`checkout_item_${item?._id}_${item?.colorName}_${item?.size}`}
+                                        >
                                             {item?.name} X {item?.quantity}{' '}
                                             <span>₹{item?.totalPrice} </span>
                                         </li>

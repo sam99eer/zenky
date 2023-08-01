@@ -40,6 +40,23 @@ const Footer = () => {
                             <div className='footer-list'>
                                 <ul>
                                     <li>
+                                        <a href='#'>Track Order</a>
+                                    </li>
+                                    <li>
+                                        <a href='#'>Return Order</a>
+                                    </li>
+                                    <li>
+                                        <a href='#'>Cancel Order</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='footer-column footer-width-16'>
+                        <div className='footer-widget mb-40'>
+                            <div className='footer-list'>
+                                <ul>
+                                    <li>
                                         <Link to={Screens.FAQ}>FAQ</Link>
                                     </li>
                                     <li>
@@ -51,26 +68,25 @@ const Footer = () => {
                                     <li>
                                         <a href='#'>Terms & Conditions</a>
                                     </li>
-                                    <li>
-                                        <Link to={Screens.CONTACT}>
-                                            Contact Us
-                                        </Link>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div className='footer-column footer-width-16'></div>
                     <div className='footer-column footer-width-22'>
                         <div className='footer-widget mb-40'>
                             <div className='footer-about'>
                                 <div className='footer-info footer-info-mrg-none'>
                                     <ul>
                                         <li>
-                                            <a href='#'> info@example.com </a>
+                                            <a href='mailto:help@thezenky.com'>
+                                                help@thezenky.com
+                                            </a>
                                         </li>
-                                        <li> +54.854.854.6666 </li>
-                                        <li> 035 Virginia Plaza Suite 331 </li>
+                                        <li>
+                                            <a href='mailto:thezenkyofficial@gmail.com'>
+                                                thezenkyofficial@gmail.com
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div className='footer-social footer-social-dec'>

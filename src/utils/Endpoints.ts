@@ -12,4 +12,5 @@ export const Endpoints = {
     COLOR_LIST: 'colors_list',
     SEND_OTP: 'forgotPassword',
     RESET_PASSWORD: 'resetPassword',
+    SEND_MESSAGE: 'query',
 };

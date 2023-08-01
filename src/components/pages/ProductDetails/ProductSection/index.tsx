@@ -8,6 +8,7 @@ import { faStar, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import ProductWishlist from 'src/components/pages/ProductDetails/ProductWishlist';
@@ -20,6 +21,7 @@ import {
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
 import { formatServerImagePath } from 'src/utils/Helpers';
+import { Screens } from 'src/utils/Screens';
 import {
     settingsBigImgSlider,
     settingsSmallImgSlider,
@@ -291,7 +293,7 @@ const ProductSection = (props: {
                                     <div className='quickview-peragraph'>
                                         <p>{props?.data?.description}</p>
                                     </div>
-                                    <div className='configurable-wrap'>
+                                    <div className='configurable-wrap custom-wrap'>
                                         <div className='configurable-color'>
                                             <span>Color</span>
                                             <ul>
@@ -341,7 +343,15 @@ const ProductSection = (props: {
                                             <ul>
                                                 {props?.data?.sizes?.map(
                                                     (item) => (
-                                                        <li key={item}>
+                                                        <li
+                                                            key={item}
+                                                            className={
+                                                                productData.size ===
+                                                                item
+                                                                    ? 'active'
+                                                                    : ''
+                                                            }
+                                                        >
                                                             <a
                                                                 onClick={sizeHandler.bind(
                                                                     this,
@@ -398,26 +408,35 @@ const ProductSection = (props: {
                                             ) : null}
                                         </div>
                                         <div className='quickview-cart'>
-                                            <a
-                                                title={
-                                                    inStock
+                                            {false ? (
+                                                <Link
+                                                    to={Screens.CHECKOUT}
+                                                    title='Checkout'
+                                                >
+                                                    Checkout
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    title={
+                                                        inStock
+                                                            ? 'Add to cart'
+                                                            : 'Out of Stock'
+                                                    }
+                                                    onClick={
+                                                        inStock
+                                                            ? cartHandler.bind(
+                                                                  this,
+                                                                  'add',
+                                                                  true
+                                                              )
+                                                            : undefined
+                                                    }
+                                                >
+                                                    {inStock
                                                         ? 'Add to cart'
-                                                        : 'Out of Stock'
-                                                }
-                                                onClick={
-                                                    inStock
-                                                        ? cartHandler.bind(
-                                                              this,
-                                                              'add',
-                                                              true
-                                                          )
-                                                        : undefined
-                                                }
-                                            >
-                                                {inStock
-                                                    ? 'Add to cart'
-                                                    : 'Out of Stock'}
-                                            </a>
+                                                        : 'Out of Stock'}
+                                                </a>
+                                            )}
                                         </div>
                                         <ProductWishlist
                                             productData={props?.data}

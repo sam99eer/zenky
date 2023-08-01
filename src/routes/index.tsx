@@ -5,6 +5,7 @@ import {
     BrowserRouter as Router,
     Routes as RoutesContainer,
 } from 'react-router-dom';
+import Loader from 'src/components/common/Loader';
 import ProtectedRoute from 'src/components/common/ProtectedRoute';
 import Contact from 'src/pages/Contact';
 import Faq from 'src/pages/Faq';
@@ -29,7 +30,7 @@ const Routes = () => {
 
     return (
         <Router>
-            <Suspense>
+            <Suspense fallback={<Loader />}>
                 <RoutesContainer>
                     <Route path={Screens.HOME} index element={<Home />} />
                     <Route path={Screens.CART} element={<Cart />} />

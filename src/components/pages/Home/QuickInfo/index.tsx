@@ -61,18 +61,17 @@ const QuickInfo = (props: {
                     </div>
                     <div className='quickinfo-address'>
                         <ul>
-                            <li>(+612) 2531 5600</li>
                             <li>
-                                <a href='#'>info@example.com </a>
+                                <a href='mailto:help@thezenky.com'>
+                                    help@thezenky.com
+                                </a>
                             </li>
                             <li>
-                                PO Box 1622 Colins Street West <br />
-                                Victoria 8077 Australia
+                                <a href='mailto:thezenkyofficial@gmail.com'>
+                                    thezenkyofficial@gmail.com
+                                </a>
                             </li>
                         </ul>
-                    </div>
-                    <div className='quickinfo-map-link'>
-                        <a href='#'>Google map</a>
                     </div>
                     <div className='quickinfo-social'>
                         <ul>

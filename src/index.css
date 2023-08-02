@@ -2724,6 +2724,11 @@ textarea {
     font-size: 12px;
 }
 
+.main-menu > nav > ul > li > ul.mega-menu-width2 li ul li a:hover {
+    color: #e77878;
+    text-decoration: underline;
+}
+
 .main-menu > nav > ul > li > ul.mega-menu-width2 {
     left: -570px;
     width: 1170px;
@@ -8659,6 +8664,15 @@ textarea {
     text-transform: uppercase;
 }
 
+.pro-categories-wrap-all
+    .pro-categories-wrap
+    .pro-categorie-list
+    ul
+    li
+    a:hover {
+    color: #e77878;
+}
+
 .rev-slider,
 .rev-slider .rev-slider-content {
     overflow: hidden;
@@ -8672,6 +8686,10 @@ textarea {
     justify-content: center;
     position: relative;
     z-index: 1;
+}
+
+.rev-slider .rev-slider-content.reverse {
+    flex-direction: row-reverse;
 }
 
 .rev-slider .rev-slider-content .description {
@@ -8711,7 +8729,17 @@ textarea {
     transition: transform 0.85s ease-in, opacity 0.85s ease-in !important;
 }
 
-.rev-slider .slick-slide.slick-active .rev-slider-content .description h2 {
+.rev-slider .rev-slider-content .description .price {
+    font-size: 16px;
+    color: #dc3545;
+    transform: translateX(-28px);
+    opacity: 0;
+    margin: 0;
+    transition: transform 1s ease-in, opacity 1s ease-in !important;
+}
+
+.rev-slider .slick-slide.slick-active .rev-slider-content .description h2,
+.rev-slider .slick-slide.slick-active .rev-slider-content .description .price {
     transform: translateX(0px);
     opacity: 1;
 }
@@ -8742,7 +8770,7 @@ textarea {
 
 @media only screen and (max-width: 767px) {
     .rev-slider {
-        height: 780px;
+        height: 830px;
     }
     .rev-slider .rev-slider-content {
         display: inline-block !important;
@@ -8980,5 +9008,47 @@ textarea {
     }
     to {
         stroke-dashoffset: -358;
+    }
+}
+
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    background-color: #fff;
+    box-shadow: 0 5px 10px 0 rgba(#000, 0.15);
+    overflow: hidden;
+    height: 700px;
+}
+
+.feature-card-img {
+    padding-bottom: 56.25%;
+}
+
+.feature-skeleton {
+    background-color: #e2e5e7;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0.5),
+        rgba(255, 255, 255, 0)
+    );
+    background-size: 40px 100%;
+    background-repeat: no-repeat;
+    background-position: left -40px top 0;
+    animation: shine 1s ease infinite;
+}
+
+@keyframes shine {
+    to {
+        background-position: right -40px top 0;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .feature-card {
+        height: 830px;
     }
 }

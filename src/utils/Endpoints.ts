@@ -15,4 +15,6 @@ export const Endpoints = {
     SEND_MESSAGE: 'query',
     HOME_PRODUCTS: 'home_products',
     VALIDATE_PIN: 'check_pincode',
+    CATEGORIES: 'product_categories',
+    FEATURED_PRODUCT: 'featured_products',
 };

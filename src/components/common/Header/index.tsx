@@ -2,7 +2,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import HeaderStrip from 'src/components/common/HeaderStrip';
 import MobileHeader from 'src/components/common/MobileHeader';
 import MiniCart from 'src/components/pages/Home/MiniCart';
@@ -28,7 +28,7 @@ const Header = () => {
 
     const { pathname } = useLocation();
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem.length
@@ -36,6 +36,10 @@ const Header = () => {
 
     const isLoggedIn = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
+    );
+
+    const categoryData = useSelector(
+        (state: IStoreModel) => state.categoryReducer.data
     );
 
     const dispatch = useDispatch();
@@ -50,9 +54,17 @@ const Header = () => {
         }));
     };
 
-    // const navigateHandler = (filter: string) => {
-    //     navigate(Screens.SHOP, { state: { filter } });
-    // };
+    const filterHandler = (filter: string) => {
+        navigate(Screens.SHOP, { state: { filter } });
+    };
+
+    const shopHandler = (category?: string) => {
+        if (!!category) {
+            navigate(Screens.SHOP, { state: { category } });
+            return;
+        }
+        navigate(Screens.SHOP);
+    };
 
     const logoutHandler = () => {
         deleteCookie('access-token');
@@ -111,159 +123,95 @@ const Header = () => {
                                                     <li className='mega-menu-sub-width20'>
                                                         <a
                                                             className='menu-title'
-                                                            href='#'
+                                                            onClick={filterHandler.bind(
+                                                                this,
+                                                                'MEN'
+                                                            )}
                                                         >
-                                                            Shop Layout
+                                                            Men
                                                         </a>
                                                         <ul>
-                                                            <li>
-                                                                <a href='shop-fullwide.html'>
-                                                                    Shop
-                                                                    Fullwidth
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-sidebar.html'>
-                                                                    Shop Sidebar
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-3col.html'>
-                                                                    Shop 03
-                                                                    Column
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-4col.html'>
-                                                                    Shop 04
-                                                                    Column
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-masonry.html'>
-                                                                    Shop Mansory
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-metro.html'>
-                                                                    Shop Metro
-                                                                    Layout
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-instagram.html'>
-                                                                    Shop
-                                                                    Instagram
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-collection-classic.html'>
-                                                                    Collection
-                                                                    Classic
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='shop-collection-modern.html'>
-                                                                    Collection
-                                                                    Modern
-                                                                </a>
-                                                            </li>
+                                                            {categoryData?.MEN?.map(
+                                                                (item) => (
+                                                                    <li
+                                                                        key={
+                                                                            item?._id
+                                                                        }
+                                                                    >
+                                                                        <a>
+                                                                            {
+                                                                                item?.name
+                                                                            }
+                                                                        </a>
+                                                                    </li>
+                                                                )
+                                                            )}
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>
                                                         <a
                                                             className='menu-title'
-                                                            href='#'
+                                                            onClick={filterHandler.bind(
+                                                                this,
+                                                                'WOMEN'
+                                                            )}
                                                         >
-                                                            Product Layout
+                                                            Women
                                                         </a>
                                                         <ul>
-                                                            <li>
-                                                                <a href='product-details.html'>
-                                                                    Simple 01
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-2.html'>
-                                                                    Simple 02
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-3.html'>
-                                                                    Simple 03
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-carousel.html'>
-                                                                    Product
-                                                                    Carousel
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-grouped.html'>
-                                                                    Product
-                                                                    Grouped
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-affiliate.html'>
-                                                                    Product
-                                                                    Affiliate
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='product-details-configurable.html'>
-                                                                    Product
-                                                                    Configurable
-                                                                </a>
-                                                            </li>
+                                                            {categoryData?.WOMEN?.map(
+                                                                (item) => (
+                                                                    <li
+                                                                        key={
+                                                                            item?._id
+                                                                        }
+                                                                    >
+                                                                        <a>
+                                                                            {
+                                                                                item?.name
+                                                                            }
+                                                                        </a>
+                                                                    </li>
+                                                                )
+                                                            )}
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width20'>
                                                         <a
                                                             className='menu-title'
-                                                            href='#'
+                                                            onClick={filterHandler.bind(
+                                                                this,
+                                                                'KIDS'
+                                                            )}
                                                         >
-                                                            Shop Page
+                                                            Kids
                                                         </a>
                                                         <ul>
-                                                            <li>
-                                                                <a href='cart.html'>
-                                                                    Shopping
-                                                                    Cart
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='checkout.html'>
-                                                                    Check Out
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='my-account.html'>
-                                                                    My Account
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='wishlist.html'>
-                                                                    Wishlist
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='compare.html'>
-                                                                    Compare
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href='order-tracking.html'>
-                                                                    Order
-                                                                    Tracking
-                                                                </a>
-                                                            </li>
+                                                            {categoryData?.KIDS?.map(
+                                                                (item) => (
+                                                                    <li
+                                                                        key={
+                                                                            item?._id
+                                                                        }
+                                                                    >
+                                                                        <a>
+                                                                            {
+                                                                                item?.name
+                                                                            }
+                                                                        </a>
+                                                                    </li>
+                                                                )
+                                                            )}
                                                         </ul>
                                                     </li>
                                                     <li className='mega-menu-sub-width37'>
                                                         <div className='banner-menu-content-wrap default-overlay'>
-                                                            <a href='product-details.html'>
+                                                            <a
+                                                                onClick={shopHandler.bind(
+                                                                    this,
+                                                                    undefined
+                                                                )}
+                                                            >
                                                                 <img
                                                                     src='/assets/images/new-collection.jpg'
                                                                     alt='banner'

@@ -16,6 +16,8 @@ const MobileHeader = (props: {
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
 
+    // const categoryData = useSelector((state: IStoreModel) => state.categoryReducer.data);
+
     const [search, setSearch] = useState('');
 
     const dispatch = useDispatch();

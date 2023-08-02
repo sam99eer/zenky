@@ -17,4 +17,6 @@ export const Keys = {
     RESET_PASSWORD: 'reset-password',
     SEND_MESSAGE: 'send-message',
     VALIDATE_PIN: 'validate-pin',
+    CATEGORIES: 'categories',
+    FEATURED_PRODUCT: 'featured-product',
 };

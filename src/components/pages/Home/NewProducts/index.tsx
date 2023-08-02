@@ -1,8 +1,10 @@
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { GetProducts } from 'src/api/GetProducts';
 import HomeProductCard from 'src/components/common/HomeProductCard';
 import Skeleton from 'src/components/common/Skeleton';
+import { IStoreModel } from 'src/store';
 import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 
@@ -10,6 +12,10 @@ const NewProducts = () => {
     const navigate = useNavigate();
 
     const { isLoading, data } = useQuery(Keys.HOME_PRODUCTS, GetProducts);
+
+    const categoryData = useSelector(
+        (state: IStoreModel) => state.categoryReducer.data
+    );
 
     const shopHandler = (filter: string) => {
         navigate(Screens.SHOP, { state: { filter } });
@@ -24,49 +30,15 @@ const NewProducts = () => {
                             <div className='pro-categories-wrap-all'>
                                 <div className='pro-categories-wrap'>
                                     <div className='pro-categorie-title'>
-                                        <h3>MAN</h3>
+                                        <h3>MEN</h3>
                                     </div>
                                     <div className='pro-categorie-list'>
                                         <ul>
-                                            <li>
-                                                <a>Coats</a>
-                                            </li>
-                                            <li>
-                                                <a>Jackets </a>
-                                            </li>
-                                            <li>
-                                                <a>Knitwear </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Shirts | Blouses</a>
-                                            </li>
-                                            <li>
-                                                <a>T-shirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Trousers</a>
-                                            </li>
-                                            <li>
-                                                <a>Jeans </a>
-                                            </li>
-                                            <li>
-                                                <a>Skirts </a>
-                                            </li>
-                                            <li>
-                                                <a>Blazers</a>
-                                            </li>
-                                            <li>
-                                                <a>Sweatshirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Bodysuit </a>
-                                            </li>
+                                            {categoryData?.MEN?.map((item) => (
+                                                <li key={item?._id}>
+                                                    <a>{item?.name}</a>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>
@@ -118,49 +90,17 @@ const NewProducts = () => {
                             <div className='pro-categories-wrap-all'>
                                 <div className='pro-categories-wrap'>
                                     <div className='pro-categorie-title'>
-                                        <h3>WOMAN</h3>
+                                        <h3>WOMEN</h3>
                                     </div>
                                     <div className='pro-categorie-list'>
                                         <ul>
-                                            <li>
-                                                <a>Coats</a>
-                                            </li>
-                                            <li>
-                                                <a>Jackets </a>
-                                            </li>
-                                            <li>
-                                                <a>Knitwear </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Shirts | Blouses</a>
-                                            </li>
-                                            <li>
-                                                <a>T-shirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Trousers</a>
-                                            </li>
-                                            <li>
-                                                <a>Jeans </a>
-                                            </li>
-                                            <li>
-                                                <a>Skirts </a>
-                                            </li>
-                                            <li>
-                                                <a>Blazers</a>
-                                            </li>
-                                            <li>
-                                                <a>Sweatshirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Bodysuit </a>
-                                            </li>
+                                            {categoryData?.WOMEN?.map(
+                                                (item) => (
+                                                    <li key={item?._id}>
+                                                        <a>{item?.name}</a>
+                                                    </li>
+                                                )
+                                            )}
                                         </ul>
                                     </div>
                                 </div>
@@ -216,45 +156,11 @@ const NewProducts = () => {
                                     </div>
                                     <div className='pro-categorie-list'>
                                         <ul>
-                                            <li>
-                                                <a>Coats</a>
-                                            </li>
-                                            <li>
-                                                <a>Jackets </a>
-                                            </li>
-                                            <li>
-                                                <a>Knitwear </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Dresses </a>
-                                            </li>
-                                            <li>
-                                                <a>Shirts | Blouses</a>
-                                            </li>
-                                            <li>
-                                                <a>T-shirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Trousers</a>
-                                            </li>
-                                            <li>
-                                                <a>Jeans </a>
-                                            </li>
-                                            <li>
-                                                <a>Skirts </a>
-                                            </li>
-                                            <li>
-                                                <a>Blazers</a>
-                                            </li>
-                                            <li>
-                                                <a>Sweatshirts</a>
-                                            </li>
-                                            <li>
-                                                <a>Bodysuit </a>
-                                            </li>
+                                            {categoryData?.KIDS?.map((item) => (
+                                                <li key={item?._id}>
+                                                    <a>{item?.name}</a>
+                                                </li>
+                                            ))}
                                         </ul>
                                     </div>
                                 </div>

@@ -27,6 +27,7 @@ const ShopData = () => {
         state: {
             filter?: string;
             search?: string;
+            category?: string;
         };
     } = useLocation();
 
@@ -44,6 +45,7 @@ const ShopData = () => {
         maxPrice: null,
         isAvaliable: null,
         search: !!state?.search ? state?.search : null,
+        category: !!state?.category ? state?.category : null,
     });
 
     const [rangeValue, setRangeValue] = useState([100, 10000]);
@@ -69,6 +71,7 @@ const ShopData = () => {
             'sortBy=' + filterData.sortBy,
             'sortColumn=' + filterData.sortColumn,
             'search=' + filterData.search,
+            'category=' + filterData.category,
         ],
         ({ pageParam }) =>
             GetFilteredProducts({
@@ -136,6 +139,7 @@ const ShopData = () => {
             sortColumn: null,
             minPrice: null,
             maxPrice: null,
+            category: null,
             search: null,
             isAvaliable: oldState.isAvaliable,
         }));

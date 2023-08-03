@@ -19,4 +19,5 @@ export const Keys = {
     VALIDATE_PIN: 'validate-pin',
     CATEGORIES: 'categories',
     FEATURED_PRODUCT: 'featured-product',
+    CREATE_ORDER: 'create-order',
 };

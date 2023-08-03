@@ -17,4 +17,5 @@ export const Endpoints = {
     VALIDATE_PIN: 'check_pincode',
     CATEGORIES: 'product_categories',
     FEATURED_PRODUCT: 'featured_products',
+    CREATE_ORDER: 'create_order',
 };

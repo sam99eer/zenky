@@ -1,14 +1,28 @@
 import { ChangeEvent, useMemo, useState } from 'react';
+import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { CreateOrder } from 'src/api/CreateOrder';
+import { IOrderData } from 'src/models/api/CreateOrderModel';
+import { IError } from 'src/models/api/ErrorModel';
 import { ICheckoutForm } from 'src/models/screens/Checkout';
 import { IStoreModel } from 'src/store';
 import { REGEX } from 'src/utils/Constants';
 import { checkEmpty, checkRegex } from 'src/utils/Helpers';
+import { Keys } from 'src/utils/Keys';
 
 const CheckoutForm = () => {
+    const { isLoading, mutateAsync } = useMutation(
+        Keys.CREATE_ORDER,
+        CreateOrder
+    );
+
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
+    );
+
+    const token = useSelector(
+        (state: IStoreModel) => state.personalDetailsReducer.token
     );
 
     const subTotal = useMemo(
@@ -89,7 +103,47 @@ const CheckoutForm = () => {
             return;
         }
 
+        if (isLoading) return;
+
+        const productDetails = cartItems.map((item) => ({
+            size: item?.size,
+            quantity: item?.quantity,
+            colorId: item?.colorId,
+            productId: item?._id,
+        }));
+
+        const formattedData: IOrderData = {
+            additional_info: data.notes,
+            delivery_details: {
+                firstName: data.firstName,
+                lastName: data.lastName,
+                companyName: data.companyName,
+                streetAddress1: data.streetAddress1,
+                streetAddress2: data.streetAddress2,
+                city: data.city,
+                state: data.state,
+                zip: data.zip,
+                country: data.country,
+                phone: data.phone,
+                email: data.email,
+            },
+            products_details: productDetails,
+        };
+
         toast.success('Checkout Soon');
+
+        mutateAsync({
+            data: formattedData,
+            token: token!,
+        })
+            .then((res) => console.log(res))
+            .catch((err: IError) =>
+                toast.error(
+                    err.response?.data?.error
+                        ? err.response?.data?.error
+                        : 'Unable to place order right now!'
+                )
+            );
     };
 
     return (
@@ -405,12 +459,12 @@ const CheckoutForm = () => {
                             </div>
                         </div>
                         <div className='payment-method'>
-                            <h5>Direct Bank Transfer</h5>
+                            <h5>Razorpay Payment</h5>
                             <p>
-                                Make your payment directly into our bank
-                                account. Please use your Order ID as the payment
-                                reference. Your order will not be shipped until
-                                the funds have cleared in our account.
+                                You will be redirected to Razorpay payment
+                                gateway for safe and secure payment. After
+                                payment is successful, your order will be
+                                confirmed.
                             </p>
                         </div>
                         <div className='condition-wrap'>
@@ -431,7 +485,13 @@ const CheckoutForm = () => {
                         </div>
                     </div>
                     <div className='Place-order mt-30'>
-                        <button type='submit'>Place Order</button>
+                        <button type='submit'>
+                            {isLoading ? (
+                                <div className='loader'></div>
+                            ) : (
+                                'Place Order'
+                            )}
+                        </button>
                     </div>
                 </div>
             </div>

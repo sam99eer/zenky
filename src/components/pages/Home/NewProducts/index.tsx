@@ -21,6 +21,10 @@ const NewProducts = () => {
         navigate(Screens.SHOP, { state: { filter } });
     };
 
+    const categoryHandler = (category: string) => {
+        navigate(Screens.SHOP, { state: { category } });
+    };
+
     return (
         <>
             <div className='product-area section-padding-3 pt-100'>
@@ -36,7 +40,14 @@ const NewProducts = () => {
                                         <ul>
                                             {categoryData?.MEN?.map((item) => (
                                                 <li key={item?._id}>
-                                                    <a>{item?.name}</a>
+                                                    <a
+                                                        onClick={categoryHandler.bind(
+                                                            this,
+                                                            item?.name
+                                                        )}
+                                                    >
+                                                        {item?.name}
+                                                    </a>
                                                 </li>
                                             ))}
                                         </ul>
@@ -97,7 +108,14 @@ const NewProducts = () => {
                                             {categoryData?.WOMEN?.map(
                                                 (item) => (
                                                     <li key={item?._id}>
-                                                        <a>{item?.name}</a>
+                                                        <a
+                                                            onClick={categoryHandler.bind(
+                                                                this,
+                                                                item?.name
+                                                            )}
+                                                        >
+                                                            {item?.name}
+                                                        </a>
                                                     </li>
                                                 )
                                             )}
@@ -158,7 +176,14 @@ const NewProducts = () => {
                                         <ul>
                                             {categoryData?.KIDS?.map((item) => (
                                                 <li key={item?._id}>
-                                                    <a>{item?.name}</a>
+                                                    <a
+                                                        onClick={categoryHandler.bind(
+                                                            this,
+                                                            item?.name
+                                                        )}
+                                                    >
+                                                        {item?.name}
+                                                    </a>
                                                 </li>
                                             ))}
                                         </ul>

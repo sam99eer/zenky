@@ -8,6 +8,7 @@ export interface IFilter {
     maxPrice: number | null;
     isAvaliable: true | null;
     search: string | null;
+    category: string | null;
 }
 
 export interface IFilterPayload {

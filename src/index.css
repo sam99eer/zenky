@@ -8677,6 +8677,9 @@ textarea {
 .rev-slider .rev-slider-content {
     overflow: hidden;
     height: 700px;
+}
+
+.rev-slider .slick-slide {
     background-color: rgb(239, 239, 239);
 }
 
@@ -8770,11 +8773,17 @@ textarea {
 
 @media only screen and (max-width: 767px) {
     .rev-slider {
-        height: 830px;
+        height: 100%;
     }
     .rev-slider .rev-slider-content {
-        display: inline-block !important;
+        display: flex !important;
         height: 100%;
+        flex-direction: column !important;
+        gap: 0;
+    }
+
+    .rev-slider .rev-slider-content.reverse {
+        flex-direction: column-reverse !important;
     }
 
     .rev-slider img {

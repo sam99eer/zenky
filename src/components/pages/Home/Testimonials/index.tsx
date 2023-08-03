@@ -52,7 +52,11 @@ const Testimonials = () => {
                                 key={`testimonial_${index}`}
                                 className='single-testimonial text-center'
                             >
-                                <p>“{item}”</p>
+                                <p>“{item.review}”</p>
+                                <img src={item.image} alt='Avatar' />
+                                <span>
+                                    {item.username} - {item.designation}
+                                </span>
                             </div>
                         ))}
                     </Slider>

@@ -5,6 +5,7 @@ export interface ICartItemPayload {
     price: number;
     colorName: string;
     size: string;
+    colorId: string;
 }
 
 export interface ICartItem extends ICartItemPayload {

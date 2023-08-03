@@ -19,8 +19,8 @@ const MiniCart = (props: {
 
     const dispatch = useDispatch();
 
-    const removeHandler = (id: string, colorName: string, size: string) => {
-        dispatch(cartSliceActions.deleteItem({ _id: id, colorName, size }));
+    const removeHandler = (id: string, colorId: string, size: string) => {
+        dispatch(cartSliceActions.deleteItem({ _id: id, colorId, size }));
     };
 
     const subTotal = useMemo(
@@ -82,7 +82,7 @@ const MiniCart = (props: {
                                             onClick={removeHandler.bind(
                                                 this,
                                                 item?._id,
-                                                item?.colorName,
+                                                item?.colorId,
                                                 item?.size
                                             )}
                                         >

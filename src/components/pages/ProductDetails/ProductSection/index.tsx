@@ -69,7 +69,12 @@ const ProductSection = (props: {
     const rightSliderRef = useRef<Slider>(null);
     const dispatch = useDispatch();
 
-    const itemData = cartItems.find((item) => item?._id === props?.data?._id);
+    const itemData = cartItems.find(
+        (item) =>
+            item?._id === props?.data?._id &&
+            item?.colorName === productData?.colorName &&
+            item?.size === productData?.size
+    );
 
     const inStock = !!props?.data?.isAvaliable;
 
@@ -135,7 +140,11 @@ const ProductSection = (props: {
         }
 
         if (action === 'add') {
-            if (productData?.colorName && productData?.size) {
+            if (
+                productData?.colorName &&
+                productData?.size &&
+                productData?.colorId
+            ) {
                 dispatch(
                     cartSliceActions.addItem({
                         data: {
@@ -145,6 +154,7 @@ const ProductSection = (props: {
                             price: props?.data!.price,
                             colorName: productData?.colorName,
                             size: productData?.size,
+                            colorId: productData?.colorId,
                         },
                     })
                 );
@@ -158,11 +168,11 @@ const ProductSection = (props: {
         }
 
         if (action === 'remove') {
-            if (productData?.colorName && productData?.size) {
+            if (productData?.colorId && productData?.size) {
                 dispatch(
                     cartSliceActions.removeItem({
                         _id: props?.data!._id,
-                        colorName: productData?.colorName,
+                        colorId: productData?.colorId,
                         size: productData?.size,
                     })
                 );
@@ -207,9 +217,10 @@ const ProductSection = (props: {
         mutateAsync(pin)
             .then((res) => {
                 if (res.status === 200) {
+                    toast.success(res?.message);
                     setPinData({
                         status: 'success',
-                        text: res?.data,
+                        text: `${res?.data?.Name} - ${res?.data?.District}`,
                     });
                     return;
                 }
@@ -500,7 +511,8 @@ const ProductSection = (props: {
                                             ) : null}
                                         </div>
                                         <div className='quickview-cart'>
-                                            {false ? (
+                                            {!!itemData?.quantity &&
+                                            itemData?.quantity > 0 ? (
                                                 <Link
                                                     to={Screens.CHECKOUT}
                                                     title='Checkout'

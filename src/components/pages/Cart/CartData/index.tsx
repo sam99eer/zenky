@@ -19,16 +19,16 @@ const CartData = () => {
     const removeHandler = (
         uid: 'remove' | 'delete',
         id: string,
-        colorName: string,
+        colorId: string,
         size: string
     ) => {
         if (uid === 'remove') {
-            dispatch(cartSliceActions.removeItem({ _id: id, colorName, size }));
+            dispatch(cartSliceActions.removeItem({ _id: id, colorId, size }));
             return;
         }
 
         if (uid === 'delete') {
-            dispatch(cartSliceActions.deleteItem({ _id: id, colorName, size }));
+            dispatch(cartSliceActions.deleteItem({ _id: id, colorId, size }));
             return;
         }
     };
@@ -138,7 +138,7 @@ const CartData = () => {
                                                                                 this,
                                                                                 'remove',
                                                                                 item?._id,
-                                                                                item?.colorName,
+                                                                                item?.colorId,
                                                                                 item?.size
                                                                             )}
                                                                         >

@@ -19,7 +19,7 @@ const cartSlice = createSlice({
                 (item) =>
                     item?._id === action.payload.data?._id &&
                     item?.size === action.payload?.data?.size &&
-                    item?.colorName === action.payload?.data?.colorName
+                    item?.colorId === action.payload?.data?.colorId
             );
 
             if (findItem === -1) {
@@ -32,6 +32,7 @@ const cartSlice = createSlice({
                     totalPrice: action.payload.data?.price,
                     colorName: action.payload.data?.colorName,
                     size: action.payload.data?.size,
+                    colorId: action.payload.data?.colorId,
                 });
                 return;
             }
@@ -44,14 +45,14 @@ const cartSlice = createSlice({
             state,
             action: PayloadAction<{
                 _id: string;
-                colorName: string;
+                colorId: string;
                 size: string;
             }>
         ) {
             const findItem = state.cartItem?.findIndex(
                 (item) =>
                     item?._id === action.payload?._id &&
-                    item?.colorName === action.payload?.colorName &&
+                    item?.colorId === action.payload?.colorId &&
                     item?.size === action.payload?.size
             );
 
@@ -69,14 +70,14 @@ const cartSlice = createSlice({
             state,
             action: PayloadAction<{
                 _id: string;
-                colorName: string;
+                colorId: string;
                 size: string;
             }>
         ) {
             const findItem = state.cartItem?.findIndex(
                 (item) =>
                     item?._id === action.payload?._id &&
-                    item?.colorName === action.payload?.colorName &&
+                    item?.colorId === action.payload?.colorId &&
                     item?.size === action.payload?.size
             );
 

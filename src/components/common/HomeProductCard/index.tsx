@@ -99,12 +99,17 @@ const HomeProductCard = (props: {
         }
 
         if (action === 'add') {
-            if (productData?.colorName && productData?.size) {
+            if (
+                productData?.colorName &&
+                productData?.size &&
+                productData?.colorId
+            ) {
                 dispatch(
                     cartSliceActions.addItem({
                         data: {
                             ...props?.data,
                             colorName: productData?.colorName,
+                            colorId: productData?.colorId,
                             size: productData?.size,
                         },
                     })
@@ -119,11 +124,11 @@ const HomeProductCard = (props: {
         }
 
         if (action === 'remove') {
-            if (productData?.colorName && productData?.size) {
+            if (productData?.colorId && productData?.size) {
                 dispatch(
                     cartSliceActions.removeItem({
                         _id: props?.data?._id,
-                        colorName: productData?.colorName,
+                        colorId: productData?.colorId,
                         size: productData?.size,
                     })
                 );

@@ -11,7 +11,7 @@ import { isWishlistRemoveValid } from 'src/utils/CacheValidators';
 import { WISHLIST_MSG } from 'src/utils/Constants';
 import { Keys } from 'src/utils/Keys';
 
-let timer: number | null = null;
+let timer: NodeJS.Timeout | null = null;
 
 const ProductWishlist = (props: { productData?: IGetProductItem }) => {
     const { isLoggedIn, token } = useSelector(

@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { GetProfile } from 'src/api/GetProfile';
 import AccountDetailsPane from 'src/components/pages/Profile/AccountDetailsPane';
 import ChangePasswordPane from 'src/components/pages/Profile/ChangePasswordPane';
 import DashboardPane from 'src/components/pages/Profile/DashboardPane';
 import OrdersPane from 'src/components/pages/Profile/OrdersPane';
 import { IStoreModel } from 'src/store';
-import { personalDetailsSliceActions } from 'src/store/Actions';
+import {
+    cartSliceActions,
+    personalDetailsSliceActions,
+} from 'src/store/Actions';
 import { deleteCookie } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 
@@ -14,6 +19,14 @@ const ProfileData = () => {
     const personalDetails = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer
     );
+
+    const {
+        state,
+    }: {
+        state: {
+            isOrderActive?: boolean;
+        };
+    } = useLocation();
 
     const dispatch = useDispatch();
 
@@ -39,6 +52,12 @@ const ProfileData = () => {
         dispatch(personalDetailsSliceActions.flushData());
     };
 
+    useEffect(() => {
+        if (!!state?.isOrderActive) {
+            dispatch(cartSliceActions.flushCart());
+        }
+    }, [state?.isOrderActive]);
+
     return (
         <div className='my-account-area pt-100 pb-95'>
             <div className='container'>
@@ -53,13 +72,25 @@ const ProfileData = () => {
                                     role='tablist'
                                 >
                                     <a
-                                        href='#dashboad'
-                                        className='active'
+                                        href='#dashboard'
+                                        className={
+                                            !!state?.isOrderActive
+                                                ? ''
+                                                : 'active'
+                                        }
                                         data-bs-toggle='tab'
                                     >
                                         Dashboard
                                     </a>
-                                    <a href='#orders' data-bs-toggle='tab'>
+                                    <a
+                                        href='#orders'
+                                        className={
+                                            !!state?.isOrderActive
+                                                ? 'active'
+                                                : ''
+                                        }
+                                        data-bs-toggle='tab'
+                                    >
                                         Orders
                                     </a>
                                     <a
@@ -80,8 +111,11 @@ const ProfileData = () => {
                                 >
                                     <DashboardPane
                                         logoutHandler={logoutHandler}
+                                        isOrderActive={!!state?.isOrderActive}
                                     />
-                                    <OrdersPane />
+                                    <OrdersPane
+                                        isOrderActive={!!state?.isOrderActive}
+                                    />
                                     <AccountDetailsPane />
                                     <ChangePasswordPane />
                                 </div>

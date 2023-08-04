@@ -3,15 +3,20 @@ import Avatar from 'src/assets/Avatar';
 import { IStoreModel } from 'src/store';
 import { formatServerImagePath } from 'src/utils/Helpers';
 
-const DashboardPane = (props: { logoutHandler: () => void }) => {
+const DashboardPane = (props: {
+    logoutHandler: () => void;
+    isOrderActive: boolean;
+}) => {
     const profileData = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.profileData
     );
 
     return (
         <div
-            className='tab-pane fade show active'
-            id='dashboad'
+            className={`tab-pane fade ${
+                props.isOrderActive ? '' : 'show active'
+            }`}
+            id='dashboard'
             role='tabpanel'
         >
             <div className='myaccount-content'>

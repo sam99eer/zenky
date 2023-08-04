@@ -1,21 +1,34 @@
 import { ChangeEvent, useMemo, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { CreateOrder } from 'src/api/CreateOrder';
+import { VerifyPayment } from 'src/api/VerifyPayment';
 import { IOrderData } from 'src/models/api/CreateOrderModel';
 import { IError } from 'src/models/api/ErrorModel';
+import { IRzpError, IRzpOptions } from 'src/models/data/RazorpayModel';
 import { ICheckoutForm } from 'src/models/screens/Checkout';
 import { IStoreModel } from 'src/store';
-import { REGEX } from 'src/utils/Constants';
-import { checkEmpty, checkRegex } from 'src/utils/Helpers';
+import { CONSTANTS, REGEX } from 'src/utils/Constants';
+import {
+    checkEmpty,
+    checkRegex,
+    checkScript,
+    loadScript,
+} from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
+import { Screens } from 'src/utils/Screens';
+import Logo from '/assets/icons/android-chrome-192x192.png';
 
 const CheckoutForm = () => {
     const { isLoading, mutateAsync } = useMutation(
         Keys.CREATE_ORDER,
         CreateOrder
     );
+
+    const { isLoading: verifyLoading, mutateAsync: verifyPayment } =
+        useMutation(Keys.VERIFY_PAYMENT, VerifyPayment);
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
@@ -24,6 +37,8 @@ const CheckoutForm = () => {
     const token = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.token
     );
+
+    const navigate = useNavigate();
 
     const subTotal = useMemo(
         () =>
@@ -103,7 +118,7 @@ const CheckoutForm = () => {
             return;
         }
 
-        if (isLoading) return;
+        if (isLoading || verifyLoading) return;
 
         const productDetails = cartItems.map((item) => ({
             size: item?.size,
@@ -130,13 +145,62 @@ const CheckoutForm = () => {
             products_details: productDetails,
         };
 
-        toast.success('Checkout Soon');
-
         mutateAsync({
             data: formattedData,
             token: token!,
         })
-            .then((res) => console.log(res))
+            .then(async (res) => {
+                if (res.status === 200) {
+                    if (!checkScript(CONSTANTS.RAZORPAY_SCRIPT)) {
+                        await loadScript(CONSTANTS.RAZORPAY_SCRIPT);
+                    }
+
+                    const options: IRzpOptions = {
+                        order_id: res.data.id,
+                        name: 'the zenky',
+                        key: 'rzp_test_cFhbLEd61xfdx6',
+                        image: Logo,
+                        theme: {
+                            color: '#262626',
+                        },
+                        handler: async (rzpData) => {
+                            verifyPayment({
+                                data: {
+                                    orderId: rzpData.razorpay_order_id,
+                                    paymentId: rzpData.razorpay_payment_id,
+                                },
+                                token: token!,
+                            })
+                                .then((res) => {
+                                    if (res.status === 200) {
+                                        toast.success(res?.message);
+                                        navigate(Screens.PROFILE, {
+                                            state: { isOrderActive: true },
+                                        });
+                                    }
+                                })
+                                .catch((err: IError) =>
+                                    toast.error(
+                                        err.response?.data?.error
+                                            ? err.response?.data?.error
+                                            : 'Unable to verify payment!'
+                                    )
+                                );
+                        },
+                    };
+
+                    const rzp = new (window as any).Razorpay(options);
+
+                    rzp.on('payment.failed', function (res: IRzpError) {
+                        toast.error(
+                            res?.error?.description ||
+                                'Unable to process your payment! Please try again later.'
+                        );
+                    });
+
+                    rzp.open();
+                }
+            })
             .catch((err: IError) =>
                 toast.error(
                     err.response?.data?.error
@@ -486,7 +550,7 @@ const CheckoutForm = () => {
                     </div>
                     <div className='Place-order mt-30'>
                         <button type='submit'>
-                            {isLoading ? (
+                            {isLoading || verifyLoading ? (
                                 <div className='loader'></div>
                             ) : (
                                 'Place Order'

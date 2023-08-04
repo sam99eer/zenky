@@ -2,6 +2,7 @@ export const CONSTANTS = {
     HOST: 'https://api.thezenky.com/',
     IMG_PATH: 'uploads/',
     API_VERSION: 'api/user/',
+    RAZORPAY_SCRIPT: 'https://checkout.razorpay.com/v1/checkout.js',
 };
 
 export const REGEX = {

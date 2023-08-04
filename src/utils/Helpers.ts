@@ -86,3 +86,32 @@ export const deleteCookie = (name: string) => {
     document.cookie =
         name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; secure=true;';
 };
+
+export const checkScript = (srcToCheck: string) => {
+    const scripts = document.body.getElementsByTagName('script');
+
+    let hasScript = false;
+
+    for (let i = 0; i < scripts.length; i++) {
+        if (scripts[i].src === srcToCheck) {
+            hasScript = true;
+            break;
+        }
+    }
+
+    return hasScript;
+};
+
+export const loadScript = (src: string) => {
+    return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = () => {
+            resolve(true);
+        };
+        script.onerror = () => {
+            resolve(false);
+        };
+        document.body.appendChild(script);
+    });
+};

@@ -1,5 +1,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { ICartItemPayload, ICartSlice } from 'src/models/store/CartSliceModel';
+import {
+    ICartItem,
+    ICartItemPayload,
+    ICartSlice,
+} from 'src/models/store/CartSliceModel';
 
 const initialState: ICartSlice = {
     cartItem: [],
@@ -9,6 +13,14 @@ const cartSlice = createSlice({
     name: 'cartSlice',
     initialState,
     reducers: {
+        fillCart(
+            state,
+            action: PayloadAction<{
+                data: ICartItem[];
+            }>
+        ) {
+            state.cartItem = action.payload.data;
+        },
         addItem(
             state,
             action: PayloadAction<{
@@ -34,12 +46,14 @@ const cartSlice = createSlice({
                     size: action.payload.data?.size,
                     colorId: action.payload.data?.colorId,
                 });
+                localStorage.setItem('cart', JSON.stringify(state.cartItem));
                 return;
             }
 
             state.cartItem[findItem].quantity += 1;
             state.cartItem[findItem].totalPrice +=
                 state.cartItem[findItem].price;
+            localStorage.setItem('cart', JSON.stringify(state.cartItem));
         },
         removeItem(
             state,
@@ -59,11 +73,16 @@ const cartSlice = createSlice({
             if (findItem !== -1) {
                 if (state.cartItem[findItem].quantity === 1) {
                     state.cartItem.splice(findItem, 1);
+                    localStorage.setItem(
+                        'cart',
+                        JSON.stringify(state.cartItem)
+                    );
                     return;
                 }
                 state.cartItem[findItem].quantity -= 1;
                 state.cartItem[findItem].totalPrice -=
                     state.cartItem[findItem].price;
+                localStorage.setItem('cart', JSON.stringify(state.cartItem));
             }
         },
         deleteItem(
@@ -83,10 +102,12 @@ const cartSlice = createSlice({
 
             if (findItem !== -1) {
                 state.cartItem.splice(findItem, 1);
+                localStorage.setItem('cart', JSON.stringify(state.cartItem));
             }
         },
         flushCart(state) {
             state.cartItem = [];
+            localStorage.removeItem('cart');
         },
     },
 });

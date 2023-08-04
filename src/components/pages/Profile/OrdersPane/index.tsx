@@ -1,6 +1,12 @@
-const OrdersPane = () => {
+const OrdersPane = (props: { isOrderActive: boolean }) => {
     return (
-        <div className='tab-pane fade' id='orders' role='tabpanel'>
+        <div
+            className={`tab-pane fade ${
+                props.isOrderActive ? 'active show' : ''
+            }`}
+            id='orders'
+            role='tabpanel'
+        >
             <div className='myaccount-content'>
                 <div className='myaccount-table table-responsive text-center'>
                     <table className='table table-bordered'>

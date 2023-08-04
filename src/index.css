@@ -5328,7 +5328,7 @@ textarea {
 }
 
 .quickview-slider-active.owl-carousel img {
-    max-height: 625px;
+    max-height: 660px;
     object-fit: contain;
 }
 

@@ -21,8 +21,8 @@ const NewProducts = () => {
         navigate(Screens.SHOP, { state: { filter } });
     };
 
-    const categoryHandler = (category: string) => {
-        navigate(Screens.SHOP, { state: { category } });
+    const categoryHandler = (category: string, filter: string) => {
+        navigate(Screens.SHOP, { state: { category, filter } });
     };
 
     return (
@@ -43,7 +43,8 @@ const NewProducts = () => {
                                                     <a
                                                         onClick={categoryHandler.bind(
                                                             this,
-                                                            item?.name
+                                                            item?.name,
+                                                            'MEN'
                                                         )}
                                                     >
                                                         {item?.name}
@@ -111,7 +112,8 @@ const NewProducts = () => {
                                                         <a
                                                             onClick={categoryHandler.bind(
                                                                 this,
-                                                                item?.name
+                                                                item?.name,
+                                                                'WOMEN'
                                                             )}
                                                         >
                                                             {item?.name}
@@ -179,7 +181,8 @@ const NewProducts = () => {
                                                     <a
                                                         onClick={categoryHandler.bind(
                                                             this,
-                                                            item?.name
+                                                            item?.name,
+                                                            'KIDS'
                                                         )}
                                                     >
                                                         {item?.name}

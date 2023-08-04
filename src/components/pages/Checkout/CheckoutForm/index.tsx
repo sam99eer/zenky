@@ -449,6 +449,7 @@ const CheckoutForm = () => {
                                     type='text'
                                     value={data.phone}
                                     onChange={changeHandler.bind(this, 'phone')}
+                                    maxLength={10}
                                     required
                                 />
                             </div>

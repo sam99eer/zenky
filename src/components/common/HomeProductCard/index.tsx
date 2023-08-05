@@ -18,7 +18,7 @@ import { IColorImage } from 'src/models/data/ColorImageModel';
 import { IProductData } from 'src/models/screens/ProductDetails';
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
-import { formatServerImagePath } from 'src/utils/Helpers';
+import { calculateDiscount, formatServerImagePath } from 'src/utils/Helpers';
 import { Screens } from 'src/utils/Screens';
 import { quickviewSliderSettings } from 'src/utils/SliderSettings';
 import NoImage from '/assets/images/no-image.jpg';
@@ -274,8 +274,31 @@ const HomeProductCard = (props: {
                                                 </div>
                                             </div>
                                             <h3>
-                                                ₹
-                                                {props?.data?.price?.toFixed(2)}
+                                                {!!props?.data?.discount ? (
+                                                    <>
+                                                        <span>
+                                                            ₹
+                                                            {props?.data?.price}
+                                                        </span>
+                                                        {`₹${
+                                                            props?.data?.price -
+                                                            props?.data
+                                                                ?.discount
+                                                        }`}
+                                                        <p className='text-success'>
+                                                            (
+                                                            {calculateDiscount(
+                                                                props?.data
+                                                                    ?.discount,
+                                                                props?.data
+                                                                    ?.price
+                                                            )}{' '}
+                                                            OFF)
+                                                        </p>
+                                                    </>
+                                                ) : (
+                                                    `₹${props?.data?.price}`
+                                                )}
                                             </h3>
                                             <div className='quickview-peragraph'>
                                                 <p>
@@ -529,6 +552,14 @@ const HomeProductCard = (props: {
                                     alt='Secondary'
                                 />
                             ) : null}
+                            {!!props?.data?.discount ? (
+                                <span className='price-dec'>
+                                    {calculateDiscount(
+                                        props?.data?.discount,
+                                        props?.data?.price
+                                    )}
+                                </span>
+                            ) : null}
                         </a>
                         <div className='product-action'>
                             <a
@@ -561,7 +592,17 @@ const HomeProductCard = (props: {
                             </a>
                         </h3>
                         <div className='product-price'>
-                            <span>₹{props?.data?.price}</span>
+                            {props?.data?.discount ? (
+                                <span className='old'>
+                                    ₹{props?.data?.price}
+                                </span>
+                            ) : null}
+                            <span>
+                                ₹
+                                {!!props?.data?.discount
+                                    ? props?.data?.price - props?.data?.discount
+                                    : props?.data?.price}
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -115,3 +115,8 @@ export const loadScript = (src: string) => {
         document.body.appendChild(script);
     });
 };
+
+export const calculateDiscount = (discountPrice: number, price: number) => {
+    const discountPercent = Math.round((discountPrice / price) * 100);
+    return `-${discountPercent}%`;
+};

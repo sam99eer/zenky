@@ -3356,6 +3356,26 @@ textarea {
     margin: 8px 0 3px;
 }
 
+.product-wrap .product-content .product-price span.old {
+    text-decoration: line-through;
+    margin-right: 6px;
+    color: #777;
+}
+
+.product-wrap .product-img > a > span.price-dec {
+    background-color: #de3535;
+    display: inline-block;
+    color: #fff;
+    right: 20px;
+    top: 20px;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    border-radius: 100%;
+    text-align: center;
+    position: absolute;
+}
+
 .product-wrap .product-content .product-price span {
     font-size: 16px;
 }
@@ -5328,7 +5348,7 @@ textarea {
 }
 
 .quickview-slider-active.owl-carousel img {
-    max-height: 660px;
+    max-height: 685px;
     object-fit: contain;
 }
 
@@ -8739,6 +8759,15 @@ textarea {
     opacity: 0;
     margin: 0;
     transition: transform 1s ease-in, opacity 1s ease-in !important;
+}
+
+.rev-slider .rev-slider-content .description .price span.discount {
+    padding-left: 0.5rem;
+}
+
+.rev-slider .rev-slider-content .description .price span.has-discount {
+    color: #777777;
+    text-decoration: line-through;
 }
 
 .rev-slider .slick-slide.slick-active .rev-slider-content .description h2,

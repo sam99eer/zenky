@@ -34,6 +34,7 @@ export interface IGetProductItem {
     name: string;
     image: string;
     price: number;
+    discount?: number;
     description: string;
     sizes: string[];
     isAvaliable: boolean;

@@ -25,7 +25,7 @@ import {
 import { IStoreModel } from 'src/store';
 import { cartSliceActions } from 'src/store/Actions';
 import { REGEX } from 'src/utils/Constants';
-import { formatServerImagePath } from 'src/utils/Helpers';
+import { calculateDiscount, formatServerImagePath } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 import {
@@ -357,7 +357,29 @@ const ProductSection = (props: {
                                             )}
                                         </div>
                                     </div>
-                                    <h3>₹{props?.data?.price}</h3>
+                                    <h3>
+                                        {!!props?.data?.discount ? (
+                                            <>
+                                                <span>
+                                                    ₹{props?.data?.price}
+                                                </span>
+                                                {`₹${
+                                                    props?.data?.price -
+                                                    props?.data?.discount
+                                                }`}
+                                                <p className='text-success'>
+                                                    (
+                                                    {calculateDiscount(
+                                                        props?.data?.discount,
+                                                        props?.data?.price
+                                                    )}{' '}
+                                                    OFF)
+                                                </p>
+                                            </>
+                                        ) : (
+                                            `₹${props?.data?.price}`
+                                        )}
+                                    </h3>
                                     <div className='quickview-peragraph'>
                                         <p>{props?.data?.description}</p>
                                     </div>

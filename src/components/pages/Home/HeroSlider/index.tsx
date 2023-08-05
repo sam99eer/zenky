@@ -51,7 +51,24 @@ const HeroSlider = () => {
                     <div className='description'>
                         <p>{item?.product?.name}</p>
                         <h2>{item?.label}</h2>
-                        <p className='price'>₹{item?.product?.price}</p>
+                        <p className='price'>
+                            <span
+                                className={
+                                    !!item?.product?.discount
+                                        ? 'has-discount'
+                                        : ''
+                                }
+                            >
+                                ₹{item?.product?.price}
+                            </span>
+                            {!!item?.product?.discount ? (
+                                <span className='discount'>
+                                    ₹
+                                    {item?.product?.price -
+                                        item?.product?.discount}
+                                </span>
+                            ) : null}
+                        </p>
                         <button
                             onClick={navigateHandler.bind(
                                 this,

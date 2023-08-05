@@ -39,9 +39,15 @@ const cartSlice = createSlice({
                     _id: action.payload.data?._id,
                     image: action.payload.data?.image,
                     name: action.payload.data?.name,
-                    price: action.payload.data?.price,
+                    price: !!action.payload.data?.discount
+                        ? action.payload.data?.price -
+                          action.payload.data?.discount
+                        : action.payload.data?.price,
                     quantity: 1,
-                    totalPrice: action.payload.data?.price,
+                    totalPrice: !!action.payload.data?.discount
+                        ? action.payload.data?.price -
+                          action.payload.data?.discount
+                        : action.payload.data?.price,
                     colorName: action.payload.data?.colorName,
                     size: action.payload.data?.size,
                     colorId: action.payload.data?.colorId,

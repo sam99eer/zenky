@@ -152,6 +152,7 @@ const ProductSection = (props: {
                             image: props?.data!.image,
                             name: props?.data!.name,
                             price: props?.data!.price,
+                            discount: props?.data?.discount,
                             colorName: productData?.colorName,
                             size: productData?.size,
                             colorId: productData?.colorId,

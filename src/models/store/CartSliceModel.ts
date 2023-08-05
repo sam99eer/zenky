@@ -3,6 +3,7 @@ export interface ICartItemPayload {
     name: string;
     image: string;
     price: number;
+    discount?: number;
     colorName: string;
     size: string;
     colorId: string;

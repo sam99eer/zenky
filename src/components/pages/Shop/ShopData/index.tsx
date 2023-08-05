@@ -447,42 +447,6 @@ const ShopData = () => {
                                                 XXL
                                             </a>
                                         </li>
-                                        <li>
-                                            <a
-                                                className={
-                                                    filterData.sizes.includes(
-                                                        'POLO'
-                                                    )
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                                onClick={toggleHandler.bind(
-                                                    this,
-                                                    'sizes',
-                                                    'POLO'
-                                                )}
-                                            >
-                                                Polo
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className={
-                                                    filterData.sizes.includes(
-                                                        'OVERSIZED'
-                                                    )
-                                                        ? 'active'
-                                                        : ''
-                                                }
-                                                onClick={toggleHandler.bind(
-                                                    this,
-                                                    'sizes',
-                                                    'OVERSIZED'
-                                                )}
-                                            >
-                                                Oversized
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>

@@ -7600,7 +7600,7 @@ textarea {
     margin: 25px 0 0;
 }
 
-.your-order-area .your-order-wrap .payment-method h5 {
+.your-order-area .your-order-wrap .payment-method label {
     text-transform: uppercase;
 }
 
@@ -7608,6 +7608,13 @@ textarea {
     color: #777;
     font-size: 12px;
     margin: 14px 0 0;
+}
+
+.your-order-area .your-order-wrap .payment-method div input[type='radio'] {
+    height: 20px;
+    width: 20px;
+    margin-right: 0.5rem;
+    accent-color: #262626;
 }
 
 .your-order-area .your-order-wrap .condition-wrap {

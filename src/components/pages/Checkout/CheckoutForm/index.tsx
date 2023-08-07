@@ -27,6 +27,8 @@ const CheckoutForm = () => {
         CreateOrder
     );
 
+    const [isPayOnline, setIsPayOnline] = useState(true);
+
     const { isLoading: verifyLoading, mutateAsync: verifyPayment } =
         useMutation(Keys.VERIFY_PAYMENT, VerifyPayment);
 
@@ -77,6 +79,10 @@ const CheckoutForm = () => {
             ...oldState,
             [uid]: event.target.value,
         }));
+    };
+
+    const payToggleHandler = () => {
+        setIsPayOnline((oldState) => !oldState);
     };
 
     const formHandler = (event: React.FormEvent) => {
@@ -132,6 +138,7 @@ const CheckoutForm = () => {
         }));
 
         const formattedData: IOrderData = {
+            payment_type: isPayOnline ? 'ONLINE' : 'COD',
             additional_info: data.notes,
             delivery_details: {
                 firstName: data.firstName,
@@ -155,12 +162,20 @@ const CheckoutForm = () => {
         })
             .then(async (res) => {
                 if (res.status === 200) {
+                    if (formattedData.payment_type === 'COD') {
+                        toast.success(res?.message);
+                        navigate(Screens.PROFILE, {
+                            state: { isOrderActive: true },
+                        });
+                        return;
+                    }
+
                     if (!checkScript(CONSTANTS.RAZORPAY_SCRIPT)) {
                         await loadScript(CONSTANTS.RAZORPAY_SCRIPT);
                     }
 
                     const options: IRzpOptions = {
-                        order_id: res.data.id,
+                        order_id: res.data.order_id,
                         name: 'the zenky',
                         key: 'rzp_test_cFhbLEd61xfdx6',
                         image: Logo,
@@ -528,13 +543,34 @@ const CheckoutForm = () => {
                             </div>
                         </div>
                         <div className='payment-method'>
-                            <h5>Razorpay Payment</h5>
+                            <div className='d-flex align-items-center'>
+                                <input
+                                    type='radio'
+                                    name='payment'
+                                    id='online'
+                                    checked={isPayOnline}
+                                    onChange={payToggleHandler}
+                                />
+                                <label htmlFor='online'>Online Payment</label>
+                            </div>
                             <p>
                                 You will be redirected to Razorpay payment
                                 gateway for safe and secure payment. After
                                 payment is successful, your order will be
                                 confirmed.
                             </p>
+                        </div>
+                        <div className='payment-method'>
+                            <div className='d-flex align-items-center'>
+                                <input
+                                    type='radio'
+                                    name='payment'
+                                    id='cod'
+                                    checked={!isPayOnline}
+                                    onChange={payToggleHandler}
+                                />
+                                <label htmlFor='cod'>Cash On Delivery</label>
+                            </div>
                         </div>
                         <div className='condition-wrap'>
                             <p>

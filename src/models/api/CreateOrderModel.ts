@@ -10,6 +10,7 @@ interface IOrderCart {
 }
 
 export interface IOrderData {
+    payment_type: 'ONLINE' | 'COD';
     delivery_details: ICreateOrder;
     additional_info: string;
     products_details: IOrderCart[];
@@ -28,7 +29,7 @@ export interface ICreateOrderResponse {
 }
 
 interface ICreateOrderData {
-    id: string;
+    order_id: string;
     entity: string;
     amount: number;
     amount_paid: number;

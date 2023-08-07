@@ -18,15 +18,15 @@ import Wishlist from 'src/pages/Wishlist';
 import { IStoreModel } from 'src/store';
 import { Screens } from 'src/utils/Screens';
 
+const Checkout = lazy(() => import('src/pages/Checkout'));
+const Cart = lazy(() => import('src/pages/Cart'));
+const Profile = lazy(() => import('src/pages/Profile'));
+const Forgot = lazy(() => import('src/pages/Forgot'));
+
 const Routes = () => {
     const isLoggedIn = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
-
-    const Checkout = lazy(() => import('src/pages/Checkout'));
-    const Cart = lazy(() => import('src/pages/Cart'));
-    const Profile = lazy(() => import('src/pages/Profile'));
-    const Forgot = lazy(() => import('src/pages/Forgot'));
 
     return (
         <Router>

@@ -38,6 +38,10 @@ const CheckoutForm = () => {
         (state: IStoreModel) => state.personalDetailsReducer.token
     );
 
+    const profileData = useSelector(
+        (state: IStoreModel) => state.personalDetailsReducer.profileData
+    );
+
     const navigate = useNavigate();
 
     const subTotal = useMemo(
@@ -49,17 +53,17 @@ const CheckoutForm = () => {
     );
 
     const [data, setData] = useState<ICheckoutForm>({
-        firstName: '',
+        firstName: profileData?.name ? profileData?.name : '',
         lastName: '',
         companyName: '',
-        country: 'India',
-        streetAddress1: '',
+        country: profileData?.country ? profileData?.country : 'India',
+        streetAddress1: profileData?.address ? profileData?.address : '',
         streetAddress2: '',
-        city: '',
-        state: 'Andhra Pradesh',
-        zip: '',
-        phone: '',
-        email: '',
+        city: profileData?.city ? profileData?.city : '',
+        state: profileData?.state ? profileData?.state : 'Andhra Pradesh',
+        zip: profileData?.zipCode ? profileData?.zipCode : '',
+        phone: profileData?.phoneNumber ? profileData?.phoneNumber : '',
+        email: profileData?.email ? profileData?.email : '',
         notes: '',
     });
 

@@ -175,7 +175,7 @@ const CartData = () => {
                                             </table>
                                         </div>
                                         <div className='cart-shiping-update-wrapper'>
-                                            <div className='discount-code'>
+                                            {/* <div className='discount-code'>
                                                 <input
                                                     type='text'
                                                     name='name'
@@ -187,8 +187,8 @@ const CartData = () => {
                                                 >
                                                     Apply coupon
                                                 </button>
-                                            </div>
-                                            <div className='cart-clear'>
+                                            </div> */}
+                                            <div className='cart-clear ms-auto'>
                                                 <a onClick={clearCartHandler}>
                                                     Clear Cart
                                                 </a>

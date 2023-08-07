@@ -105,6 +105,7 @@ export const revolutionSliderSettings: Settings = {
     autoplaySpeed: 4000,
     fade: true,
     arrows: false,
+    pauseOnHover: false,
     dotsClass: 'tp-bullets',
     customPaging: (index) => (
         <div className='tp-bullet'>

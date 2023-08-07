@@ -15,3 +15,9 @@ export interface IFilterPayload {
     pageNumber: number;
     filters: IFilter;
 }
+
+export interface IFilterState {
+    filter?: string;
+    search?: string;
+    category?: string;
+}

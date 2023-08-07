@@ -15,22 +15,18 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GetColors } from 'src/api/GetColors';
 import { GetFilteredProducts } from 'src/api/GetFilteredProducts';
+import NoProducts from 'src/assets/NoProducts';
 import HomeProductCard from 'src/components/common/HomeProductCard';
 import Skeleton from 'src/components/common/Skeleton';
-import { IFilter } from 'src/models/data/FilterModel';
+import { IFilter, IFilterState } from 'src/models/data/FilterModel';
 import { Keys } from 'src/utils/Keys';
 
 const ShopData = () => {
     const {
         state,
     }: {
-        state: {
-            filter?: string;
-            search?: string;
-            category?: string;
-        };
+        state: IFilterState;
     } = useLocation();
-
     const [search, setSearch] = useState(
         !!state?.search ? state?.search : null
     );
@@ -262,7 +258,7 @@ const ShopData = () => {
                         <div className='shop-sidebar-style mt-25 mr-35'>
                             <div className='sidebar-widget mb-70'>
                                 <h4 className='pro-sidebar-title'>
-                                    Categories{' '}
+                                    Categories
                                 </h4>
                                 <div className='sidebar-widget-list mt-50'>
                                     <ul>
@@ -675,6 +671,15 @@ const ShopData = () => {
                                                 />
                                             ) : null}
                                         </>
+                                    ) : !isLoading && !isFetching ? (
+                                        <div className='d-flex flex-column justify-content-center align-items-center mx-auto empty-wishlist'>
+                                            <div className='img-fluid svg-icon'>
+                                                <NoProducts />
+                                            </div>
+                                            <h3 className='fw-bold text-center'>
+                                                No products found!
+                                            </h3>
+                                        </div>
                                     ) : null}
                                 </div>
                             </div>

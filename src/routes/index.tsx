@@ -9,7 +9,6 @@ import Loader from 'src/components/common/Loader';
 import ProtectedRoute from 'src/components/common/ProtectedRoute';
 import Contact from 'src/pages/Contact';
 import Faq from 'src/pages/Faq';
-import Forgot from 'src/pages/Forgot';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
@@ -27,6 +26,7 @@ const Routes = () => {
     const Checkout = lazy(() => import('src/pages/Checkout'));
     const Cart = lazy(() => import('src/pages/Cart'));
     const Profile = lazy(() => import('src/pages/Profile'));
+    const Forgot = lazy(() => import('src/pages/Forgot'));
 
     return (
         <Router>

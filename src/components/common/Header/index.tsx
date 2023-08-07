@@ -58,12 +58,12 @@ const Header = () => {
         navigate(Screens.SHOP, { state: { filter } });
     };
 
-    const shopHandler = (category?: string) => {
-        if (!!category) {
-            navigate(Screens.SHOP, { state: { category } });
-            return;
-        }
+    const shopHandler = () => {
         navigate(Screens.SHOP);
+    };
+
+    const filterCategoryHandler = (category: string, filter: string) => {
+        navigate(Screens.SHOP, { state: { category, filter } });
     };
 
     const logoutHandler = () => {
@@ -138,7 +138,13 @@ const Header = () => {
                                                                             item?._id
                                                                         }
                                                                     >
-                                                                        <a>
+                                                                        <a
+                                                                            onClick={filterCategoryHandler.bind(
+                                                                                this,
+                                                                                item?.name,
+                                                                                'MEN'
+                                                                            )}
+                                                                        >
                                                                             {
                                                                                 item?.name
                                                                             }
@@ -166,7 +172,13 @@ const Header = () => {
                                                                             item?._id
                                                                         }
                                                                     >
-                                                                        <a>
+                                                                        <a
+                                                                            onClick={filterCategoryHandler.bind(
+                                                                                this,
+                                                                                item?.name,
+                                                                                'WOMEN'
+                                                                            )}
+                                                                        >
                                                                             {
                                                                                 item?.name
                                                                             }
@@ -194,7 +206,13 @@ const Header = () => {
                                                                             item?._id
                                                                         }
                                                                     >
-                                                                        <a>
+                                                                        <a
+                                                                            onClick={filterCategoryHandler.bind(
+                                                                                this,
+                                                                                item?.name,
+                                                                                'KIDS'
+                                                                            )}
+                                                                        >
                                                                             {
                                                                                 item?.name
                                                                             }
@@ -207,10 +225,9 @@ const Header = () => {
                                                     <li className='mega-menu-sub-width37'>
                                                         <div className='banner-menu-content-wrap default-overlay'>
                                                             <a
-                                                                onClick={shopHandler.bind(
-                                                                    this,
-                                                                    undefined
-                                                                )}
+                                                                onClick={
+                                                                    shopHandler
+                                                                }
                                                             >
                                                                 <img
                                                                     src='/assets/images/new-collection.jpg'

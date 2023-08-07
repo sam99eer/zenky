@@ -542,7 +542,11 @@ const CheckoutForm = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className='payment-method'>
+                        <div
+                            className={`payment-method ${
+                                isPayOnline ? 'active' : ''
+                            }`}
+                        >
                             <div className='d-flex align-items-center'>
                                 <input
                                     type='radio'
@@ -560,7 +564,11 @@ const CheckoutForm = () => {
                                 confirmed.
                             </p>
                         </div>
-                        <div className='payment-method'>
+                        <div
+                            className={`payment-method ${
+                                !isPayOnline ? 'active' : ''
+                            }`}
+                        >
                             <div className='d-flex align-items-center'>
                                 <input
                                     type='radio'

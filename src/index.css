@@ -7598,6 +7598,13 @@ textarea {
 
 .your-order-area .your-order-wrap .payment-method {
     margin: 25px 0 0;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.your-order-area .your-order-wrap .payment-method.active {
+    border-color: #777;
 }
 
 .your-order-area .your-order-wrap .payment-method label {

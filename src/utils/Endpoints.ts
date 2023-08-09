@@ -19,4 +19,5 @@ export const Endpoints = {
     FEATURED_PRODUCT: 'featured_products',
     CREATE_ORDER: 'create_order',
     VERIFY_PAYMENT: 'payment',
+    ORDERS: 'orders',
 };

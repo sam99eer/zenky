@@ -21,4 +21,5 @@ export const Keys = {
     FEATURED_PRODUCT: 'featured-product',
     CREATE_ORDER: 'create-order',
     VERIFY_PAYMENT: 'verify-payment',
+    ORDERS: 'orders',
 };

@@ -7843,6 +7843,13 @@ textarea {
     font-size: 14px;
 }
 
+.myaccount-table table span.grey {
+    background-color: #dddbdd;
+    height: 20px;
+    margin-inline: 5%;
+    display: block;
+}
+
 .myaccount-table table th,
 .myaccount-table .table th {
     padding: 10px;

@@ -1,5 +1,5 @@
 import { ChangeEvent, useMemo, useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -22,6 +22,9 @@ import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/android-chrome-192x192.png';
 
 const CheckoutForm = () => {
+
+    const queryClient = useQueryClient();
+
     const { isLoading, mutateAsync } = useMutation(
         Keys.CREATE_ORDER,
         CreateOrder
@@ -84,6 +87,10 @@ const CheckoutForm = () => {
     const payToggleHandler = () => {
         setIsPayOnline((oldState) => !oldState);
     };
+
+    const resetOrderData = async () => {
+        await queryClient.invalidateQueries(Keys.ORDERS);
+    }
 
     const formHandler = (event: React.FormEvent) => {
         event.preventDefault();
@@ -163,6 +170,7 @@ const CheckoutForm = () => {
             .then(async (res) => {
                 if (res.status === 200) {
                     if (formattedData.payment_type === 'COD') {
+                        resetOrderData();
                         toast.success(res?.message);
                         navigate(Screens.PROFILE, {
                             state: { isOrderActive: true },
@@ -192,6 +200,7 @@ const CheckoutForm = () => {
                             })
                                 .then((res) => {
                                     if (res.status === 200) {
+                                        resetOrderData();
                                         toast.success(res?.message);
                                         navigate(Screens.PROFILE, {
                                             state: { isOrderActive: true },

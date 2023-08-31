@@ -12,6 +12,7 @@ import Faq from 'src/pages/Faq';
 import Home from 'src/pages/Home';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
+import OrderDetails from 'src/pages/OrderDetails';
 import ProductDetails from 'src/pages/ProductDetails';
 import Shop from 'src/pages/Shop';
 import Wishlist from 'src/pages/Wishlist';
@@ -63,6 +64,10 @@ const Routes = () => {
                         <Route path={Screens.WISHLIST} element={<Wishlist />} />
                         <Route path={Screens.PROFILE} element={<Profile />} />
                         <Route path={Screens.CHECKOUT} element={<Checkout />} />
+                        <Route
+                            path={`${Screens.ORDER_DETAILS}/:orderId`}
+                            element={<OrderDetails />}
+                        />
                     </Route>
                     <Route path={Screens.NOT_FOUND} element={<NotFound />} />
                 </RoutesContainer>

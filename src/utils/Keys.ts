@@ -22,4 +22,5 @@ export const Keys = {
     CREATE_ORDER: 'create-order',
     VERIFY_PAYMENT: 'verify-payment',
     ORDERS: 'orders',
+    GET_ORDER_DETAILS: 'get-order-details',
 };

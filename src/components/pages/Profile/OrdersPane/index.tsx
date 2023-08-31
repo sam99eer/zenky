@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { GetOrders } from 'src/api/GetOrders';
 import { IStoreModel } from 'src/store';
 import { formatServerTimestamp } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
+import { Screens } from 'src/utils/Screens';
 
 const OrdersPane = (props: { isOrderActive: boolean }) => {
     const token = useSelector(
@@ -99,12 +101,12 @@ const OrdersPane = (props: { isOrderActive: boolean }) => {
                                         <td>{item?.order_status}</td>
                                         <td>₹{item?.total_amount}</td>
                                         <td>
-                                            <a
-                                                href='#'
+                                            <Link
+                                                to={`${Screens.ORDER_DETAILS}/${item?._id}`}
                                                 className='check-btn sqr-btn '
                                             >
                                                 View
-                                            </a>
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}

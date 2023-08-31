@@ -5,11 +5,12 @@ export const Screens = {
     WISHLIST: '/wishlist',
     LOGIN: '/login',
     PROFILE: '/profile',
-    NOT_FOUND: '/*',
     DUMMY_NOT_FOUND: '/notfound',
     PRODUCT_DETAILS: '/product',
     SHOP: '/shop',
     FORGOT: '/forgot',
     CONTACT: '/contact',
     FAQ: '/faq',
+    ORDER_DETAILS: '/order',
+    NOT_FOUND: '/*',
 };

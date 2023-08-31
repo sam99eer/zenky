@@ -20,4 +20,5 @@ export const Endpoints = {
     CREATE_ORDER: 'create_order',
     VERIFY_PAYMENT: 'payment',
     ORDERS: 'orders',
+    ORDER: 'order',
 };

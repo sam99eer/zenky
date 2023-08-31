@@ -8526,6 +8526,43 @@ textarea {
     margin: 0 0 32px;
 }
 
+.faq-wrap .single-faq-wrap h4 {
+    font-size: 16px;
+    font-weight: 400;
+    padding-block: 0.25rem;
+}
+
+.faq-wrap .single-faq-wrap table tr td {
+    font-size: 16px;
+    padding-block: 0.5rem;
+}
+
+.faq-wrap .single-faq-wrap table tr td:last-child {
+    padding-left: 1rem;
+}
+
+.faq-wrap .single-faq-wrap .order-item {
+    padding-block: 0.5rem;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.faq-wrap .single-faq-wrap .order-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 50%;
+    background-color: #262626;
+}
+
+.faq-wrap .single-faq-wrap .order-item span {
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    outline: 1px solid #262626;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .faq-wrap .single-faq-wrap h3 {
         margin: 0 0 10px;

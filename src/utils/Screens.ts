@@ -12,5 +12,6 @@ export const Screens = {
     CONTACT: '/contact',
     FAQ: '/faq',
     ORDER_DETAILS: '/order',
+    ORDER_TRACK: '/track',
     NOT_FOUND: '/*',
 };

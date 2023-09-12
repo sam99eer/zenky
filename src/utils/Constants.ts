@@ -11,6 +11,7 @@ export const REGEX = {
     ZIP: /^\d{6}$/,
     OTP: /^\d{6}$/,
     PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/,
+    TRACK_NUMBER: /^(?=.*[0-9])(?=.*[a-zA-Z]).{8,}$/,
 };
 
 export const WISHLIST_MSG = {

@@ -1,5 +1,7 @@
 import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
+import { Screens } from 'src/utils/Screens';
 
 const HeaderStrip = () => {
     return (
@@ -13,7 +15,7 @@ const HeaderStrip = () => {
                 <a>COD Available</a>
             </div>
             <div>
-                <a>Track Order</a>
+                <Link to={Screens.ORDER_TRACK}>Track Order</Link>
             </div>
         </div>
     );

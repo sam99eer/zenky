@@ -273,9 +273,13 @@ const Header = () => {
                                                         </Link>
                                                     </li>
                                                     <li>
-                                                        <a href='order-tracking.html'>
+                                                        <Link
+                                                            to={
+                                                                Screens.ORDER_TRACK
+                                                            }
+                                                        >
                                                             Order Tracking
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                     {isLoggedIn ? (
                                                         <li>

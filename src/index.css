@@ -9150,3 +9150,119 @@ textarea {
         height: 830px;
     }
 }
+
+.order-tracking-area {
+    position: relative;
+}
+
+.order-tracking-area .order-tracking-img {
+    height: 100%;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .order-tracking-area .order-tracking-img {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .order-tracking-area .order-tracking-img {
+        width: 100%;
+        position: static;
+    }
+}
+
+.order-tracking-area .order-tracking-img img {
+    height: 100%;
+    width: 100%;
+    -webkit-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+    will-change: transform, top;
+    z-index: 0;
+}
+
+.order-tracking-content {
+    padding: 94px 235px;
+}
+
+@media only screen and (min-width: 1366px) and (max-width: 1600px) {
+    .order-tracking-content {
+        padding: 50px 100px;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1365px) {
+    .order-tracking-content {
+        padding: 50px 50px;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .order-tracking-content {
+        padding: 50px 50px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .order-tracking-content {
+        padding: 30px 30px 50px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .order-tracking-content {
+        padding: 30px 15px 50px;
+    }
+}
+
+.order-tracking-content p {
+    line-height: 1.714286;
+    margin: 0;
+    text-align: center;
+    width: 98%;
+}
+
+.order-tracking-content .order-tracking-form {
+    margin: 30px 0 0;
+}
+
+.order-tracking-content .order-tracking-form .sin-order-tracking {
+    margin: 0 0 30px;
+}
+
+.order-tracking-content .order-tracking-form .sin-order-tracking input {
+    background: transparent;
+    border: 1px solid #cdcdcd;
+    height: 70px;
+    padding: 10px 20px;
+    color: #737373;
+    font-size: 12px;
+}
+
+.order-tracking-content .order-tracking-form .sin-order-tracking input:focus {
+    border: 1px solid #262626;
+}
+
+.order-tracking-content .order-tracking-form .order-track-btn {
+    text-align: center;
+}
+
+.order-tracking-content .order-tracking-form .order-track-btn button {
+    display: inline-block;
+    font-weight: 700;
+    color: #fff;
+    background-color: #262626;
+    line-height: 1;
+    padding: 18px 40px;
+    border: none;
+}
+
+.order-tracking-content .order-tracking-form .order-track-btn button:hover {
+    background-color: #e77878;
+}

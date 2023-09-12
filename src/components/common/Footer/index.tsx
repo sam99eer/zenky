@@ -40,7 +40,9 @@ const Footer = () => {
                             <div className='footer-list'>
                                 <ul>
                                     <li>
-                                        <a href='#'>Track Order</a>
+                                        <Link to={Screens.ORDER_TRACK}>
+                                            Track Order
+                                        </Link>
                                     </li>
                                     <li>
                                         <a href='#'>Return Order</a>

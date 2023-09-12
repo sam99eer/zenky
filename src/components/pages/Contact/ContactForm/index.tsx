@@ -137,7 +137,7 @@ const ContactForm = () => {
                         <div className='col-lg-12 col-md-12 col-12'>
                             <button className='submit' type='submit'>
                                 {isLoading ? (
-                                    <div className='loader'></div>
+                                    <div className='loading-spinner'></div>
                                 ) : (
                                     'Send'
                                 )}

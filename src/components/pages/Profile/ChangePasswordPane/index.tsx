@@ -134,7 +134,7 @@ const ChangePasswordPane = () => {
                     <div className='single-input-item'>
                         <button className='check-btn sqr-btn '>
                             {isLoading ? (
-                                <div className='loader'></div>
+                                <div className='loading-spinner'></div>
                             ) : (
                                 'Change Password'
                             )}

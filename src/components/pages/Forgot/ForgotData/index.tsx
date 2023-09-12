@@ -173,7 +173,7 @@ const ForgotData = () => {
                                         }
                                     >
                                         {otpLoading || resetLoading ? (
-                                            <div className='loader'></div>
+                                            <div className='loading-spinner'></div>
                                         ) : activeStep.step1 ? (
                                             'Send OTP'
                                         ) : (

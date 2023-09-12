@@ -137,7 +137,7 @@ const RegisterForm = () => {
                         <div className='login-register-btn'>
                             <button type='submit'>
                                 {isLoading ? (
-                                    <div className='loader'></div>
+                                    <div className='loading-spinner'></div>
                                 ) : (
                                     'Register'
                                 )}

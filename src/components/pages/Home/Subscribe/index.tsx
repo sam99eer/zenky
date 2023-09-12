@@ -80,7 +80,7 @@ const Subscribe = () => {
                                         />
                                         <div className='clear-3'>
                                             {isLoading ? (
-                                                <div className='loader'></div>
+                                                <div className='loading-spinner'></div>
                                             ) : (
                                                 <input
                                                     id='mc-embedded-subscribe'

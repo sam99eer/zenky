@@ -346,7 +346,7 @@ const ReviewPane = (props: { data: IReview[] }) => {
                                     <div className='form-submit'>
                                         <button type='submit'>
                                             {isLoading ? (
-                                                <div className='loader'></div>
+                                                <div className='loading-spinner'></div>
                                             ) : (
                                                 'Submit'
                                             )}

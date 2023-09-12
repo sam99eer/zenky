@@ -22,7 +22,6 @@ import { Screens } from 'src/utils/Screens';
 import Logo from '/assets/icons/android-chrome-192x192.png';
 
 const CheckoutForm = () => {
-
     const queryClient = useQueryClient();
 
     const { isLoading, mutateAsync } = useMutation(
@@ -90,7 +89,7 @@ const CheckoutForm = () => {
 
     const resetOrderData = async () => {
         await queryClient.invalidateQueries(Keys.ORDERS);
-    }
+    };
 
     const formHandler = (event: React.FormEvent) => {
         event.preventDefault();
@@ -609,7 +608,7 @@ const CheckoutForm = () => {
                     <div className='Place-order mt-30'>
                         <button type='submit'>
                             {isLoading || verifyLoading ? (
-                                <div className='loader'></div>
+                                <div className='loading-spinner'></div>
                             ) : (
                                 'Place Order'
                             )}

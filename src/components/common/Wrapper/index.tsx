@@ -30,6 +30,7 @@ const Wrapper = (props: { children: ReactNode }) => {
         if (isBackdropVisible) {
             dispatch(homeSliceActions.turnOffBackdrop());
         }
+        window.scrollTo(0, 0);
     }, []);
 
     return (

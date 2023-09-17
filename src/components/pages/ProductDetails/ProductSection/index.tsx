@@ -244,6 +244,23 @@ const ProductSection = (props: {
         });
     }, [leftSliderRef.current, rightSliderRef.current, imageData]);
 
+    useEffect(() => {
+        setProductData({
+            colorId:
+                props?.data?.colors?.length === 1
+                    ? props?.data?.colors?.[0]?.color_code
+                    : null,
+            size:
+                props?.data?.sizes?.length === 1
+                    ? props?.data?.sizes?.[0]
+                    : null,
+            colorName:
+                props?.data?.colors?.length === 1
+                    ? props?.data?.colors?.[0]?.name
+                    : null,
+        });
+    }, [props.data?.colors.length, props.data?.sizes.length]);
+
     return (
         <div className='product-details-area pb-90'>
             <div className='custom-container-6'>

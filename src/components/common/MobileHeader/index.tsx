@@ -16,8 +16,6 @@ const MobileHeader = (props: {
         (state: IStoreModel) => state.personalDetailsReducer.isLoggedIn
     );
 
-    // const categoryData = useSelector((state: IStoreModel) => state.categoryReducer.data);
-
     const [search, setSearch] = useState('');
 
     const dispatch = useDispatch();
@@ -147,9 +145,11 @@ const MobileHeader = (props: {
                                                     </Link>
                                                 </li>
                                                 <li>
-                                                    <a href='#'>
+                                                    <Link
+                                                        to={Screens.ORDER_TRACK}
+                                                    >
                                                         Order Tracking
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             </ul>
                                         </li>

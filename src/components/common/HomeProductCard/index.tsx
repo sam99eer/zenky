@@ -31,9 +31,15 @@ const HomeProductCard = (props: {
     const navigate = useNavigate();
 
     const [productData, setProductData] = useState<IProductData>({
-        colorId: null,
-        size: null,
-        colorName: null,
+        colorId:
+            props?.data?.colors?.length === 1
+                ? props?.data?.colors?.[0]?.color_code
+                : null,
+        size: props?.data?.sizes?.length === 1 ? props?.data?.sizes?.[0] : null,
+        colorName:
+            props?.data?.colors?.length === 1
+                ? props?.data?.colors?.[0]?.name
+                : null,
     });
 
     const [imageLoaded, setImageLoaded] = useState(false);
@@ -246,9 +252,9 @@ const HomeProductCard = (props: {
                                                     </div>
                                                     <a>
                                                         {' '}
-                                                        ({
-                                                            props?.data?.ratedBy
-                                                        }{' '}
+                                                        (
+                                                        {props?.data?.ratedBy ??
+                                                            0}{' '}
                                                         customer review)
                                                     </a>
                                                 </div>
@@ -575,11 +581,7 @@ const HomeProductCard = (props: {
                         <div className='product-action-2'>
                             <a
                                 title={inStock ? 'Add to cart' : 'Out of Stock'}
-                                onClick={
-                                    inStock
-                                        ? cartHandler.bind(this, 'add', true)
-                                        : undefined
-                                }
+                                onClick={inStock ? navigateHandler : undefined}
                             >
                                 {inStock ? 'Add to cart' : 'Out of Stock'}
                             </a>

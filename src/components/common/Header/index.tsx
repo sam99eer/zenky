@@ -327,8 +327,14 @@ const Header = () => {
                             </div>
                             <div className='col-lg-3'>
                                 <div className='lang-cart-search-wrap'>
+                                    <div className='same-style header-search'>
+                                        <Link to={Screens.PROFILE}>
+                                            <i className='ti-user'></i>
+                                        </Link>
+                                    </div>
+
                                     {pathname === Screens.SHOP ? null : (
-                                        <div className='same-style header-search'>
+                                        <div className='same-style header-search ml-20'>
                                             <a
                                                 className='search-active'
                                                 onClick={toggleHandler.bind(
@@ -372,6 +378,11 @@ const Header = () => {
                             <div className='col-6'>
                                 <div className='mobile-header-right-wrap'>
                                     <div className='same-style cart-wrap'>
+                                        <Link to={Screens.PROFILE}>
+                                            <i className='ti-user'></i>
+                                        </Link>
+                                    </div>
+                                    <div className='same-style cart-wrap ml-20'>
                                         <a
                                             onClick={toggleHandler.bind(
                                                 this,

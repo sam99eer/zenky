@@ -4566,6 +4566,12 @@ textarea {
     height: 38px;
 }
 
+.footer-widget .footer-about .footer-social ul li.text {
+    color: #d5d5d5;
+    font-size: 12px;
+    padding-top: 1rem;
+}
+
 .footer-widget .footer-about .footer-social ul li a i {
     line-height: 38px;
 }

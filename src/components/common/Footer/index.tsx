@@ -126,6 +126,10 @@ const Footer = () => {
                                                 />
                                             </a>
                                         </li>
+                                        <li className='text'>
+                                            Our average delivery time is between
+                                            5 to 7 days
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

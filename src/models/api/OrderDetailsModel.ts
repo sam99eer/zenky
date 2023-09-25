@@ -61,6 +61,7 @@ interface Productsdetail {
     size: string;
     productId: string;
     colorId: string;
+    product_image?: string;
 }
 
 interface ISuccessTrack {

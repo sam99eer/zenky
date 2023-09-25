@@ -1,5 +1,11 @@
+import { Link } from 'react-router-dom';
 import { IOrderDetailsData } from 'src/models/api/OrderDetailsModel';
-import { formatServerTimestamp } from 'src/utils/Helpers';
+import {
+    formatServerImagePath,
+    formatServerTimestamp,
+} from 'src/utils/Helpers';
+import { Screens } from 'src/utils/Screens';
+import NoImage from '/assets/images/no-image.jpg';
 
 const OrderInfo = (props: { data?: IOrderDetailsData }) => {
     return (
@@ -18,19 +24,38 @@ const OrderInfo = (props: { data?: IOrderDetailsData }) => {
                                 key={`${item?.productId}_${item?.colorId}_${item?.size}`}
                                 className='order-item'
                             >
-                                <h4>
-                                    {item?.quantity} x {item?.product_name}
-                                </h4>
-                                <h4 className='d-flex align-items-center gap-2'>
-                                    Color - {item?.product_color_name}{' '}
-                                    <span
-                                        style={{
-                                            backgroundColor:
-                                                item?.product_color_code,
-                                        }}
-                                    ></span>
-                                </h4>
-                                <h4>Cost - ₹{item?.product_price}</h4>
+                                <Link
+                                    to={`${Screens.PRODUCT_DETAILS}/${item?.productId}`}
+                                >
+                                    <img
+                                        src={
+                                            !!item?.product_image
+                                                ? formatServerImagePath(
+                                                      item?.product_image
+                                                  )
+                                                : NoImage
+                                        }
+                                        alt={item?.product_name}
+                                    />
+                                </Link>
+                                <div>
+                                    <h4>
+                                        {item?.quantity} x {item?.product_name}
+                                    </h4>
+                                    <h4 className='d-flex align-items-center gap-2'>
+                                        Color - {item?.product_color_name}{' '}
+                                        <span
+                                            data-bs-toggle='tooltip'
+                                            data-bs-placement='top'
+                                            title={item?.product_color_code}
+                                            style={{
+                                                backgroundColor:
+                                                    item?.product_color_code,
+                                            }}
+                                        ></span>
+                                    </h4>
+                                    <h4>Cost - ₹{item?.product_price}</h4>
+                                </div>
                             </div>
                         ))}
                     </div>

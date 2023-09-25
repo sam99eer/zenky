@@ -248,7 +248,7 @@ const ProductSection = (props: {
         setProductData({
             colorId:
                 props?.data?.colors?.length === 1
-                    ? props?.data?.colors?.[0]?.color_code
+                    ? props?.data?.colors?.[0]?._id
                     : null,
             size:
                 props?.data?.sizes?.length === 1

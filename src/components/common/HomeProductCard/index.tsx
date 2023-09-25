@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import CardWishlistButton from 'src/components/common/CardWishlistButton';
@@ -589,9 +589,11 @@ const HomeProductCard = (props: {
                     </div>
                     <div className='product-content'>
                         <h3>
-                            <a href='product-details.html'>
+                            <Link
+                                to={`${Screens.PRODUCT_DETAILS}/${props?.data?._id}`}
+                            >
                                 {props?.data?.name}
-                            </a>
+                            </Link>
                         </h3>
                         <div className='product-price'>
                             {props?.data?.discount ? (

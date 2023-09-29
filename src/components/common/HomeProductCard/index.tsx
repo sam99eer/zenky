@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import CardWishlistButton from 'src/components/common/CardWishlistButton';
+import SizeChip from 'src/components/common/SizeChip';
 import { Color, IGetProductItem } from 'src/models/api/GetProductsModel';
 import { IColorImage } from 'src/models/data/ColorImageModel';
 import { IProductData } from 'src/models/screens/ProductDetails';
@@ -367,30 +368,23 @@ const HomeProductCard = (props: {
                                                     <ul>
                                                         {props?.data?.sizes?.map(
                                                             (item) => (
-                                                                <li key={item}>
-                                                                    <a
-                                                                        onClick={sizeHandler.bind(
-                                                                            this,
+                                                                <SizeChip
+                                                                    key={item}
+                                                                    item={item}
+                                                                    selectedSize={
+                                                                        productData.size
+                                                                    }
+                                                                    sizeHandler={
+                                                                        sizeHandler
+                                                                    }
+                                                                    stockData={props?.data?.stock?.find(
+                                                                        (
+                                                                            stock
+                                                                        ) =>
+                                                                            stock?.size ===
                                                                             item
-                                                                        )}
-                                                                    >
-                                                                        <span
-                                                                            title={
-                                                                                item
-                                                                            }
-                                                                            className={`swatch-anchor ${
-                                                                                item ===
-                                                                                productData.size
-                                                                                    ? 'text-active'
-                                                                                    : ''
-                                                                            }`}
-                                                                        >
-                                                                            {
-                                                                                item
-                                                                            }
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
+                                                                    )}
+                                                                />
                                                             )
                                                         )}
                                                     </ul>

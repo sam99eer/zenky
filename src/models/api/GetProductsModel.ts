@@ -28,6 +28,13 @@ export interface IHomeProductsResponse {
     status: number;
 }
 
+type AvailableSizes = 'S' | 'M' | 'L' | 'XL' | 'XXL';
+
+export interface IStock {
+    size: AvailableSizes;
+    quantity: string;
+}
+
 export interface IGetProductItem {
     _id: string;
     for: string;
@@ -37,6 +44,7 @@ export interface IGetProductItem {
     discount?: number;
     description: string;
     sizes: string[];
+    stock: IStock[];
     isAvaliable: boolean;
     createdAt: string;
     updatedAt: string;

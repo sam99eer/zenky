@@ -6965,10 +6965,25 @@ textarea {
     border: 1px solid #8d8d8d;
     border-radius: 5px;
     padding-inline: 0.25rem;
+    position: relative;
 }
 
 .configurable-wrap .configurable-size ul li.active {
     border-color: #000;
+}
+
+.configurable-wrap .configurable-size ul li.out-of-stock {
+    border-color: #cecece;
+    cursor: not-allowed;
+}
+
+.configurable-wrap .configurable-size ul li.out-of-stock::before {
+    content: '';
+    height: 2px;
+    width: calc(100% + 15px);
+    background-color: #eceaea;
+    position: absolute;
+    transform: rotate(45deg) translate(8px, 23px);
 }
 
 .configurable-wrap .configurable-size ul li a span {
@@ -6997,6 +7012,10 @@ textarea {
 
 .configurable-wrap .configurable-size ul li a .swatch-anchor.text-active {
     color: #000;
+}
+
+.configurable-wrap .configurable-size ul li.out-of-stock a .swatch-anchor {
+    color: #cecece;
 }
 
 .configurable-wrap .configurable-size ul li a .swatch-anchor:before {

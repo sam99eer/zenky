@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import { toast } from 'react-toastify';
 import { ValidatePin } from 'src/api/ValidatePin';
+import SizeChip from 'src/components/common/SizeChip';
 import ProductWishlist from 'src/components/pages/ProductDetails/ProductWishlist';
 import { IError } from 'src/models/api/ErrorModel';
 import { Color, IProductDetails } from 'src/models/api/GetProductsModel';
@@ -451,34 +452,21 @@ const ProductSection = (props: {
                                             <ul>
                                                 {props?.data?.sizes?.map(
                                                     (item) => (
-                                                        <li
+                                                        <SizeChip
                                                             key={item}
-                                                            className={
-                                                                productData.size ===
-                                                                item
-                                                                    ? 'active'
-                                                                    : ''
+                                                            item={item}
+                                                            selectedSize={
+                                                                productData.size
                                                             }
-                                                        >
-                                                            <a
-                                                                onClick={sizeHandler.bind(
-                                                                    this,
+                                                            sizeHandler={
+                                                                sizeHandler
+                                                            }
+                                                            stockData={props?.data?.stock?.find(
+                                                                (stock) =>
+                                                                    stock?.size ===
                                                                     item
-                                                                )}
-                                                            >
-                                                                <span
-                                                                    title={item}
-                                                                    className={`swatch-anchor ${
-                                                                        item ===
-                                                                        productData.size
-                                                                            ? 'text-active'
-                                                                            : ''
-                                                                    }`}
-                                                                >
-                                                                    {item}
-                                                                </span>
-                                                            </a>
-                                                        </li>
+                                                            )}
+                                                        />
                                                     )
                                                 )}
                                             </ul>

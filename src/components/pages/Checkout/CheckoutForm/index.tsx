@@ -29,7 +29,7 @@ const CheckoutForm = () => {
         CreateOrder
     );
 
-    const [isPayOnline, setIsPayOnline] = useState(true);
+    const [isPayOnline, setIsPayOnline] = useState(false);
 
     const { isLoading: verifyLoading, mutateAsync: verifyPayment } =
         useMutation(Keys.VERIFY_PAYMENT, VerifyPayment);
@@ -550,28 +550,32 @@ const CheckoutForm = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div
-                            className={`payment-method ${
-                                isPayOnline ? 'active' : ''
-                            }`}
-                        >
-                            <div className='d-flex align-items-center'>
-                                <input
-                                    type='radio'
-                                    name='payment'
-                                    id='online'
-                                    checked={isPayOnline}
-                                    onChange={payToggleHandler}
-                                />
-                                <label htmlFor='online'>Online Payment</label>
+                        {false && (
+                            <div
+                                className={`payment-method ${
+                                    isPayOnline ? 'active' : ''
+                                }`}
+                            >
+                                <div className='d-flex align-items-center'>
+                                    <input
+                                        type='radio'
+                                        name='payment'
+                                        id='online'
+                                        checked={isPayOnline}
+                                        onChange={payToggleHandler}
+                                    />
+                                    <label htmlFor='online'>
+                                        Online Payment
+                                    </label>
+                                </div>
+                                <p>
+                                    You will be redirected to Razorpay payment
+                                    gateway for safe and secure payment. After
+                                    payment is successful, your order will be
+                                    confirmed.
+                                </p>
                             </div>
-                            <p>
-                                You will be redirected to Razorpay payment
-                                gateway for safe and secure payment. After
-                                payment is successful, your order will be
-                                confirmed.
-                            </p>
-                        </div>
+                        )}
                         <div
                             className={`payment-method ${
                                 !isPayOnline ? 'active' : ''

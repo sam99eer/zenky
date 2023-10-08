@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "pm2build": "rm -rf dist && npm run build && pm2 start \"serve -s dist -p 3001\" --name \"zenky\"",
+    "pm2build": "rm -rf dist && npm run build && pm2 restart zenky",
     "type-check": "tsc"
   },
   "dependencies": {

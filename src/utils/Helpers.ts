@@ -1,3 +1,5 @@
+import { IError } from 'src/models/api/ErrorModel';
+import { IPinResponse } from 'src/models/api/PinModel';
 import { IKeyValue, IKeyValueRegex } from 'src/models/data/KeyValue';
 import { CONSTANTS } from 'src/utils/Constants';
 
@@ -119,4 +121,33 @@ export const loadScript = (src: string) => {
 export const calculateDiscount = (discountPrice: number, price: number) => {
     const discountPercent = Math.round((discountPrice / price) * 100);
     return `-${discountPercent}%`;
+};
+
+export const getPinDataClass = (
+    pinData: IPinResponse | undefined,
+    error: IError
+) => {
+    const data = {
+        className: '',
+        text: '',
+    };
+
+    if (error && error?.response?.data?.error) {
+        data.className = 'error';
+        data.text = error?.response?.data?.error;
+        return data;
+    }
+
+    if (pinData) {
+        if (pinData?.data?.is_deliverable) {
+            data.className = 'success';
+            data.text = 'Delivery Available';
+            return data;
+        }
+
+        data.className = 'error';
+        data.text = 'Delivery Not Available';
+        return data;
+    }
+    return data;
 };

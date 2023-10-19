@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { CreateOrder } from 'src/api/CreateOrder';
+import { ValidatePin } from 'src/api/ValidatePin';
 import { VerifyPayment } from 'src/api/VerifyPayment';
 import { IOrderData } from 'src/models/api/CreateOrderModel';
 import { IError } from 'src/models/api/ErrorModel';
@@ -15,6 +16,7 @@ import {
     checkEmpty,
     checkRegex,
     checkScript,
+    getPinDataClass,
     loadScript,
 } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
@@ -33,6 +35,13 @@ const CheckoutForm = () => {
 
     const { isLoading: verifyLoading, mutateAsync: verifyPayment } =
         useMutation(Keys.VERIFY_PAYMENT, VerifyPayment);
+
+    const {
+        data: pinData,
+        error: pinError,
+        isLoading: pinLoading,
+        mutateAsync: checkServicable,
+    } = useMutation(Keys.VALIDATE_PIN, ValidatePin);
 
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
@@ -54,6 +63,11 @@ const CheckoutForm = () => {
                 ? cartItems.reduce((acc, curVal) => acc + curVal?.totalPrice, 0)
                 : 0,
         [cartItems]
+    );
+
+    const pinHelperData = useMemo(
+        () => getPinDataClass(pinData, pinError as IError),
+        [pinData, pinError]
     );
 
     const [data, setData] = useState<ICheckoutForm>({
@@ -85,6 +99,31 @@ const CheckoutForm = () => {
 
     const payToggleHandler = () => {
         setIsPayOnline((oldState) => !oldState);
+    };
+
+    const pinValidator = () => {
+        if (pinData?.data?.pincode === data.zip) return;
+
+        if (!REGEX.ZIP.test(data.zip)) {
+            toast.warn('Please enter a valid 6 digit Pin Code');
+            return;
+        }
+
+        checkServicable(data.zip)
+            .then((res) => {
+                if (res.status === 200) {
+                    toast.success(res?.message);
+                    return;
+                }
+                throw res?.error;
+            })
+            .catch((err: IError) =>
+                toast.error(
+                    err.response?.data?.error
+                        ? err.response?.data?.error
+                        : 'Unable to check this PIN Code availability!'
+                )
+            );
     };
 
     const resetOrderData = async () => {
@@ -134,7 +173,17 @@ const CheckoutForm = () => {
             return;
         }
 
-        if (isLoading || verifyLoading) return;
+        if (pinData?.data?.pincode !== data.zip) {
+            toast.error('Please check PIN Code availability first!');
+            return;
+        }
+
+        if (!pinData?.data?.is_deliverable) {
+            toast.error('Delivery not available on this pincode');
+            return;
+        }
+
+        if (isLoading || verifyLoading || pinLoading) return;
 
         const productDetails = cartItems.map((item) => ({
             size: item?.size,
@@ -449,19 +498,37 @@ const CheckoutForm = () => {
                             </div>
                         </div>
                         <div className='col-lg-12 col-md-12'>
-                            <div className='billing-info mb-25'>
+                            <div className='billing-info mb-25 '>
                                 <label>
                                     Postcode / ZIP{' '}
                                     <abbr className='required' title='Required'>
                                         *
                                     </abbr>
                                 </label>
-                                <input
-                                    type='text'
-                                    value={data.zip}
-                                    onChange={changeHandler.bind(this, 'zip')}
-                                    required
-                                />
+                                <div className='pin'>
+                                    <input
+                                        type='text'
+                                        value={data.zip}
+                                        className={pinHelperData.className}
+                                        onChange={changeHandler.bind(
+                                            this,
+                                            'zip'
+                                        )}
+                                        required
+                                    />
+                                    <span
+                                        onClick={
+                                            pinLoading
+                                                ? undefined
+                                                : pinValidator
+                                        }
+                                    >
+                                        {pinLoading ? 'Checking' : 'Check'}
+                                    </span>
+                                </div>
+                                <small className={pinHelperData.className}>
+                                    {pinHelperData.text}
+                                </small>
                             </div>
                         </div>
                         <div className='col-lg-12 col-md-12'>

@@ -19,8 +19,3 @@ export interface IProductData {
     colorId: string | null;
     colorName: string | null;
 }
-
-export interface IPin {
-    status: 'success' | 'error' | null;
-    text: string;
-}

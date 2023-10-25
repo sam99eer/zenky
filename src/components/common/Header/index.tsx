@@ -303,9 +303,11 @@ const Header = () => {
                                                 </a>
                                                 <ul className='sub-menu-width'>
                                                     <li>
-                                                        <a href='about-us.html'>
+                                                        <Link
+                                                            to={Screens.ABOUT}
+                                                        >
                                                             About Us
-                                                        </a>
+                                                        </Link>
                                                     </li>
                                                     <li>
                                                         <Link

@@ -45,13 +45,15 @@ const QuickInfo = (props: {
                         <nav>
                             <ul>
                                 <li>
-                                    <a href='about-us.html'>About Us</a>
+                                    <Link to={Screens.ABOUT}>About Us</Link>
                                 </li>
                                 <li>
-                                    <a href='#'>Help Center</a>
+                                    <Link to={Screens.HELP}>Help Center</Link>
                                 </li>
                                 <li>
-                                    <a href='#'>Privacy Policy</a>
+                                    <Link to={Screens.PRIVACY_POLICY}>
+                                        Privacy Policy
+                                    </Link>
                                 </li>
                                 <li>
                                     <Link to={Screens.CONTACT}>Contact Us</Link>

@@ -159,7 +159,9 @@ const MobileHeader = (props: {
                                     <a>More</a>
                                     <ul className='dropdown'>
                                         <li>
-                                            <a href='about-us.html'>About Us</a>
+                                            <Link to={Screens.ABOUT}>
+                                                About Us
+                                            </Link>
                                         </li>
                                         <li>
                                             <Link to={Screens.CONTACT}>

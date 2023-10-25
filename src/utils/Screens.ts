@@ -13,5 +13,8 @@ export const Screens = {
     FAQ: '/faq',
     ORDER_DETAILS: '/order',
     ORDER_TRACK: '/track',
+    ABOUT: '/about',
+    PRIVACY_POLICY: '/privacy-policy',
+    HELP: '/help',
     NOT_FOUND: '/*',
 };

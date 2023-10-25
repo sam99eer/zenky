@@ -65,10 +65,12 @@ const Footer = () => {
                                         <a href='#'>Returns</a>
                                     </li>
                                     <li>
-                                        <a href='about-us.html'>About Us</a>
+                                        <Link to={Screens.ABOUT}>About Us</Link>
                                     </li>
                                     <li>
-                                        <a href='#'>Terms & Conditions</a>
+                                        <Link to={Screens.PRIVACY_POLICY}>
+                                            Terms & Conditions
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

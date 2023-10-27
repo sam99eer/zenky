@@ -13,7 +13,10 @@ import { Keys } from 'src/utils/Keys';
 
 let timer: NodeJS.Timeout | null = null;
 
-const CardWishlistButton = (props: { productData: IGetProductItem }) => {
+const CardWishlistButton = (props: {
+    productData: IGetProductItem;
+    hideTitle?: boolean;
+}) => {
     const { isLoggedIn, token } = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer
     );
@@ -129,7 +132,11 @@ const CardWishlistButton = (props: { productData: IGetProductItem }) => {
             onClick={wishlistHandler}
         >
             <i className='ti-heart'></i>
-            <span>{selected ? 'Remove from Wishlist' : 'Add to Wishlist'}</span>
+            {!!props?.hideTitle ? null : (
+                <span>
+                    {selected ? 'Remove from Wishlist' : 'Add to Wishlist'}
+                </span>
+            )}
         </a>
     );
 };

@@ -118,6 +118,17 @@ const ProductSection = (props: {
                 productData?.size &&
                 productData?.colorId
             ) {
+                const stockDetails = props?.data?.stock?.find(
+                    (stock) => stock?.size === productData?.size
+                );
+                if (!!itemData?.quantity && !!stockDetails?.quantity) {
+                    if (itemData.quantity > +stockDetails.quantity - 1) {
+                        toast.error(
+                            `Only ${stockDetails.quantity} item(s) of this size and color is in stock`
+                        );
+                        return;
+                    }
+                }
                 dispatch(
                     cartSliceActions.addItem({
                         data: {

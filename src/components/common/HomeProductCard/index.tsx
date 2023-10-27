@@ -50,7 +50,12 @@ const HomeProductCard = (props: {
     const cartItems = useSelector(
         (state: IStoreModel) => state.cartReducer.cartItem
     );
-    const itemData = cartItems.find((item) => item?._id === props?.data?._id);
+    const itemData = cartItems.find(
+        (item) =>
+            item?._id === props?.data?._id &&
+            item?.colorName === productData?.colorName &&
+            item?.size === productData?.size
+    );
 
     const inStock = !!props?.data?.isAvaliable;
 
@@ -111,6 +116,17 @@ const HomeProductCard = (props: {
                 productData?.size &&
                 productData?.colorId
             ) {
+                const stockDetails = props?.data?.stock?.find(
+                    (stock) => stock?.size === productData?.size
+                );
+                if (!!itemData?.quantity && !!stockDetails?.quantity) {
+                    if (itemData.quantity > +stockDetails.quantity - 1) {
+                        toast.error(
+                            `Only ${stockDetails.quantity} item(s) of this size and color is in stock`
+                        );
+                        return;
+                    }
+                }
                 dispatch(
                     cartSliceActions.addItem({
                         data: {
@@ -444,12 +460,12 @@ const HomeProductCard = (props: {
                                                     </a>
                                                 </div>
                                                 <div className='quickview-wishlist'>
-                                                    <a
-                                                        title='Add to wishlist'
-                                                        href='#'
-                                                    >
-                                                        <i className=' ti-heart '></i>
-                                                    </a>
+                                                    <CardWishlistButton
+                                                        productData={
+                                                            props?.data
+                                                        }
+                                                        hideTitle
+                                                    />
                                                 </div>
                                                 <div className='quickview-compare'>
                                                     <a

@@ -425,9 +425,13 @@ const Header = () => {
                 isVisible={show.mobileNav}
                 closeHandler={toggleHandler}
             />
-			<div className='header-marquee'>
-				<marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">Currently Accepting only COD Order</marquee>
-			</div>
+            <div className='header-marquee'>
+                <div className='header-marquee'>
+                    <div className='marquee-container'>
+                        Currently Accepting only COD Order
+                    </div>
+                </div>
+            </div>
         </>
     );
 };

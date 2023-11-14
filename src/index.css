@@ -1776,7 +1776,13 @@ textarea {
 .main-header-wrap {
     display: block;
 }
-
+.header-marquee {
+	background-color: #262626;
+	color: #fff;
+	width: 100%;
+	text-transform: uppercase;
+	padding-top: 3px;
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .main-header-wrap {
         display: none;
@@ -10172,4 +10178,35 @@ textarea {
 .privacy-policy__content h4{
 	margin-top: 30px;
 	margin-bottom: 15px;
+}
+/* -- App Modal --*/
+.app-modal .modal-dialog .modal-content .modal-header {
+	position: inherit;
+	top: auto;
+	right: auto;
+	padding: 15px;
+	border-bottom: 1px solid #ccc;
+}
+.app-modal .modal-header .modal-title {
+	font-size: 22px;
+}
+.app-modal .modal-dialog {
+	max-width: 100%;
+	width: 400px;
+	min-height: inherit;
+	height: auto;
+}
+.app-modal .modal-dialog .modal-content .modal-body {
+	height: auto;
+	padding: 40px 15px ;
+}
+.app-modal .modal-body h2 {
+	font-size: 24px;
+	text-align: center;
+}
+
+@media (max-width: 479px){
+	.app-modal .modal-body h2 {
+		font-size: 20px;
+	}
 }

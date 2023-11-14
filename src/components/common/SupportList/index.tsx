@@ -19,7 +19,7 @@ const SupportList = () => {
                     </a>
                 </li>
                 <li>
-                    <a href='#' target='_blank'>
+                    <a href='https://wa.me/7341122603' target='_blank'>
                         <FontAwesomeIcon icon={faWhatsapp} />
                     </a>
                 </li>

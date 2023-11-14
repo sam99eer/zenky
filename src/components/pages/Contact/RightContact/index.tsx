@@ -49,7 +49,7 @@ const RightContact = () => {
                         >
                             <FontAwesomeIcon icon={faInstagram} />
                         </a>
-                        <a href='#' target='_blank'>
+                        <a href='https://wa.me/7341122603' target='_blank'>
                             <FontAwesomeIcon icon={faWhatsapp} />
                         </a>
                     </div>

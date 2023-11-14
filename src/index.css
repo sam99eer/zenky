@@ -1786,7 +1786,7 @@ textarea {
 
 .marquee-container {
     white-space: nowrap;
-    animation: marquee 25s linear infinite;
+    animation: marquee 23s linear infinite;
 }
 
 @keyframes marquee {

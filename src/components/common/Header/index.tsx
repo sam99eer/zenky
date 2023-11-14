@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import HeaderStrip from 'src/components/common/HeaderStrip';
 import MobileHeader from 'src/components/common/MobileHeader';
+import PromoStrip from 'src/components/common/PromoStrip';
 import MiniCart from 'src/components/pages/Home/MiniCart';
 import QuickInfo from 'src/components/pages/Home/QuickInfo';
 import SearchModal from 'src/components/pages/Home/SearchModal';
@@ -425,13 +426,7 @@ const Header = () => {
                 isVisible={show.mobileNav}
                 closeHandler={toggleHandler}
             />
-            <div className='header-marquee'>
-                <div className='header-marquee'>
-                    <div className='marquee-container'>
-                        Currently Accepting only COD Order
-                    </div>
-                </div>
-            </div>
+            <PromoStrip />
         </>
     );
 };

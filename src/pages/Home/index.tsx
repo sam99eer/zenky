@@ -1,5 +1,6 @@
 import Footer from 'src/components/common/Footer';
 import Header from 'src/components/common/Header';
+import PromoStrip from 'src/components/common/PromoStrip';
 import ScrollToTop from 'src/components/common/ScrollToTop';
 import SupportList from 'src/components/common/SupportList';
 import Wrapper from 'src/components/common/Wrapper';
@@ -16,6 +17,7 @@ const Home = () => {
         <Wrapper>
             <Overlay />
             <Header />
+            <PromoStrip />
             <HeroSlider />
             <NewProducts />
             <About />

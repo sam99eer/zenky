@@ -7,8 +7,7 @@ const AboutData = () => {
 						<div className='col-xl-6 col-lg-7 align-self-center'>
 							<div className='about-us-content-3'>
 								<h2>WE LOVE FASHION</h2>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. Quisque ut nulla viverra, posuere lorem eget, ultrices metus. Nulla facilisi. Duis aliquet, eros in auctor aliquam, tortor justo laoreet nisi, nec pulvinar lectus diam nec libero. Nullam sit amet dia</p>
-								<p>Cras porta posuere lectus, vitae consectetur dolor elementum id. Ut interdum, sem eget varius eleifend, ex risus gravida purus, sed finibus tortor nisi maximus orci. Etiam vel sollicitudi</p>
+								<p>At "The Zenky", we're not just about selling clothes we're about crafting experiences and empowering individuals to express their unique styles. Our journey began with a simple belief: that fashion should be inclusive, sustainable, and reflective of personal identities. From this vision, we've curated a collection that merges timeless elegance with contemporary trends, ensuring that every piece resonates with the modern wardrobe. Whether you&#39;re seeking the perfect ensemble for a special occasion or everyday essentials that effortlessly blend comfort and style, we've got you covered.</p>
 							</div>
 						</div>
 						<div className='col-xl-6 col-lg-5'>
@@ -21,50 +20,12 @@ const AboutData = () => {
 			</div>
 			<div className='service-area pb-5'>
 				<div className='custom-container-7'>
-					<div className='section-title-13 mb-50 text-center'>
-						
-					</div>
-					<div className='row'>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Fashion Design</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Photography</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Video Promotions</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Web Development</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Concept Design</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-						<div className='col-lg-4 col-md-6 col-sm-6'>
-							<div className='service-content mb-85'>
-								<h3>Digital Makerting</h3>
-								<p>Praesent sed ex vel mauris eleifend mollis. Vestibulum dictum sodales ante, ac pulvinar urna sollicitudin in. Suspendisse sodales dolor nec mattis convallis. </p>
-							</div>
-						</div>
-					</div>
+					<p>With a commitment to quality craftsmanship and ethical practices, we strive to redefine the fashion landscape by offering versatile designs that inspire confidence and celebrate individuality.</p>
+					<p>Driven by a passion for creativity and innovation, "The Zenky" is more than just a clothing brand; it's a lifestyle. Our team is dedicated to curating a seamless shopping experience that transcends the transactional nature of retail, fostering a sense of community and connection among our customers. Beyond providing fashion-forward garments, we aim to spark inspiration, foster self-expression, and promote sustainability throughout every aspect of our business. By prioritizing transparency and accountability, we invite you to join us on our journey towards a more conscious and compassionate fashion industry. Together, let's redefine what it means to dress with intention and make a positive impact, one stylish choice at a time.</p>
+					
 				</div>
 			</div>
-			<div className='brand-logo-area pb-60'>
+			<div className='brand-logo-area pb-60 pt-40'>
 				<div className='section-title-13 mb-30 text-center'>
 					<h2>OUR PARTNERS</h2>
 				</div>

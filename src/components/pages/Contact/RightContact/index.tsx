@@ -11,11 +11,20 @@ const RightContact = () => {
         <div className='col-xl-3 col-lg-4 col-md-5'>
             <div className='contact-info-area'>
                 <h2>Get Info</h2>
+				<p>You may contact us using the information below:</p>
                 <div className='contact-info-top'>
                     <div className='sin-contact-info-wrap'>
+						<p><b>Merchant Legal entity name:</b></p>
                         <div className='contact-address'>
                             <i className='ti-home'></i>
                             <span>the zenky</span>
+                        </div>
+                    </div>
+					 <div className='sin-contact-info-wrap'>
+						<p><b>Registered Address:</b></p>
+                        <div className='contact-address'>
+                            <i className='ti-location-pin'></i>
+                            <span>EG 852, Mohalla Gobind Garh Jalandhar PUNJAB 144001</span>
                         </div>
                     </div>
                 </div>

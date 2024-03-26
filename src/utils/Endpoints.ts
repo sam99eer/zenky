@@ -21,4 +21,6 @@ export const Endpoints = {
     VERIFY_PAYMENT: 'payment',
     ORDERS: 'orders',
     ORDER: 'order',
+    SEND_MOBILE_OTP: 'sendOtp',
+    VERIFY_MOBILE_OTP: 'verifyOtp',
 };

@@ -23,4 +23,6 @@ export const Keys = {
     VERIFY_PAYMENT: 'verify-payment',
     ORDERS: 'orders',
     GET_ORDER_DETAILS: 'get-order-details',
+    SEND_MOBILE_OTP: 'send-mobile-otp',
+    VERIFY_MOBILE_OTP: 'verify-mobile-otp',
 };

@@ -167,7 +167,8 @@ const NewProducts = () => {
                         </div>
                     </div>
 
-                    <div className='row mt-100'>
+                    {/* KIDS Section */}
+                    {/* <div className='row mt-100'>
                         <div className='column-pro-custom pro-width-22'>
                             <div className='pro-categories-wrap-all'>
                                 <div className='pro-categories-wrap'>
@@ -233,7 +234,7 @@ const NewProducts = () => {
                                 ) : null}
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

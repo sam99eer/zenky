@@ -11,5 +11,4 @@ export interface ICheckoutForm {
     phone: string;
     email: string;
     notes: string;
-    otp: string;
 }

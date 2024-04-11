@@ -1,6 +1,6 @@
 import { ICheckoutForm } from 'src/models/screens/Checkout';
 
-type ICreateOrder = Omit<ICheckoutForm, 'notes' | 'otp'>;
+type ICreateOrder = Omit<ICheckoutForm, 'notes'>;
 
 interface IOrderCart {
     size: string;

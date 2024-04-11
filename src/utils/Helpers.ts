@@ -1,7 +1,5 @@
 import { IError } from 'src/models/api/ErrorModel';
-import type { T_Send_Otp_Response } from 'src/models/api/OtpModel';
 import { IPinResponse } from 'src/models/api/PinModel';
-import { CommonApiResponse } from 'src/models/data/CommonApiResponse';
 import { IKeyValue, IKeyValueRegex } from 'src/models/data/KeyValue';
 import { CONSTANTS } from 'src/utils/Constants';
 
@@ -149,64 +147,6 @@ export const getPinDataClass = (
 
         data.className = 'error';
         data.text = 'Delivery Not Available';
-        return data;
-    }
-    return data;
-};
-
-export const getSendOtpClass = (
-    payload: T_Send_Otp_Response | undefined,
-    error: IError
-) => {
-    const data = {
-        className: '',
-        text: '',
-    };
-
-    if (error && error?.response?.data?.error) {
-        data.className = 'error';
-        data.text = error?.response?.data?.error;
-        return data;
-    }
-
-    if (payload) {
-        if (payload?.status === 200) {
-            data.className = 'success';
-            data.text = payload.message;
-            return data;
-        }
-
-        data.className = 'error';
-        data.text = payload.error;
-        return data;
-    }
-    return data;
-};
-
-export const getVerifyOtpClass = (
-    payload: CommonApiResponse | undefined,
-    error: IError
-) => {
-    const data = {
-        className: '',
-        text: '',
-    };
-
-    if (error && error?.response?.data?.error) {
-        data.className = 'error';
-        data.text = error?.response?.data?.error;
-        return data;
-    }
-
-    if (payload) {
-        if (payload?.status === 200) {
-            data.className = 'success';
-            data.text = payload.message;
-            return data;
-        }
-
-        data.className = 'error';
-        data.text = payload.error;
         return data;
     }
     return data;

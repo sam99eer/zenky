@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { CreateOrder } from 'src/api/CreateOrder';
-import { SendMobileOtp } from 'src/api/SendMobileOtp';
 import { ValidatePin } from 'src/api/ValidatePin';
-import { VerifyMobileOtp } from 'src/api/VerifyMobileOtp';
 import { VerifyPayment } from 'src/api/VerifyPayment';
 import { IOrderData } from 'src/models/api/CreateOrderModel';
 import { IError } from 'src/models/api/ErrorModel';
@@ -19,8 +17,6 @@ import {
     checkRegex,
     checkScript,
     getPinDataClass,
-    getSendOtpClass,
-    getVerifyOtpClass,
     loadScript,
 } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
@@ -39,20 +35,6 @@ const CheckoutForm = () => {
 
     const { isLoading: verifyLoading, mutateAsync: verifyPayment } =
         useMutation(Keys.VERIFY_PAYMENT, VerifyPayment);
-
-    const {
-        isLoading: sendMobileOtpLoading,
-        data: sendMobileOtpData,
-        error: sendError,
-        mutateAsync: sendMobileOtp,
-    } = useMutation(Keys.SEND_MOBILE_OTP, SendMobileOtp);
-
-    const {
-        isLoading: verifyMobileOtpLoading,
-        data: verifyMobileOtpData,
-        error: verifyError,
-        mutateAsync: verifyMobileOtp,
-    } = useMutation(Keys.VERIFY_MOBILE_OTP, VerifyMobileOtp);
 
     const {
         data: pinData,
@@ -88,32 +70,19 @@ const CheckoutForm = () => {
         [pinData, pinError]
     );
 
-    const sendOtpData = useMemo(
-        () => getSendOtpClass(sendMobileOtpData, sendError as IError),
-        [sendMobileOtpData, sendError]
-    );
-
-    const verifyMobileData = useMemo(
-        () => getVerifyOtpClass(verifyMobileOtpData, verifyError as IError),
-        [verifyMobileOtpData, verifyError]
-    );
-
-    const nameOfUser = profileData?.name ? profileData.name.split(' ') : [];
-
     const [data, setData] = useState<ICheckoutForm>({
-        firstName: nameOfUser.length > 0 ? nameOfUser[0] : '',
-        lastName: nameOfUser.length > 1 ? nameOfUser[1] : '',
+        firstName: profileData?.name ? profileData?.name : '',
+        lastName: '',
         companyName: '',
-        country: profileData?.country ? profileData.country : 'India',
-        streetAddress1: profileData?.address ? profileData.address : '',
+        country: profileData?.country ? profileData?.country : 'India',
+        streetAddress1: profileData?.address ? profileData?.address : '',
         streetAddress2: '',
-        city: profileData?.city ? profileData.city : '',
-        state: profileData?.state ? profileData.state : 'Andhra Pradesh',
-        zip: profileData?.zipCode ? profileData.zipCode : '',
-        phone: profileData?.phoneNumber ? profileData.phoneNumber : '',
+        city: profileData?.city ? profileData?.city : '',
+        state: profileData?.state ? profileData?.state : 'Andhra Pradesh',
+        zip: profileData?.zipCode ? profileData?.zipCode : '',
+        phone: profileData?.phoneNumber ? profileData?.phoneNumber : '',
         email: profileData?.email ? profileData?.email : '',
         notes: '',
-        otp: '',
     });
 
     const changeHandler = (
@@ -161,75 +130,6 @@ const CheckoutForm = () => {
         await queryClient.invalidateQueries(Keys.ORDERS);
     };
 
-    const sendOtp = () => {
-        const regex = checkRegex([
-            {
-                key: 'Phone Number',
-                value: data.phone,
-                regex: REGEX.PHONE,
-            },
-        ]);
-
-        if (!!regex) {
-            return toast.error(regex);
-        }
-
-        sendMobileOtp({
-            data: {
-                countryCode: '+91',
-                phoneNumber: data.phone,
-            },
-            token: token!,
-        })
-            .then((res) => {
-                if (res.status === 200) {
-                    toast.success(res.message);
-                }
-            })
-            .catch((err: IError) =>
-                toast.error(
-                    err.response?.data?.error
-                        ? err.response.data.error
-                        : 'Unable to send OTP right now!'
-                )
-            );
-    };
-
-    const verifyOtp = () => {
-        const regex = checkRegex([
-            {
-                key: 'OTP',
-                value: data.otp,
-                regex: REGEX.OTP,
-            },
-        ]);
-
-        if (!!regex) {
-            return toast.error(regex);
-        }
-
-        verifyMobileOtp({
-            data: {
-                countryCode: '+91',
-                phoneNumber: data.phone,
-                otp: data.otp,
-            },
-            token: token!,
-        })
-            .then((res) => {
-                if (res.status === 200) {
-                    toast.success(res.message);
-                }
-            })
-            .catch((err: IError) =>
-                toast.error(
-                    err.response?.data?.error
-                        ? err.response.data.error
-                        : 'Unable to verify OTP right now!'
-                )
-            );
-    };
-
     const formHandler = (event: React.FormEvent) => {
         event.preventDefault();
 
@@ -250,10 +150,6 @@ const CheckoutForm = () => {
             return;
         }
 
-        if (!!data.otp === false) {
-            return toast.error('Please verify your Mobile Number!');
-        }
-
         const regex = checkRegex([
             {
                 key: 'Phone Number',
@@ -269,11 +165,6 @@ const CheckoutForm = () => {
                 key: 'Postal Code',
                 value: data.zip,
                 regex: REGEX.ZIP,
-            },
-            {
-                key: 'OTP',
-                value: data.otp,
-                regex: REGEX.OTP,
             },
         ]);
 
@@ -292,29 +183,7 @@ const CheckoutForm = () => {
             return;
         }
 
-        if (!sendMobileOtpData || sendMobileOtpData?.status !== 200) {
-            toast.error(
-                sendMobileOtpData?.error ||
-                    'Please verify your mobile number first!'
-            );
-            return;
-        }
-
-        if (!verifyMobileOtpData || verifyMobileOtpData?.status !== 200) {
-            toast.error(
-                verifyMobileOtpData?.error || 'Please click on Verify OTP!'
-            );
-            return;
-        }
-
-        if (
-            isLoading ||
-            verifyLoading ||
-            pinLoading ||
-            sendMobileOtpLoading ||
-            verifyMobileOtpLoading
-        )
-            return;
+        if (isLoading || verifyLoading || pinLoading) return;
 
         const productDetails = cartItems.map((item) => ({
             size: item?.size,
@@ -461,105 +330,6 @@ const CheckoutForm = () => {
                                 />
                             </div>
                         </div>
-
-                        <div className='col-lg-12 col-md-12'>
-                            <div className='billing-info mb-25 '>
-                                <label>
-                                    Phone{' '}
-                                    <abbr className='required' title='Required'>
-                                        *
-                                    </abbr>
-                                </label>
-                                <div className='pin'>
-                                    <input
-                                        type='text'
-                                        value={data.phone}
-                                        className={sendOtpData.className}
-                                        disabled={
-                                            !!(
-                                                sendMobileOtpData?.status ===
-                                                200
-                                            )
-                                        }
-                                        onChange={changeHandler.bind(
-                                            this,
-                                            'phone'
-                                        )}
-                                        maxLength={10}
-                                        required
-                                    />
-                                    {sendMobileOtpData?.status ===
-                                    200 ? null : (
-                                        <span
-                                            onClick={
-                                                sendMobileOtpLoading
-                                                    ? undefined
-                                                    : sendOtp
-                                            }
-                                        >
-                                            {sendMobileOtpLoading
-                                                ? 'Sending'
-                                                : 'Send OTP'}
-                                        </span>
-                                    )}
-                                </div>
-                                <small className={sendOtpData.className}>
-                                    {sendOtpData.text}
-                                </small>
-                            </div>
-                        </div>
-
-                        {sendMobileOtpData?.status === 200 ? (
-                            <div className='col-lg-12 col-md-12'>
-                                <div className='billing-info mb-25'>
-                                    <label>
-                                        OTP{' '}
-                                        <abbr
-                                            className='required'
-                                            title='Required'
-                                        >
-                                            *
-                                        </abbr>
-                                    </label>
-
-                                    <div className='pin'>
-                                        <input
-                                            type='text'
-                                            value={data.otp}
-                                            className={
-                                                verifyMobileData.className
-                                            }
-                                            onChange={changeHandler.bind(
-                                                this,
-                                                'otp'
-                                            )}
-                                            maxLength={6}
-                                            required
-                                        />
-                                        {verifyMobileOtpData?.status ===
-                                        200 ? null : (
-                                            <span
-                                                onClick={
-                                                    verifyMobileOtpLoading
-                                                        ? undefined
-                                                        : verifyOtp
-                                                }
-                                            >
-                                                {verifyMobileOtpLoading
-                                                    ? 'Verifying'
-                                                    : 'Verify OTP'}
-                                            </span>
-                                        )}
-                                    </div>
-                                    <small
-                                        className={verifyMobileData.className}
-                                    >
-                                        {verifyMobileData.text}
-                                    </small>
-                                </div>
-                            </div>
-                        ) : null}
-
                         <div className='col-lg-12'>
                             <div className='billing-info mb-25'>
                                 <label>Company name (optional) </label>
@@ -759,6 +529,23 @@ const CheckoutForm = () => {
                                 <small className={pinHelperData.className}>
                                     {pinHelperData.text}
                                 </small>
+                            </div>
+                        </div>
+                        <div className='col-lg-12 col-md-12'>
+                            <div className='billing-info mb-25'>
+                                <label>
+                                    Phone{' '}
+                                    <abbr className='required' title='Required'>
+                                        *
+                                    </abbr>
+                                </label>
+                                <input
+                                    type='text'
+                                    value={data.phone}
+                                    onChange={changeHandler.bind(this, 'phone')}
+                                    maxLength={10}
+                                    required
+                                />
                             </div>
                         </div>
                         <div className='col-lg-12 col-md-12'>

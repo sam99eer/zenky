@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { ForgotPassword } from 'src/api/ForgotPassword';
 import { ResetPassword } from 'src/api/ResetPassword';
 import { IError } from 'src/models/api/ErrorModel';
-import { IForgotData, IForgotSteps } from 'src/models/screens/Forgot';
+import { IForgotData, IStep } from 'src/models/screens/Forgot';
 import { REGEX } from 'src/utils/Constants';
 import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
@@ -22,7 +22,7 @@ const ForgotData = () => {
         ResetPassword
     );
 
-    const [activeStep, setActiveStep] = useState<IForgotSteps>({
+    const [activeStep, setActiveStep] = useState<IStep>({
         step1: true,
         step2: false,
     });

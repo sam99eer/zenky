@@ -8,6 +8,7 @@ export const CONSTANTS = {
 export const REGEX = {
     PHONE: /^\d{10}$/,
     EMAIL: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$/,
+    EMAIL_OR_PHONE: /^\d{10}$|^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$/,
     ZIP: /^\d{6}$/,
     OTP: /^\d{6}$/,
     PASSWORD: /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/,

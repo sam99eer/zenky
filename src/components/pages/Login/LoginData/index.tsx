@@ -1,5 +1,4 @@
 import LoginForm from 'src/components/pages/Login/LoginForm';
-import RegisterForm from 'src/components/pages/Login/RegisterForm';
 
 const LoginData = () => {
     return (
@@ -7,7 +6,6 @@ const LoginData = () => {
             <div className='container'>
                 <div className='row'>
                     <LoginForm />
-                    <RegisterForm />
                 </div>
             </div>
         </div>

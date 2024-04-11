@@ -1,4 +1,4 @@
-export interface IForgotSteps {
+export interface IStep {
     step1: boolean;
     step2: boolean;
 }

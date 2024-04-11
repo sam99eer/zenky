@@ -59,17 +59,27 @@ const Footer = () => {
                             <div className='footer-list'>
                                 <ul>
                                     <li>
+                                        <Link to={Screens.PRIVACY_POLICY}>
+                                            Privacy Policy
+                                        </Link>
+                                    </li>
+                                    <li>
                                         <Link to={Screens.FAQ}>FAQ</Link>
                                     </li>
                                     <li>
-                                        <a href='#'>Returns</a>
+                                        <Link to={Screens.REFUND}>Returns</Link>
                                     </li>
                                     <li>
                                         <Link to={Screens.ABOUT}>About Us</Link>
                                     </li>
                                     <li>
-                                        <Link to={Screens.PRIVACY_POLICY}>
+                                        <Link to={Screens.TnC}>
                                             Terms & Conditions
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to={Screens.CANCELLATION_POLICY}>
+                                            Cancellation Policy
                                         </Link>
                                     </li>
                                 </ul>

@@ -16,5 +16,8 @@ export const Screens = {
     ABOUT: '/about',
     PRIVACY_POLICY: '/privacy-policy',
     HELP: '/help',
+    TnC: '/terms-conditions',
+    REFUND: '/refund',
+    CANCELLATION_POLICY: '/cancellation-policy',
     NOT_FOUND: '/*',
 };

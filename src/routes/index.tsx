@@ -8,6 +8,7 @@ import {
 import Loader from 'src/components/common/Loader';
 import ProtectedRoute from 'src/components/common/ProtectedRoute';
 import About from 'src/pages/About';
+import CancellationPolicy from 'src/pages/CancellationPolicy';
 import Contact from 'src/pages/Contact';
 import Faq from 'src/pages/Faq';
 import Help from 'src/pages/Help';
@@ -18,7 +19,9 @@ import OrderDetails from 'src/pages/OrderDetails';
 import OrderTrack from 'src/pages/OrderTrack';
 import PrivacyPolicy from 'src/pages/PrivacyPolicy';
 import ProductDetails from 'src/pages/ProductDetails';
+import Refunds from 'src/pages/Refunds';
 import Shop from 'src/pages/Shop';
+import TermsConditions from 'src/pages/TermsConditions';
 import Wishlist from 'src/pages/Wishlist';
 import { IStoreModel } from 'src/store';
 import { Screens } from 'src/utils/Screens';
@@ -45,6 +48,12 @@ const Routes = () => {
                     <Route path={Screens.FAQ} element={<Faq />} />
                     <Route path={Screens.ABOUT} element={<About />} />
                     <Route path={Screens.HELP} element={<Help />} />
+                    <Route path={Screens.REFUND} element={<Refunds />} />
+                    <Route path={Screens.TnC} element={<TermsConditions />} />
+                    <Route
+                        path={Screens.CANCELLATION_POLICY}
+                        element={<CancellationPolicy />}
+                    />
                     <Route
                         path={Screens.PRIVACY_POLICY}
                         element={<PrivacyPolicy />}

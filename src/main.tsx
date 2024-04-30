@@ -8,9 +8,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
+import App from 'src/App.tsx';
+import 'src/index.css';
 import store from 'src/store/index.tsx';
-import App from './App.tsx';
-import './index.css';
 
 const queryClient = new QueryClient({
     defaultOptions: {

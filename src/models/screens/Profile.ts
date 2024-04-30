@@ -48,3 +48,14 @@ export interface IChangePasswordPayload {
     data: IChangePassword;
     token: string;
 }
+
+export type T_Otp_Form = 'email' | 'mobile' | null;
+export interface IOtpForm {
+    onSave: (otp: string) => void;
+    onClose: () => void;
+}
+
+export interface T_Otp_Modal {
+    type: T_Otp_Form;
+    isVisible: boolean;
+}

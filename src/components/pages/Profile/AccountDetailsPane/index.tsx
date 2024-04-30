@@ -27,13 +27,14 @@ const AccountDetailsPane = () => {
     const dispatch = useDispatch();
 
     const [data, setData] = useState<IProfileNeededData>({
-        name: profileData?.name ? profileData?.name : '',
-        address: profileData?.address ? profileData?.address : '',
-        city: profileData?.city ? profileData?.city : '',
-        country: profileData?.country ? profileData?.country : 'India',
-        phoneNumber: profileData?.phoneNumber ? profileData?.phoneNumber : '',
-        state: profileData?.state ? profileData?.state : 'Andhra Pradesh',
-        zipCode: profileData?.zipCode ? profileData?.zipCode : '',
+        name: profileData?.name ?? '',
+        address: profileData?.address ?? '',
+        city: profileData?.city ?? '',
+        country: profileData?.country ?? 'India',
+        phoneNumber: profileData?.phoneNumber ?? '',
+        state: profileData?.state ?? 'Andhra Pradesh',
+        zipCode: profileData?.zipCode ?? '',
+        email: profileData?.email ?? '',
     });
 
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -339,6 +340,20 @@ const AccountDetailsPane = () => {
                                 </div>
                             </div>
                         </div>
+
+                        <div className='single-input-item'>
+                            <label htmlFor='email' className='required'>
+                                Email Address
+                            </label>
+                            <input
+                                type='email'
+                                id='email'
+                                value={data.email!}
+                                disabled={!!profileData.email}
+                                onChange={changeHandler.bind(this, 'email')}
+                            />
+                        </div>
+
                         <div className='single-input-item'>
                             <label htmlFor='phone' className='required'>
                                 Phone Number
@@ -347,6 +362,7 @@ const AccountDetailsPane = () => {
                                 type='text'
                                 id='phone'
                                 value={data.phoneNumber!}
+                                disabled={!!profileData.phoneNumber}
                                 onChange={changeHandler.bind(
                                     this,
                                     'phoneNumber'

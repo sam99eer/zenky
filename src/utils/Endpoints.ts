@@ -1,7 +1,6 @@
 export const Endpoints = {
     GET_PRODUCTS: 'products',
     NEWSLETTER: 'newsletter_subscription',
-    REGISTER: 'signup',
     SEND_LOGIN_OTP: 'sendLoginOtp',
     PROFILE: 'profile',
     UPDATE_PROFILE: 'details',

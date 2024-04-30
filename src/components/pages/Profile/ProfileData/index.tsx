@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { GetProfile } from 'src/api/GetProfile';
+import InfoStrip from 'src/components/common/InfoStrip';
 import AccountDetailsPane from 'src/components/pages/Profile/AccountDetailsPane';
 import ChangePasswordPane from 'src/components/pages/Profile/ChangePasswordPane';
 import DashboardPane from 'src/components/pages/Profile/DashboardPane';
@@ -61,6 +62,7 @@ const ProfileData = () => {
     return (
         <div className='my-account-area pt-100 pb-95'>
             <div className='container'>
+                {!isLoading ? <InfoStrip /> : null}
                 <div className='row flex-row-reverse'>
                     <div className='col-lg-12'>
                         {isLoading ? (

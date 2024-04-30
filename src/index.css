@@ -7853,6 +7853,14 @@ textarea {
     border: 1px solid #262626;
 }
 
+.myaccount-content .account-details-form .single-input-item input:disabled {
+    cursor: not-allowed;
+    opacity: 0.8;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
 .myaccount-content .account-details-form .single-input-item button {
     border: none;
     background-color: #262626;
@@ -7950,6 +7958,9 @@ textarea {
     max-height: 64px;
     max-width: 64px;
     margin-block: 1rem;
+    border-radius: 32px;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .user-image svg {

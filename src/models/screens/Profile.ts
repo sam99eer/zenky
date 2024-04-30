@@ -27,7 +27,6 @@ export type IProfileNeededData = Omit<
     IProfileData,
     | '_id'
     | 'role'
-    | 'email'
     | 'image'
     | 'countryCode'
     | 'isBlocked'

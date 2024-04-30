@@ -26,15 +26,6 @@ interface ISendOtpData {
     email: string;
 }
 
-export interface ISuccessDataResponse {
-    data: {
-        token: string;
-    };
-    error: string;
-    message: string;
-    status: number;
-}
-
 export interface IVerifyOtpResponse {
     data: ILoginData;
     error: string;

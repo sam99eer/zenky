@@ -20,19 +20,15 @@ const HeaderStrip = () => {
                             </div>
                             <div className='modal-body'>
                                 <h2>
-                                    Mobile App Will Be available soon for
-                                    Android and Iphone
+                                    Mobile App will Be available soon for
+                                    Android and iOS
                                 </h2>
                             </div>
                         </div>
                     </div>
                 </div>
                 <a>Offers</a>
-                <a
-                    href='javascript:void(0)'
-                    data-bs-toggle='modal'
-                    data-bs-target='#appModal'
-                >
+                <a data-bs-toggle='modal' data-bs-target='#appModal'>
                     <FontAwesomeIcon className='mx-1' icon={faMobileScreen} />
                     Download App
                 </a>

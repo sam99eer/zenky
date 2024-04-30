@@ -1,10 +1,29 @@
 export interface ILoginModel {
-    email: string;
-    password: string;
+    username: string;
+    otp: string;
 }
 
-export interface IRegisterModel extends ILoginModel {
-    name: string;
+export interface ISendOtpPayloadModel {
+    phoneNumber: string;
+    countryCode: string;
+    email: string;
+}
+
+export interface IVerifyOtpPayload extends ISendOtpPayloadModel {
+    otp: string;
+}
+
+export interface ISendOtpResponse {
+    data: ISendOtpData;
+    error: string;
+    message: string;
+    status: number;
+}
+
+interface ISendOtpData {
+    phoneNumber: string;
+    countryCode: string;
+    email: string;
 }
 
 export interface ISuccessDataResponse {
@@ -14,4 +33,33 @@ export interface ISuccessDataResponse {
     error: string;
     message: string;
     status: number;
+}
+
+export interface IVerifyOtpResponse {
+    data: ILoginData;
+    error: string;
+    message: string;
+    status: number;
+}
+
+interface ILoginData {
+    token: string;
+    isNew: boolean;
+    user: User;
+}
+
+interface User {
+    email: string;
+    role: string;
+    otp: null;
+    image: string;
+    zipCode: string;
+    address: string;
+    country: string;
+    state: string;
+    city: string;
+    isBlocked: boolean;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
 }

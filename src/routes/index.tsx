@@ -29,7 +29,7 @@ import { Screens } from 'src/utils/Screens';
 const Checkout = lazy(() => import('src/pages/Checkout'));
 const Cart = lazy(() => import('src/pages/Cart'));
 const Profile = lazy(() => import('src/pages/Profile'));
-const Forgot = lazy(() => import('src/pages/Forgot'));
+// const Forgot = lazy(() => import('src/pages/Forgot'));
 
 const Routes = () => {
     const isLoggedIn = useSelector(
@@ -43,7 +43,7 @@ const Routes = () => {
                     <Route path={Screens.HOME} index element={<Home />} />
                     <Route path={Screens.CART} element={<Cart />} />
                     <Route path={Screens.SHOP} element={<Shop />} />
-                    <Route path={Screens.FORGOT} element={<Forgot />} />
+                    {/* <Route path={Screens.FORGOT} element={<Forgot />} /> */}
                     <Route path={Screens.CONTACT} element={<Contact />} />
                     <Route path={Screens.FAQ} element={<Faq />} />
                     <Route path={Screens.ABOUT} element={<About />} />

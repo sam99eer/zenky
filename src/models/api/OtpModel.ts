@@ -14,10 +14,3 @@ export type T_Send_Otp_Payload = {
     data: T_Phone_Data;
     token: string;
 };
-
-export type T_Verify_Otp_Payload = {
-    data: T_Phone_Data & {
-        otp: string;
-    };
-    token: string;
-};

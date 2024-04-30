@@ -2,7 +2,7 @@ export const Keys = {
     HOME_PRODUCTS: 'home-products',
     SUBSCRIBE: 'subscribe',
     REGISTER: 'register',
-    LOGIN: 'login',
+    SEND_LOGIN_OTP: 'send-login-otp',
     PROFILE: 'profile',
     UPDATE_PROFILE: 'update-profile',
     CHANGE_PASSWORD: 'change-password',
@@ -24,5 +24,5 @@ export const Keys = {
     ORDERS: 'orders',
     GET_ORDER_DETAILS: 'get-order-details',
     SEND_MOBILE_OTP: 'send-mobile-otp',
-    VERIFY_MOBILE_OTP: 'verify-mobile-otp',
+    VERIFY_OTP: 'verify-otp',
 };

@@ -2,7 +2,7 @@ export const Endpoints = {
     GET_PRODUCTS: 'products',
     NEWSLETTER: 'newsletter_subscription',
     REGISTER: 'signup',
-    LOGIN: 'login',
+    SEND_LOGIN_OTP: 'sendLoginOtp',
     PROFILE: 'profile',
     UPDATE_PROFILE: 'details',
     CHANGE_PASSWORD: 'changePassword',
@@ -22,5 +22,5 @@ export const Endpoints = {
     ORDERS: 'orders',
     ORDER: 'order',
     SEND_MOBILE_OTP: 'sendOtp',
-    VERIFY_MOBILE_OTP: 'verifyOtp',
+    VERIFY_OTP: 'verifyLoginOtp',
 };

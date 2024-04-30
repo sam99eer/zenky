@@ -34,7 +34,9 @@ const DashboardPane = (props: {
                     )}
                     <p>
                         Hello, <strong>{profileData.name}</strong> (If Not{' '}
-                        <strong>{profileData.name} !</strong>
+                        <strong>
+                            {profileData.email ?? profileData.phoneNumber} !
+                        </strong>
                         <a onClick={props.logoutHandler} className='logout'>
                             {' '}
                             Logout

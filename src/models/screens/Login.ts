@@ -7,10 +7,17 @@ export interface ISendOtpPayloadModel {
     phoneNumber: string;
     countryCode: string;
     email: string;
+}
+
+export interface ISendAuthOtpPayloadModel extends ISendOtpPayloadModel {
     token: string;
 }
 
 export interface IVerifyOtpPayload extends ISendOtpPayloadModel {
+    otp: string;
+}
+
+export interface IVerifyAuthOtpPayload extends ISendAuthOtpPayloadModel {
     otp: string;
 }
 

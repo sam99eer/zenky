@@ -8,8 +8,8 @@ import { VerifyAuthOtp } from 'src/api/VerifyAuthOtp';
 import VerifyModal from 'src/components/pages/Profile/VerifyModal';
 import { IError } from 'src/models/api/ErrorModel';
 import {
-    ISendOtpPayloadModel,
-    IVerifyOtpPayload,
+    ISendAuthOtpPayloadModel,
+    IVerifyAuthOtpPayload,
 } from 'src/models/screens/Login';
 import {
     IProfileNeededData,
@@ -215,7 +215,7 @@ const AccountDetailsPane = () => {
             return toast.warn('Please enter valid mobile number');
         }
 
-        const payload: ISendOtpPayloadModel = {
+        const payload: ISendAuthOtpPayloadModel = {
             countryCode: isEmail ? '' : '+91',
             email: isEmail ? `${data.email}` : '',
             phoneNumber: isEmail ? '' : `${data.phoneNumber}`,
@@ -258,7 +258,7 @@ const AccountDetailsPane = () => {
             );
         }
 
-        const payload: IVerifyOtpPayload = {
+        const payload: IVerifyAuthOtpPayload = {
             countryCode: isEmail ? '' : '+91',
             email: isEmail ? `${data.email}` : '',
             phoneNumber: isEmail ? '' : `${data.phoneNumber}`,

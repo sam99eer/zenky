@@ -117,6 +117,29 @@ const LoginForm = () => {
                                 token: res.data.token,
                             })
                         );
+                        dispatch(
+                            personalDetailsSliceActions.fillProfileData({
+                                data: {
+                                    _id: res.data.user._id,
+                                    address: res.data.user.address,
+                                    city: res.data.user.city,
+                                    country: res.data.user.country,
+                                    countryCode:
+                                        res.data.user?.countryCode ?? '',
+                                    createdAt: res.data.user.createdAt,
+                                    email: res.data.user?.email ?? '',
+                                    image: res.data.user.image,
+                                    isBlocked: res.data.user.isBlocked,
+                                    name: res.data.user?.name ?? '',
+                                    phoneNumber:
+                                        res.data.user?.phoneNumber ?? '',
+                                    role: res.data.user.role,
+                                    state: res.data.user.state,
+                                    updatedAt: res.data.user.updatedAt,
+                                    zipCode: res.data.user.zipCode,
+                                },
+                            })
+                        );
                         toast.success(res?.message);
                         navigate(Screens.PROFILE);
                         return;

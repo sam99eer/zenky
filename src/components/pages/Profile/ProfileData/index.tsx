@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { GetProfile } from 'src/api/GetProfile';
@@ -17,6 +17,8 @@ import { deleteCookie } from 'src/utils/Helpers';
 import { Keys } from 'src/utils/Keys';
 
 const ProfileData = () => {
+    const queryClient = useQueryClient();
+
     const personalDetails = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer
     );
@@ -32,7 +34,10 @@ const ProfileData = () => {
     const dispatch = useDispatch();
 
     const { isLoading } = useQuery(
-        Keys.PROFILE,
+        [
+            Keys.PROFILE,
+            `${personalDetails.profileData.email}-${personalDetails.profileData.phoneNumber}`,
+        ],
         GetProfile.bind(this, personalDetails.token!),
         {
             enabled:
@@ -51,6 +56,12 @@ const ProfileData = () => {
     const logoutHandler = () => {
         deleteCookie('access-token');
         dispatch(personalDetailsSliceActions.flushData());
+        queryClient.removeQueries([
+            Keys.PROFILE,
+            Keys.ORDERS,
+            Keys.GET_ORDER_DETAILS,
+            Keys.WISHLIST,
+        ]);
     };
 
     useEffect(() => {

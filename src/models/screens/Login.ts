@@ -48,7 +48,7 @@ interface ILoginData {
 }
 
 interface User {
-    email: string;
+    email?: string;
     role: string;
     otp: null;
     image: string;
@@ -58,6 +58,9 @@ interface User {
     state: string;
     city: string;
     isBlocked: boolean;
+    countryCode?: string;
+    name?: string;
+    phoneNumber?: string;
     _id: string;
     createdAt: string;
     updatedAt: string;

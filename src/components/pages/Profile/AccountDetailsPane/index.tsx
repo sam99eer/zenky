@@ -171,6 +171,7 @@ const AccountDetailsPane = () => {
 
             if (isPhone) {
                 formData.append('phoneNumber', data.phoneNumber!);
+                formData.append('countryCode', '+91');
             }
         }
 

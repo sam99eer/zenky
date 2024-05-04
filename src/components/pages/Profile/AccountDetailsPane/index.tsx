@@ -2,9 +2,9 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { SendOtp } from 'src/api/SendOtp';
+import { SendAuthOtp } from 'src/api/SendAuthOtp';
 import { UpdateProfile } from 'src/api/UpdateProfile';
-import { VerifyOtp } from 'src/api/VerifyOtp';
+import { VerifyAuthOtp } from 'src/api/VerifyAuthOtp';
 import VerifyModal from 'src/components/pages/Profile/VerifyModal';
 import { IError } from 'src/models/api/ErrorModel';
 import {
@@ -27,16 +27,17 @@ const AccountDetailsPane = () => {
         UpdateProfile
     );
 
-    const { isLoading: sendLoading, mutateAsync: sendOtp } = useMutation(
-        Keys.SEND_OTP,
-        SendOtp
-    );
+    const {
+        data: sendOtpData,
+        isLoading: sendLoading,
+        mutateAsync: sendOtp,
+    } = useMutation(Keys.SEND_MOBILE_OTP, SendAuthOtp);
 
     const {
         data: verifyData,
         isLoading: verifyLoading,
         mutateAsync: verifyOtp,
-    } = useMutation(Keys.VERIFY_OTP, VerifyOtp);
+    } = useMutation(Keys.VERIFY_AUTH_OTP, VerifyAuthOtp);
 
     const profileData = useSelector(
         (state: IStoreModel) => state.personalDetailsReducer.profileData
@@ -104,13 +105,10 @@ const AccountDetailsPane = () => {
 
         if (
             profileData.phoneNumber !== data.phoneNumber &&
-            data.phoneNumber?.trim() !== ''
+            data.phoneNumber?.trim() !== '' &&
+            !REGEX.PHONE.test(`${data.phoneNumber}`)
         ) {
-            if (!REGEX.PHONE.test(data?.phoneNumber!)) {
-                toast.error('Please enter valid Phone Number');
-                return;
-            }
-            formData.append('phoneNumber', data.phoneNumber!);
+            toast.error('Please enter valid Phone Number');
         }
 
         if (profileData.name !== data.name && data.name?.trim() !== '') {
@@ -141,6 +139,39 @@ const AccountDetailsPane = () => {
 
         if (!!selectedFile?.size) {
             formData.append('image', selectedFile);
+        }
+
+        const isEmail = profileData.email !== data.email;
+        const isPhone = profileData.phoneNumber !== data.phoneNumber;
+
+        if (isEmail || isPhone) {
+            if (verifyData?.status !== 200) {
+                return toast.error(
+                    `Please verify ${
+                        isEmail ? 'Email Address' : 'Mobile Number'
+                    } first`
+                );
+            }
+
+            if (
+                (isPhone &&
+                    data.phoneNumber !== sendOtpData?.data.phoneNumber) ||
+                (isEmail && data.email !== sendOtpData?.data.email)
+            ) {
+                return toast.error(
+                    `${
+                        isEmail ? 'Email Address' : 'Mobile Number'
+                    } mismatch! Please verify it again.`
+                );
+            }
+
+            if (isEmail) {
+                formData.append('email', data.email!);
+            }
+
+            if (isPhone) {
+                formData.append('phoneNumber', data.phoneNumber!);
+            }
         }
 
         mutateAsync({
@@ -188,6 +219,7 @@ const AccountDetailsPane = () => {
             countryCode: isEmail ? '' : '+91',
             email: isEmail ? `${data.email}` : '',
             phoneNumber: isEmail ? '' : `${data.phoneNumber}`,
+            token: token!,
         };
 
         sendOtp(payload)
@@ -215,17 +247,29 @@ const AccountDetailsPane = () => {
 
         modalHandler(null, false);
 
+        if (
+            (isEmail && sendOtpData?.data.email !== data.email) ||
+            (!isEmail && sendOtpData?.data.phoneNumber !== data.phoneNumber)
+        ) {
+            return toast.error(
+                `${
+                    isEmail ? 'Email Address' : 'Mobile Number'
+                } mismatch! Please verify again.`
+            );
+        }
+
         const payload: IVerifyOtpPayload = {
             countryCode: isEmail ? '' : '+91',
             email: isEmail ? `${data.email}` : '',
             phoneNumber: isEmail ? '' : `${data.phoneNumber}`,
+            token: token!,
             otp,
         };
 
         verifyOtp(payload)
             .then((res) => {
                 if (res.status === 200) {
-                    toast.success('Verified successfully!');
+                    toast.success(res.message);
                     return;
                 }
                 throw new Error(res?.error);

@@ -25,4 +25,5 @@ export const Keys = {
     GET_ORDER_DETAILS: 'get-order-details',
     SEND_MOBILE_OTP: 'send-mobile-otp',
     VERIFY_OTP: 'verify-otp',
+    VERIFY_AUTH_OTP: 'verify-auth-otp',
 };

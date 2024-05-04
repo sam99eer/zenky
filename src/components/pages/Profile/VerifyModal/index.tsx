@@ -30,7 +30,11 @@ const VerifyModal = ({ onSave, onClose }: IOtpForm) => {
             <div className={styles.content} onClick={clickHandler}>
                 <div>
                     <h4>Enter OTP</h4>
-                    <button type='button' className='btn-close' />
+                    <button
+                        type='button'
+                        className='btn-close'
+                        onClick={onClose}
+                    />
                 </div>
                 <form className={styles.form} onSubmit={formHandler}>
                     <input

@@ -22,4 +22,5 @@ export const Endpoints = {
     ORDER: 'order',
     SEND_MOBILE_OTP: 'sendOtp',
     VERIFY_OTP: 'verifyLoginOtp',
+    VERIFY_AUTH_OTP: 'verifyOtp',
 };

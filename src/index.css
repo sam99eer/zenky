@@ -6556,6 +6556,8 @@ textarea {
     border-radius: 100%;
     max-height: 64px;
     max-width: 64px;
+    height: 100%;
+    width: 100%;
 }
 
 .single-review .review-img svg {
@@ -7962,6 +7964,8 @@ textarea {
 .user-image {
     max-height: 64px;
     max-width: 64px;
+    height: 100%;
+    width: 100%;
     margin-block: 1rem;
     border-radius: 32px;
     object-fit: cover;

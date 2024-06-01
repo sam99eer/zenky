@@ -7078,6 +7078,43 @@ textarea {
     margin: 0 0 21px;
 }
 
+.login-register-wrap
+    .login-register-form
+    .sin-login-register
+    .login-register-btn-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-register-wrap
+    .login-register-form
+    .sin-login-register
+    .login-register-btn-input
+    span {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+}
+
+.login-register-wrap
+    .login-register-form
+    .sin-login-register
+    .login-register-btn-input
+    span:hover {
+    color: #e77878;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 576px) {
+    .login-register-wrap
+    .login-register-form
+    .sin-login-register
+    .login-register-btn-input
+    span {
+        right: 8px;
+    }
+}
+
 .login-register-wrap .login-register-form .sin-login-register label {
     font-size: 12px;
 }

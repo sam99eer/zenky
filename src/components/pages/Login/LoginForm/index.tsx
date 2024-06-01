@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { SendOtp } from 'src/api/SendOtp';
 import { VerifyOtp } from 'src/api/VerifyOtp';
+import useTimer from 'src/hooks/useTimer';
 import { IError } from 'src/models/api/ErrorModel';
 import { IStep } from 'src/models/screens/Forgot';
 import {
@@ -21,6 +22,8 @@ import { Keys } from 'src/utils/Keys';
 import { Screens } from 'src/utils/Screens';
 
 const LoginForm = () => {
+    const { isEnabled, timeLeft, handleStart } = useTimer(30);
+
     const { isLoading, mutateAsync: sendOtp } = useMutation(
         Keys.SEND_LOGIN_OTP,
         SendOtp
@@ -52,6 +55,38 @@ const LoginForm = () => {
             ...oldState,
             [uid]: event.target.value,
         }));
+    };
+
+    const stepResetHandler = () => {
+        setStep({
+            step1: true,
+            step2: false,
+        });
+    };
+
+    const resendOtpHandler = () => {
+        handleStart();
+        const isEmail = REGEX.EMAIL.test(data.username);
+        const payload: ISendOtpPayloadModel = {
+            email: isEmail ? data.username : '',
+            countryCode: isEmail ? '' : '+91',
+            phoneNumber: isEmail ? '' : data.username,
+        };
+        sendOtp(payload)
+            .then((res) => {
+                if (res.status === 200) {
+                    toast.success('OTP resent successfully!');
+                    return;
+                }
+                throw new Error(res?.error);
+            })
+            .catch((err: IError) =>
+                toast.error(
+                    err.response?.data?.error
+                        ? err.response?.data?.error
+                        : 'Unable to resend OTP right now!'
+                )
+            );
     };
 
     const submitHandler = (event: FormEvent) => {
@@ -170,27 +205,56 @@ const LoginForm = () => {
                             <label>
                                 Email address / Phone number <span>*</span>
                             </label>
-                            <input
-                                type='text'
-                                value={data.username}
-                                onChange={changeHandler.bind(this, 'username')}
-                                maxLength={50}
-                                disabled={step.step2}
-                                required
-                            />
+                            <div className='login-register-btn-input'>
+                                <input
+                                    type='text'
+                                    value={data.username}
+                                    onChange={changeHandler.bind(
+                                        this,
+                                        'username'
+                                    )}
+                                    maxLength={50}
+                                    disabled={step.step2}
+                                    required
+                                />
+                                {step.step2 && (
+                                    <span
+                                        role='button'
+                                        onClick={stepResetHandler}
+                                    >
+                                        Change?
+                                    </span>
+                                )}
+                            </div>
                         </div>
                         {step.step2 && (
                             <div className='sin-login-register'>
                                 <label>
                                     OTP <span>*</span>
                                 </label>
-                                <input
-                                    type='text'
-                                    value={data.otp}
-                                    onChange={changeHandler.bind(this, 'otp')}
-                                    maxLength={6}
-                                    required
-                                />
+                                <div className='login-register-btn-input'>
+                                    <input
+                                        type='text'
+                                        value={data.otp}
+                                        onChange={changeHandler.bind(
+                                            this,
+                                            'otp'
+                                        )}
+                                        maxLength={6}
+                                        required
+                                    />
+                                    {step.step2 &&
+                                        (isEnabled ? (
+                                            <span
+                                                role='button'
+                                                onClick={resendOtpHandler}
+                                            >
+                                                Resend?
+                                            </span>
+                                        ) : (
+                                            <span>{timeLeft}s</span>
+                                        ))}
+                                </div>
                             </div>
                         )}
                         <div className='login-register-btn-remember'>
